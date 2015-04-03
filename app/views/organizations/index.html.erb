@@ -1,0 +1,11 @@
+<%= provide(:title, 'Organizations') %>
+<h1>Pick an organization!</h1>
+
+<ul id="og-grid" class="og-grid">
+	<% @organizations.each do |organization| %>
+		<li>
+			<div class="overlay"></div>
+			<%= link_to image_tag(organization.logo, :size => "150x150"), organization, data: { largesrc: organization.logo, title: organization.name, description: organization.description } %>
+		</li>
+	<% end %>
+</ul>
