@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+                                        :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-	@users = User.all
+	@users = User.paginate(page: params[:page])
   end
   
   def new
@@ -12,6 +13,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+	@microposts = @user.microposts.paginate(page: params[:page])
+	@events = @user.events.paginate(page: params[:page])
   end
   
   def create
@@ -39,19 +42,39 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end 
   
+  def events
+	@title = "Events"
+	@user = User.find(params[:id])
+	@events = @user.events
+	render 'show_events'
+  end
+  
+  def participations
+	@title = "Attending"
+	@user = User.find(params[:id])
+	@events = @user.participations
+	render 'show_participations'
+  end
+  
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+  
   private
 
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :password_confirmation)
 	end
-	
-	def logged_in_user
-      unless logged_in?
-	    store_location
-        flash[:danger] = "Please log in to access this page."
-        redirect_to login_url
-      end
-    end
 	
 	def correct_user
 	  @user = User.find(params[:id])

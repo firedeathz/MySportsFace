@@ -1,0 +1,12 @@
+<%= form_for([@article, @article.comments.build]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :author, :value => current_user.name %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :article_id, :value => @article.id %>
+  
+  <p class="border-top">
+	<%= f.label "Join the discussion!" %>
+	<%= f.text_area :body, class: "text-area form-control", placeholder: "Leave your comments here", autofocus: true %>
+	<%= f.submit "Add Comment", class: "btn btn-primary" %>
+  </p>
+<% end %>

@@ -1,0 +1,7 @@
+<%= form_for([@event, @picture], html: { multipart: true }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	
+	<%= f.file_field :url, accept: 'image/jpeg,image/gif,image/png', :required => true %>
+
+	<%= f.submit "Upload Photo", class: "btn btn-primary" %>
+<% end %>

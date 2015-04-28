@@ -1,0 +1,97 @@
+<%= provide(:title, @event.name) %>
+<h1><%= @event.name %></h1>
+<h2 class="event-creator">created by <%= link_to User.find(@event.user_id).name, user_path(User.find(@event.user_id)) %></h2>
+
+<p class="event-description">
+	<%= @event.description %>
+</p>
+
+<div class="row">
+	<div class="border-top">
+		<h3>Participants (<%= @event.participants.count %>)</h3>
+	</div>
+	<div class="col-md-12">
+		<% if @event.participants.count > 0 %>
+			<div class="participants">
+				<% @event.participants.each do |participant| %>
+					<div>
+						<% if participant.active_participations.find_by(event_id: @event.id).creator? %>
+							<span class="admin">
+								<%= image_tag("event_admin_msf.png", :width => "30px", :height => "30px") %>
+								<%= link_to participant.name, participant %> (Owner)
+							</span>
+						<% end %>
+					</div>
+				<% end %>
+				<% @event.participants.each do |participant| %>
+					<div>
+						<% if participant.active_participations.find_by(event_id: @event.id).admin? %>
+							<span class="admin">
+								<%= image_tag("event_admin_msf.png", :width => "30px", :height => "30px") %>
+								<%= link_to participant.name, participant %> (Admin)
+								<% if !current_user.active_participations.find_by(event_id: @event.id).nil? and current_user.active_participations.find_by(event_id: @event.id).creator? %>
+									<%= form_for(participant.active_participations.find_by(event_id: @event.id), :html => { class: "link-form" }) do |f| %>
+										<%= f.submit "remove admin", class: "link" %>
+									<% end %>
+								<% end %>
+							</span>
+						<% end %>
+					</div>
+				<% end %>
+				<% @event.participants.each do |participant| %>
+					<div>
+						<% if !participant.active_participations.find_by(event_id: @event.id).admin? and !participant.active_participations.find_by(event_id: @event.id).creator? %>
+							<span class="participant">
+								<%= image_tag("event_participant_msf.png", :width => "30px", :height => "30px") %>
+								<%= link_to participant.name, participant %>
+								<% if !current_user.active_participations.find_by(event_id: @event.id).nil? and (current_user.active_participations.find_by(event_id: @event.id).admin? or current_user.active_participations.find_by(event_id: @event.id).creator?) %>								
+									<%= form_for(participant.active_participations.find_by(event_id: @event.id), :html => { class: "link-form" }) do |f| %>
+										<%= f.submit "make admin", class: "link" %>
+									<% end %>
+								<% end %>
+							</span>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		<% else %>
+			<span class="no-participants">This event has no participants yet. Be the first to sign up!</span>
+		<% end %>
+		<div class="col-md-4 margin-top-sm">
+			<%= render 'participate_form' if logged_in? %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="border-top">
+		<h3>Photos (<%= @event.pictures.count %>)</h3>
+	</div>
+	<div class="col-md-12">
+		<% if @event.pictures.count > 0 %>
+			<a href="javascript:void(0)" id="prev">&#10094;</a>
+			<div class="photos">
+				<%= render @event.pictures %>
+			</div>
+			<a href="javascript:void(0)" id="next">&#10095;</a>
+		<% else %>
+			<span class="no-photos">This event has no photos yet.</span>
+		<% end %>
+	</div>
+	<div class="col-md-4 margin-top-sm">
+		<%= render 'shared/upload_picture_form' %>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.photos').cycle({
+			fx: 'scrollHorz',
+			next: '.photos',
+			next: '#next',
+			prev: '#prev',
+			delay: -500,  
+		});
+	});
+</script>
+

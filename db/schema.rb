@@ -11,13 +11,93 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403150711) do
+ActiveRecord::Schema.define(version: 20150428220206) do
+
+  create_table "articles", force: true do |t|
+    t.string   "author"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "articles", ["organization_id"], name: "index_articles_on_organization_id"
+
+  create_table "comments", force: true do |t|
+    t.string   "author"
+    t.text     "body"
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+  add_index "comments", ["user_id", "article_id", "created_at"], name: "index_comments_on_user_id_and_article_id_and_created_at"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
+
+  create_table "microposts", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "picture"
+  end
+
+  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+  add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
 
   create_table "organizations", force: true do |t|
     t.string "name"
-    t.string "description"
+    t.text   "description"
     t.string "logo"
   end
+
+  create_table "participations", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "admin"
+    t.boolean  "creator"
+  end
+
+  add_index "participations", ["event_id", "user_id"], name: "index_participations_on_event_id_and_user_id", unique: true
+  add_index "participations", ["event_id"], name: "index_participations_on_event_id"
+  add_index "participations", ["user_id"], name: "index_participations_on_user_id"
+
+  create_table "pictures", force: true do |t|
+    t.string   "url"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pictures", ["event_id", "created_at"], name: "index_pictures_on_event_id_and_created_at"
+  add_index "pictures", ["event_id"], name: "index_pictures_on_event_id"
+
+  create_table "relationships", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

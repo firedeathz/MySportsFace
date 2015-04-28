@@ -1,0 +1,9 @@
+<li id="event-<%= event.id %>">
+  <span class="event-name"><%= link_to event.name, event_path(event) %></span>
+  <span class="description">
+	<%= event.description %>
+  </span>
+  <span class="timestamp">
+    created at <%= event.created_at %>
+  </span>
+</li>

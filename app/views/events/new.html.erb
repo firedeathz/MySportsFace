@@ -1,0 +1,19 @@
+<% provide(:title, 'Create Event') %>
+<h1>Create a new event</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@event) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+ 	  <%= f.hidden_field :user_id, :value => current_user.id %>
+	
+      <%= f.label :name, "Event name" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :description, "Event description" %>
+      <%= f.text_area :description, class: 'form-control' %>
+
+      <%= f.submit "Create", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

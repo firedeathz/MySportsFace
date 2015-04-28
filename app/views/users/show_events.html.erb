@@ -1,0 +1,25 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= gravatar_for @user %>
+      <h1><%= @user.name %></h1>
+      <% if current_user.id == @user.id %>
+		<span><%= link_to "Settings", edit_user_path(@user) %></span>
+	  <% end %>	
+	</section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+	<%= link_to "Create an event", events_new_path, class: "wide btn btn-primary" if @user == current_user %>
+    <h3>Posts (<%= @user.microposts.count %>): <%= link_to "View posts", user_path(@user), class: "btn btn-primary" %></h3>
+    <h3>Events (<%= @events.count %>)</h3>
+    <% if @events.any? %>
+      <ul class="events">
+        <%= render @events %>
+      </ul>
+    <% end %>
+  </div>
+</div>

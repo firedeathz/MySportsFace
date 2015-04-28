@@ -1,0 +1,8 @@
+<li>
+  <%= gravatar_for user %>
+  <%= link_to user.name, user %>
+  <br>
+  <span><b>Posts:</b> <%= user.microposts.count %></span>
+  <br>
+  <span><b>Events:</b> <%= user.events.count %></span>
+</li>

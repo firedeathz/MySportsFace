@@ -1,0 +1,17 @@
+<%= provide(:title, @organization.name) %>
+<h1><%= @organization.name %></h1>
+
+<ul class="btn-opt">
+	<li>
+		<div class="overlay"></div>
+		<%= link_to "News", organization_articles_path(@organization) %>
+	</li>
+	<li>
+		<div class="overlay"></div>
+		<%= link_to "Events", '#' %>
+	</li>
+	<li>
+		<div class="overlay"></div>
+		<%= link_to "Subscribe", '#' %>
+	</li>
+</ul>

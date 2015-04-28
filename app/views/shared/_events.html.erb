@@ -1,0 +1,2 @@
+<% @user ||= current_user %>
+<h3>Events (<%= @user.events.count %>): <%= link_to "View events", events_user_path(@user), class: "btn btn-primary" %>
