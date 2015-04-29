@@ -22,5 +22,23 @@ class Event < ActiveRecord::Base
   def has_participant?(user)
 	participants.include?(user)
   end
+  
+  def admins
+    admin_ids = "SELECT user_id FROM participations
+                 WHERE  event_id = :event_id AND admin = :val"
+    User.where("id IN (#{admin_ids})", event_id: id, val: true)
+  end
+  
+  def creator
+	creator_id = "SELECT user_id FROM participations
+				  WHERE  event_id = :event_id AND creator = :val"
+	User.where("id IN (#{creator_id})", event_id: id, val: true)
+  end
+  
+  def user_participants
+	participant_ids = "SELECT user_id FROM participations
+					   WHERE  event_id = :event_id AND admin = :admin AND creator = :creator"
+	User.where("id IN (#{participant_ids})", event_id: id, admin: false, creator: false) 
+  end
 
 end

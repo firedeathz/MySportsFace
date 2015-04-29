@@ -22,19 +22,22 @@ $gray-medium-light: #eaeaea;
 .link-form {
 	margin: 0;
 	float: right;
-	height: 20px;
+	height: 100%;
+	vertical-align: middle;
 }
 
 .link {
 	background: none !important;
     border: none; 
-    padding: 0 !important;
-	color: #c3f;
+	height: 100%;
+	padding-top: 5px;
+	padding-right: 10px;
+	vertical-align: middle;
+	color: #fff;
     text-decoration: none;
-	font-weight: normal;
     cursor: pointer;
 	&:hover {
-		color: #c0c;
+		color: #fff;
 		text-decoration: underline;
 	}
 }
@@ -110,7 +113,13 @@ body {
 		padding: 10px 0;
 		padding-left: 10px;
 		border: 2px solid #333;
-		background-color: #ccc;
+		background: rgb(204,204,204);
+		background: -moz-linear-gradient(left, rgba(204,204,204,1) 52%, rgba(51,51,51,1) 100%);
+		background: -webkit-gradient(linear, left top, right top, color-stop(52%,rgba(204,204,204,1)), color-stop(100%,rgba(51,51,51,1)));
+		background: -webkit-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+		background: -o-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+		background: -ms-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+		background: linear-gradient(to right, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
 		border-radius: 10px;
 		margin-bottom: 10px;
 	}
@@ -135,7 +144,58 @@ body {
 }
 
 .event-description {
+	padding-left: 40px;
 	word-wrap: break-word;
+}
+
+.event-info {
+	overflow: auto;
+	margin-top: 0;
+	padding: 0;
+	padding-bottom: 20px;
+	h3 {
+		span{
+			color: #333;
+			font-family: 'Segoe UI Symbol';
+			padding-right: 10px;
+		}
+		border-left: 1px solid #333;
+		color: #333;
+		&:first-child {
+			padding-left: 0;
+			border: 0;
+		}
+	}
+	p {
+		padding-left: 40px;
+	}
+}
+
+.timeloc {
+	h3 {
+		margin-top: 0;
+	}
+	p {
+		padding-top: 10px;
+		margin-bottom: -5px;
+	}	
+}
+
+.margin-top {
+	margin-top: 15px;
+}
+
+.border-right {
+	padding-left: 0;
+	border-right: 1px solid #333;
+}
+
+.anchor-links {
+	font-size: 1.2em;
+	position: relative;
+	width: 100%;
+	padding-bottom: 20px;
+	text-align: center;
 }
 
 /* stats form */
@@ -165,6 +225,7 @@ body {
 .users {
   list-style: none;
   margin: 0;
+  padding: 0;
   li {
     overflow: auto;
     padding: 10px 0;
@@ -173,7 +234,13 @@ body {
 	margin-bottom: 10px;
 	padding-left: 10px;
 	font-weight: bold;
-	background-color: #ccc;
+	background: rgb(204,204,204);
+	background: -moz-linear-gradient(left, rgba(204,204,204,1) 52%, rgba(51,51,51,1) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(52%,rgba(204,204,204,1)), color-stop(100%,rgba(51,51,51,1)));
+	background: -webkit-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: -o-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: -ms-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: linear-gradient(to right, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
   }
 }
 
@@ -293,6 +360,7 @@ body {
 /* participants */
 
 .participants {
+	padding-top: 10px;
 	list-style: none;
 	li {
 		padding-bottom: 5px;
@@ -302,9 +370,28 @@ body {
 .admin, .participant {
 	font-weight: bold;
 	font-size: 1.2em;
-	a {
-		color: #333;
-	}
+	color: #333;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.title-part {
+	font-weight: normal;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.part {
+	border: 2px solid #333;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	background: rgb(204,204,204);
+	background: -moz-linear-gradient(left, rgba(204,204,204,1) 52%, rgba(51,51,51,1) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(52%,rgba(204,204,204,1)), color-stop(100%,rgba(51,51,51,1)));
+	background: -webkit-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: -o-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: -ms-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: linear-gradient(to right, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
 }
 
 #participate_form {
@@ -320,7 +407,13 @@ body {
   li {
     padding: 10px 0;
     border: 2px solid #333;
-	background-color: #ccc;
+	background: rgb(204,204,204);
+	background: -moz-linear-gradient(left, rgba(204,204,204,1) 52%, rgba(51,51,51,1) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(52%,rgba(204,204,204,1)), color-stop(100%,rgba(51,51,51,1)));
+	background: -webkit-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: -o-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: -ms-linear-gradient(left, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
+	background: linear-gradient(to right, rgba(204,204,204,1) 52%,rgba(51,51,51,1) 100%);
 	border-radius: 10px;
 	margin-bottom: 10px;
   }

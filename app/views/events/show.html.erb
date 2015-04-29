@@ -2,57 +2,45 @@
 <h1><%= @event.name %></h1>
 <h2 class="event-creator">created by <%= link_to User.find(@event.user_id).name, user_path(User.find(@event.user_id)) %></h2>
 
-<p class="event-description">
-	<%= @event.description %>
-</p>
+<div class="anchor-links">
+	<a href="#participants" class="btn btn-primary">view participants</a>
+	<a href="#photos" class="btn btn-primary">view photos</a>
+</div>
 
 <div class="row">
-	<div class="border-top">
-		<h3>Participants (<%= @event.participants.count %>)</h3>
+	<div class="border-top event-info">
+		<h3><span>&#x1f518;</span> Event Information</h3>
+	</div>
+	<div class="col-md-12">
+		<p class="event-description">
+			<%= @event.description %>
+		</p>
+	</div>
+	<div class="border-top event-info">
+		<div class="col-md-6 border-right timeloc margin-top">
+			<h3><span>&#x1f552;</span> Date & Time</h3>
+			<p>event time</p>
+		</div>
+		<div class="col-md-6 timeloc margin-top">
+			<h3><span>&#x1f30f;</span> Location</h3>
+			<p>event location</p>
+		</div>
+	</div>
+	<div class="col-md-12">
+		
+	</div>
+</div>
+
+<div class="row" id="participants">
+	<div class="border-top event-info">
+		<h3><span>&#x1f464;</span> Participants (<%= @event.participants.count %>)</h3>
 	</div>
 	<div class="col-md-12">
 		<% if @event.participants.count > 0 %>
 			<div class="participants">
-				<% @event.participants.each do |participant| %>
-					<div>
-						<% if participant.active_participations.find_by(event_id: @event.id).creator? %>
-							<span class="admin">
-								<%= image_tag("event_admin_msf.png", :width => "30px", :height => "30px") %>
-								<%= link_to participant.name, participant %> (Owner)
-							</span>
-						<% end %>
-					</div>
-				<% end %>
-				<% @event.participants.each do |participant| %>
-					<div>
-						<% if participant.active_participations.find_by(event_id: @event.id).admin? %>
-							<span class="admin">
-								<%= image_tag("event_admin_msf.png", :width => "30px", :height => "30px") %>
-								<%= link_to participant.name, participant %> (Admin)
-								<% if !current_user.active_participations.find_by(event_id: @event.id).nil? and current_user.active_participations.find_by(event_id: @event.id).creator? %>
-									<%= form_for(participant.active_participations.find_by(event_id: @event.id), :html => { class: "link-form" }) do |f| %>
-										<%= f.submit "remove admin", class: "link" %>
-									<% end %>
-								<% end %>
-							</span>
-						<% end %>
-					</div>
-				<% end %>
-				<% @event.participants.each do |participant| %>
-					<div>
-						<% if !participant.active_participations.find_by(event_id: @event.id).admin? and !participant.active_participations.find_by(event_id: @event.id).creator? %>
-							<span class="participant">
-								<%= image_tag("event_participant_msf.png", :width => "30px", :height => "30px") %>
-								<%= link_to participant.name, participant %>
-								<% if !current_user.active_participations.find_by(event_id: @event.id).nil? and (current_user.active_participations.find_by(event_id: @event.id).admin? or current_user.active_participations.find_by(event_id: @event.id).creator?) %>								
-									<%= form_for(participant.active_participations.find_by(event_id: @event.id), :html => { class: "link-form" }) do |f| %>
-										<%= f.submit "make admin", class: "link" %>
-									<% end %>
-								<% end %>
-							</span>
-						<% end %>
-					</div>
-				<% end %>
+				<%= render 'creator' %>
+				<%= render 'admins' %>
+				<%= render 'user_participants' %>
 			</div>
 		<% else %>
 			<span class="no-participants">This event has no participants yet. Be the first to sign up!</span>
@@ -63,24 +51,18 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="border-top">
-		<h3>Photos (<%= @event.pictures.count %>)</h3>
+<div class="row" id="photos">
+	<div class="border-top event-info">
+		<h3><span>&#x1f4f7;</span> Photos (<%= @event.pictures.count %>)</h3>
 	</div>
 	<div class="col-md-12">
-		<% if @event.pictures.count > 0 %>
-			<a href="javascript:void(0)" id="prev">&#10094;</a>
-			<div class="photos">
-				<%= render @event.pictures %>
-			</div>
-			<a href="javascript:void(0)" id="next">&#10095;</a>
-		<% else %>
-			<span class="no-photos">This event has no photos yet.</span>
-		<% end %>
+		<%= render 'event_pictures' %>
 	</div>
-	<div class="col-md-4 margin-top-sm">
-		<%= render 'shared/upload_picture_form' %>
-	</div>
+	<% if !current_user.active_participations.find_by(event_id: @event.id).nil? %>
+		<div class="col-md-4 margin-top-sm">
+			<%= render 'shared/upload_picture_form' %>
+		</div>
+	<% end %>
 </div>
 
 <script type="text/javascript">
@@ -93,5 +75,14 @@
 			delay: -500,  
 		});
 	});
+	
+	var $root = $('html, body');
+	$('a').click(function() {
+		$root.animate({
+			scrollTop: $( $.attr(this, 'href') ).offset().top - 40
+		}, 500);
+		return false;
+	});
+	
 </script>
 

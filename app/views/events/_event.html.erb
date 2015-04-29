@@ -4,6 +4,6 @@
 	<%= event.description %>
   </span>
   <span class="timestamp">
-    created at <%= event.created_at %>
+    created <%= time_ago_in_words(event.created_at) %> ago by <%= link_to User.find(event.user_id).name, user_path(User.find(event.user_id)) %>
   </span>
 </li>

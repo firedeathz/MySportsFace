@@ -1,0 +1,11 @@
+<% @event.user_participants.each do |participant| %>
+	<div class="part">
+		<%= image_tag("event_participant_msf.png", :width => "30px", :height => "30px") %>
+		<%= link_to participant.name, participant, class: "participant" %>
+		<% if !current_user.active_participations.find_by(event_id: @event.id).nil? and (current_user.active_participations.find_by(event_id: @event.id).admin? or current_user.active_participations.find_by(event_id: @event.id).creator?) %>								
+			<%= form_for(participant.active_participations.find_by(event_id: @event.id), :html => { class: "link-form", multipart: true }) do |f| %>
+				<%= f.submit "make admin", class: "link" %>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>

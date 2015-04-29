@@ -1,0 +1,9 @@
+<% if @event.pictures.count > 0 %>
+	<a href="javascript:void(0)" id="prev">&#10094;</a>
+	<div class="photos">
+		<%= render @event.pictures %>
+	</div>
+	<a href="javascript:void(0)" id="next">&#10095;</a>
+<% else %>
+	<span class="no-photos">This event has no photos yet.</span>
+<% end %>
