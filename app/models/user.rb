@@ -74,11 +74,21 @@ class User < ActiveRecord::Base
   end
   
   def event_admin?(event)
-	participations.find_by(event_id: event.id).admin?
+	participation = active_participations.find_by(event_id: event.id)
+	if(!participation.nil?)
+		participation.admin?
+	else 
+		false
+	end
   end
   
   def event_creator?(event)
-	participations.find_by(event_id: event.id).creator?
+	participation = active_participations.find_by(event_id: event.id)
+	if(!participation.nil?)
+		participation.creator?
+	else 
+		false
+	end
   end
   
   def follow(other_user)

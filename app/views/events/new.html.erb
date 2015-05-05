@@ -1,19 +1,99 @@
-<% provide(:title, 'Create Event') %>
-<h1>Create a new event</h1>
+<% provide(:title, 'New Event') %>
+<h1>New event</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@event) do |f| %>
-	  <%= render 'shared/error_messages', object: f.object %>
- 	  <%= f.hidden_field :user_id, :value => current_user.id %>
-	
-      <%= f.label :name, "Event name" %>
-      <%= f.text_field :name, class: 'form-control' %>
+	<div class="col-md-12">
+		<%= form_for(@event) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
 
-      <%= f.label :description, "Event description" %>
-      <%= f.text_area :description, class: 'form-control' %>
-	  
-      <%= f.submit "Create", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+			<%= f.label :name, "Event name" %>
+			<%= f.text_field :name, class: 'form-control' %>
+
+			<%= f.label :description, "Event description" %>
+			<%= f.text_area :description, class: 'form-control' %>
+
+			<div class="col-md-6 border-right datetime-field no-padding-left">
+				<div class="datetime">
+					<%= f.label :date, "Date" %>
+				</div>			
+				<%= f.date_select :date, :order => [ :day, :month, :year ] %>
+			</div>
+			<div class="col-md-6">
+				<div class="datetime">
+					<%= f.label :time, "Time" %>
+				</div>
+				<%= f.time_select :time %>
+			</div>
+			
+			<%= f.label :location, "Location" %>
+			<%= f.text_field :location, class: 'form-control', id: 'loc', placeholder: 'Search a location...' %>
+			
+			<%= f.hidden_field :lat, id: 'lat' %>
+			<%= f.hidden_field :lng, id: 'lng' %>
+			
+			<div id="gmap" class="googlemap form-control"></div>
+
+			<%= f.submit "Create", class: "btn btn-primary" %>
+		<% end %>
+	</div>
 </div>
+
+<script src="http://maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=places" type="text/javascript"></script>
+
+<script type="text/javascript">	
+	var oldMarker = null;
+	var input;
+	var markers = [];
+	var lat;
+	var lng;
+	
+	function initialize() {
+		input = document.getElementById('loc');
+		var searchBox = new google.maps.places.SearchBox(input);
+		lat = document.getElementById('lat');
+		lng = document.getElementById('lng');
+	
+		var mapOptions = {
+			zoom: 4,
+			center: new google.maps.LatLng(38.736946,-9.142685)
+		};
+		var map = new google.maps.Map(document.getElementById('gmap'),
+		  mapOptions);
+		
+		google.maps.event.addListener(searchBox, 'places_changed', function() {
+			var places = searchBox.getPlaces();
+
+			if (places.length == 0) {
+				return;
+			}
+			for (var i = 0, marker; marker = markers[i]; i++) {
+				marker.setMap(null);
+			}
+
+			// For each place, get the icon, place name, and location.
+			markers = [];
+			var bounds = new google.maps.LatLngBounds();
+			for (var i = 0, place; place = places[i]; i++) {
+
+				var marker = new google.maps.Marker({
+					map: map,
+					title: place.name,
+					position: place.geometry.location
+				});
+
+				markers.push(marker);
+
+				bounds.extend(place.geometry.location);
+				
+				lat.value = place.geometry.location.lat();
+				lng.value = place.geometry.location.lng();
+			}
+
+			map.fitBounds(bounds);
+			map.setZoom(10);
+		});
+	}
+	
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>

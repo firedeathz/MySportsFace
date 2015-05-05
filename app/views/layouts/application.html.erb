@@ -5,13 +5,13 @@
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
-		<%= favicon_link_tag 'favicon.ico' %>
+		<%= favicon_link_tag %>
 		<%= render 'layouts/shim' %>
 	</head>
 	
 	<body>
 		<%= render 'layouts/header' %>
-		<div class="container">
+		<div class="container extra">
 			<% flash.each do |message_type, message| %>
 				<div class="alert alert-<%= message_type %>"><%= message %></div>
 			<% end %>

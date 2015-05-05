@@ -1,18 +1,29 @@
 <%= provide(:title, @article.title) %>
 <div class="back-btn"><%= link_to "Go back", organization_articles_path(@organization), class: "btn btn-lg btn-primary" %></div>
 <h1><%= @article.title %></h1>
-<h2 class="author">by <%= @article.author %></h2>
+<h2 class="event-creator">by <%= @article.author %></h2>
 
-<p class="article-description"><%= @article.description %></p>
+<div class="event-info">
+	<h3><span class="icon">&#x1f4ac;</span> Article Information</h3>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<p class="article-description">
+			<%= @article.description %>
+		</p>
+	</div>
+</div>
 
-<div class="comment-form">
+<div class="event-info" id="comments">
+	<h3><span>&#xe134;</span> Comments (<%= @article.comments.count %>)</h3>
 	<%= render 'shared/comment_form' %>
-
+</div>
+<ul class="comments">
 	<% @comments.reverse_each do |comment| %>
 		<% if comment.user_id != nil %>
-			<div class="news-comment">
+			<li>
 				<%= gravatar_for User.find(comment.user_id) %>
-				<div class="comment-description">
+				<div>
 					<p class="comment-author"><%= link_to comment.author, user_path(User.find(comment.user_id)) %></p>
 					<span class="comment-timestamp">
 						<%= time_ago_in_words(comment.created_at) %> ago.
@@ -23,7 +34,7 @@
 					</span>
 					<p class="comment-body"><%= comment.body %></p>	
 				</div>
-			</div>
+			</li>
 		<% end %>
 	<% end %>
-</div>
+</ul>

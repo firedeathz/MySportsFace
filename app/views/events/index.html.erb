@@ -1,6 +1,10 @@
 <% provide(:title, 'Events') %>
 <h1>Events</h1>
 
+<div class="col-md-12 new-event-btn">
+	<%= link_to "Create an event", events_new_path, class: "btn btn-primary" %>
+</div>
+	
 <%= will_paginate %>
 
 <ul class="events">

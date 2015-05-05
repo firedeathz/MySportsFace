@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428220206) do
+ActiveRecord::Schema.define(version: 20150503164415) do
 
   create_table "articles", force: true do |t|
     t.string   "author"
@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(version: 20150428220206) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "location"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.date     "date"
+    t.time     "time"
   end
 
   add_index "events", ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"

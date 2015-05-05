@@ -1,0 +1,6 @@
+<li class="news-article">
+	<p class="article-title"><%= link_to article.title, article_path(article) %></p>
+	<p class="article-author">by <%= article.author %></p>
+	<p class="article-summary"><%= article.description.truncate(99, omission: " [...]") %></p>
+	<p class="article-comments"><%= link_to "Comments: #{article.comments.count}", article_path(article, anchor: 'comments') %></p>	
+</li>

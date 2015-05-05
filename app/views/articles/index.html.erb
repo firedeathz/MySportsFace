@@ -6,11 +6,5 @@
 <h2><%= @organization.name %></h2>
 
 <ul class="articles">
-	<% @articles.each do |article| %>
-		<li class="news-article">
-			<p class="article-title"><%= link_to article.title, article_path(article) %></p>
-			<p class="article-author">by <%= article.author %></p>
-			<p class="article-description"><%= article.description %></p>	
-		</li>
-	<% end %>
+	<%= render @articles %>
 </ul>

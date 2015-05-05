@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :name, presence: true, length: { minimum: 8 }
+  validates :location, presence: true
   
   def add_participant(user, admin_val, creator_val)
 	passive_participations.create(user_id: user.id, admin: admin_val, creator: creator_val)

@@ -1,7 +1,7 @@
 <li id="event-<%= event.id %>">
   <span class="event-name"><%= link_to event.name, event_path(event) %></span>
   <span class="description">
-	<%= event.description %>
+	<%= event.description.truncate(99, omission: " [...]") %>
   </span>
   <span class="timestamp">
     created <%= time_ago_in_words(event.created_at) %> ago by <%= link_to User.find(event.user_id).name, user_path(User.find(event.user_id)) %>

@@ -1,6 +1,6 @@
 <% @event.creator.each do |participant| %>
 	<div class="part">
-		<%= image_tag("event_admin_msf.png", :width => "30px", :height => "30px") %>
+		<%= image_tag("event_creator_msf.png", :width => "30px", :height => "30px") %>
 		<%= link_to participant.name, participant, class: "admin" %><span class="title-part"> (Owner)</span>
 	</div>
 <% end %>

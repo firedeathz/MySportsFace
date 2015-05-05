@@ -1,17 +1,20 @@
 <%= provide(:title, @organization.name) %>
 <h1><%= @organization.name %></h1>
+<div class="subscribe">
+	<%= form_for(@organization) do |f| %>
+	  <%= f.submit "Subscribe", class: "btn btn-primary btn-small" %>
+	<% end %>
+</div>
 
-<ul class="btn-opt">
+<ul class="organization-x">
 	<li>
-		<div class="overlay"></div>
-		<%= link_to "News", organization_articles_path(@organization) %>
+		<span class="org-link">
+			<%= link_to "News", organization_articles_path(@organization) %> (<%= @organization.articles.count %>)
+		</span>
 	</li>
 	<li>
-		<div class="overlay"></div>
-		<%= link_to "Events", '#' %>
-	</li>
-	<li>
-		<div class="overlay"></div>
-		<%= link_to "Subscribe", '#' %>
+		<span class="org-link">
+			<%= link_to "Events", '#' %> (0)
+		</span>
 	</li>
 </ul>
