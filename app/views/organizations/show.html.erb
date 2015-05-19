@@ -1,5 +1,6 @@
 <%= provide(:title, @organization.name) %>
 <h1><%= @organization.name %></h1>
+<h2>Visit their website at: <%= link_to @organization.url, @organization.url, :target => "_blank" %></h2>
 
 <ul class="organization-x">
 	<li>

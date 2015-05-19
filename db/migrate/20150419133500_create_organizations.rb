@@ -4,6 +4,7 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :logo
+	  t.string :url
     end
   end
 end
