@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :pictures
+  has_many :schedule_entries
   belongs_to :user
   
   has_many :passive_participations, class_name:  "Participation",
@@ -11,6 +12,8 @@ class Event < ActiveRecord::Base
   validates :user_id, presence: true
   validates :name, presence: true, length: { minimum: 8 }
   validates :location, presence: true
+  validates :time, presence: true
+  validates :date, presence: true
   
   def add_participant(user, admin_val, creator_val)
 	passive_participations.create(user_id: user.id, admin: admin_val, creator: creator_val)

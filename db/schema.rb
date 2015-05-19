@@ -11,12 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503164415) do
+ActiveRecord::Schema.define(version: 20150517140633) do
 
-  create_table "articles", force: true do |t|
+  create_table "articles", force: :cascade do |t|
+    t.string   "atom_id"
     t.string   "author"
     t.string   "title"
+    t.text     "content"
     t.text     "description"
+    t.string   "url"
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150503164415) do
 
   add_index "articles", ["organization_id"], name: "index_articles_on_organization_id"
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.string   "author"
     t.text     "body"
     t.integer  "article_id"
@@ -37,7 +40,20 @@ ActiveRecord::Schema.define(version: 20150503164415) do
   add_index "comments", ["user_id", "article_id", "created_at"], name: "index_comments_on_user_id_and_article_id_and_created_at"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "events", force: true do |t|
+  create_table "entries", force: :cascade do |t|
+    t.string   "atom_id"
+    t.string   "title"
+    t.string   "url"
+    t.string   "description"
+    t.string   "content"
+    t.integer  "feed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "entries", ["feed_id"], name: "index_entries_on_feed_id"
+
+  create_table "events", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
@@ -53,7 +69,18 @@ ActiveRecord::Schema.define(version: 20150503164415) do
   add_index "events", ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
-  create_table "microposts", force: true do |t|
+  create_table "feeds", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "status"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "feeds", ["organization_id"], name: "index_feeds_on_organization_id"
+
+  create_table "microposts", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -64,13 +91,13 @@ ActiveRecord::Schema.define(version: 20150503164415) do
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
 
-  create_table "organizations", force: true do |t|
+  create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.text   "description"
     t.string "logo"
   end
 
-  create_table "participations", force: true do |t|
+  create_table "participations", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -83,7 +110,7 @@ ActiveRecord::Schema.define(version: 20150503164415) do
   add_index "participations", ["event_id"], name: "index_participations_on_event_id"
   add_index "participations", ["user_id"], name: "index_participations_on_user_id"
 
-  create_table "pictures", force: true do |t|
+  create_table "pictures", force: :cascade do |t|
     t.string   "url"
     t.integer  "event_id"
     t.datetime "created_at"
@@ -93,7 +120,7 @@ ActiveRecord::Schema.define(version: 20150503164415) do
   add_index "pictures", ["event_id", "created_at"], name: "index_pictures_on_event_id_and_created_at"
   add_index "pictures", ["event_id"], name: "index_pictures_on_event_id"
 
-  create_table "relationships", force: true do |t|
+  create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
     t.datetime "created_at"
@@ -104,7 +131,18 @@ ActiveRecord::Schema.define(version: 20150503164415) do
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
-  create_table "users", force: true do |t|
+  create_table "schedule_entries", force: :cascade do |t|
+    t.time     "time"
+    t.string   "description"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schedule_entries", ["event_id", "created_at"], name: "index_schedule_entries_on_event_id_and_created_at"
+  add_index "schedule_entries", ["event_id"], name: "index_schedule_entries_on_event_id"
+
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"

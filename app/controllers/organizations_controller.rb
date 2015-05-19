@@ -7,5 +7,12 @@ class OrganizationsController < ApplicationController
   
   def show
     @organization = Organization.find(params[:id])
+	@feed = @organization.feed
+	body, ok = SuperfeedrEngine::Engine.subscribe(@feed, {:retrieve => true})
+	if !ok
+		
+	else
+		@feed.notified JSON.parse(body)
+	end
   end
 end

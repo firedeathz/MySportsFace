@@ -1,0 +1,16 @@
+<%= form_for([@event, @schedule_entry]) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<div class="col-md-4 no-padding-left">
+		<div class="datetime">
+			<%= f.label :time, "Time" %>
+		</div>
+		<%= f.time_select :time, {}, { :class => 'sched-entry' } %>
+	</div>
+	<div class="col-md-8 no-padding-right">
+		<%= f.label :description, "Description" %>
+		<%= f.text_field :description, class: 'form-control' %>
+	</div>
+	
+	<%= f.submit "Add New Entry", class: "btn btn-primary" %>
+<% end %>

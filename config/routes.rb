@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount SuperfeedrEngine::Engine => SuperfeedrEngine::Engine.base_path
+  
   get 'organizations/index'
   get 'sessions/new'
 
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resources :participations, only: [:create, :destroy, :update]
   resources :events, only: [:index, :show, :create] do
     resources :pictures, only: [:create]
+	resources :schedule_entries, only: [:create, :destroy]
 	member do
 		get :participants
 	end
@@ -27,7 +30,7 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :organizations do
-	resources :articles, shallow: true do
+    resources :articles, shallow: true do
 	  resources :comments
 	end
   end

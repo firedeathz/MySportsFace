@@ -25,9 +25,57 @@ $btn-bg: #428BCA;
 	margin-right: 7.5px;
 }
 
+.sched-icon {
+	margin-right: -5px;
+}
+
+.sched-entry {
+	padding: 5px 0px 5px 7.5px;
+}
+
+.sched-time, .sched-separator, .sched-desc {
+	margin-bottom: -30px;
+}
+
+.sched-time {
+	float: left;
+}
+
+.sched-separator {
+	width: 5%;
+	float: left;
+	margin-left: -20px;
+	padding-right: 5px;
+}
+
+.sched-desc {
+	float: left;
+	margin-left: -30px;
+}
+
+.schedule {
+	margin-bottom: 10px;
+}
+
+.no-sched {
+	span {
+		color: #ff0000;
+		font-family: 'Segoe UI Symbol';
+		padding-right: 10px;
+	}
+	margin-left: 40px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.entry-form {
+	padding-left: 40px;
+	margin-bottom: 20px;
+}
+
 .googlemap {
 	width: auto;
-	height: 400px;
+	height: 300px;
 	margin-bottom: 20px;
 	border-radius: 5px;
 }
@@ -178,6 +226,30 @@ select {
 	word-wrap: break-word;
 }
 
+.event-schedule {
+	padding-left: 40px;
+	word-wrap: break-word;
+}
+
+.comment-form {
+	overflow: auto;
+	margin-top: 0;
+	padding: 0;
+	padding-bottom: 20px;
+	border-top: 1px solid #777;
+	h3 {
+		span{
+			color: #333;
+			font-family: 'Segoe UI Symbol';
+			padding-right: 10px;
+		}
+		color: #333;
+	}
+	p {
+		margin-left: 40px;
+	}
+}
+
 .event-info {
 	overflow: auto;
 	margin-top: 0;
@@ -197,7 +269,7 @@ select {
 		}
 	}
 	p {
-		padding-left: 40px;
+		margin-left: 40px;
 	}
 }
 
@@ -218,6 +290,11 @@ select {
 .no-padding-left {
 	padding-left: 0;
 }
+
+.no-padding-right {
+	padding-right: 0;
+}
+
 
 .border-right {
 	border-right: 1px solid #333;
@@ -500,6 +577,9 @@ span.picture {
 		margin-bottom: 10px;
 		box-shadow: 3px 3px 2px #888888;
 	}
+	img {
+		display: none;
+	}
 }
 
 .news-article {
@@ -522,6 +602,8 @@ span.picture {
 }
 
 .article-comments {
+	border-top: 1px solid #777;
+	margin-right: 10px;
 	font-size: 0.75em;
 	margin-bottom: -5px;
 }
@@ -532,8 +614,15 @@ span.picture {
 
 .article-description {
 	word-wrap: break-word;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #777;
+	img {
+		max-height: 500px;
+		width: auto;
+	}
+}
+
+.extra-info {
+	padding-top: 20px;
+	font-weight: bold;
 }
 
 /* comments */

@@ -31,4 +31,8 @@ module EventsHelper
 	def not_creator(user, event)
 		!user.event_creator?(event)
 	end
+	
+	def schedule_defined?(event)
+		event.schedule_entries.count > 0
+	end
 end

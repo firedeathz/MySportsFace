@@ -8,13 +8,20 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<p class="article-description">
-			<%= @article.description %>
-		</p>
+		<div class="article-description">
+			<% if @article.content.nil? %>
+				<% if !@article.description.nil? %>
+					<%= @article.description.html_safe %><span> [...]</span>
+				<% end %>
+				<p class="extra-info">&#x279c; Please visit the <%= link_to "original article", @article.url, target: "_blank" %> to read the full post.</p>
+			<% else %>
+				<%= @article.content.html_safe %>
+			<% end %>
+		</div>
 	</div>
 </div>
 
-<div class="event-info" id="comments">
+<div class="comment-form" id="comments">
 	<h3><span>&#xe134;</span> Comments (<%= @article.comments.count %>)</h3>
 	<%= render 'shared/comment_form' %>
 </div>

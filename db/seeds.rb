@@ -1,48 +1,144 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-# User.create!(name:  "Marcos Germano", email: "mikazzz_pro@hotmail.com", password: "HEARTless0", password_confirmation: "HEARTless0")
+User.create!(name:  "Marcos Germano", email: "mikazzz_pro@hotmail.com", password: "HEARTless0", password_confirmation: "HEARTless0")
 
-50.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  User.create!(name: name, email: email, password: password, password_confirmation: password)
-end
+#50.times do |n|
+#  name  = Faker::Name.name
+#  email = "example-#{n+1}@railstutorial.org"
+#  password = "password"
+#  User.create!(name: name, email: email, password: password, password_confirmation: password)
+#end
 
-users = User.all
-user  = users.first
-following = users[2..40]
-followers = users[3..20]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+#users = User.all
+#user  = users.first
+#following = users[2..40]
+#followers = users[3..20]
+#following.each { |followed| user.follow(followed) }
+#followers.each { |follower| follower.follow(user) }
 
-users = User.order(:created_at).take(6)
-50.times do
- content = Faker::Lorem.sentence(5)
- users.each { |user| user.microposts.create!(content: content) }
-end
+#users = User.order(:created_at).take(6)
+#50.times do
+# content = Faker::Lorem.sentence(5)
+# users.each { |user| user.microposts.create!(content: content) }
+#end
 
-# 50.times do |n|
-#  name  = Faker::Company.name
-#  description = Faker::Company.catch_phrase
-#  logo = Faker::Company.logo
-#  Organization.create!(name: name, description: description, logo: logo, articles_attributes: [ { title: "Example Title", description: "Article description", author: "Marcos", comments_attributes: [ { author: "Marcos Germano", user_id: 1, article_id: n+1, body: "Test" } ] } ])
-# end
+params = { :organization =>
+	{
+		:name => "Federação de Triatlo de Portugal",
+		:description => "A Federação de Triatlo de Portugal, que usa a abreviatura FTP, nasceu a 16 de outubro de 1989, sucedendo à Associação Portuguesa de Triatlo, criada dois anos antes. A sua sede situa-se na Alameda do Sabugueiro, 1B, Murganhal, em Caxias.",
+		:logo => "ftp2015.gif",
+		:feed_attributes => 
+		{
+			:title => "FTP - Triatlo Portugal",
+			:url => "http://www.federacao-triatlo.pt/ftp2015/feed/",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params[:organization])
 
-# compName1 = "Federação de Triatlo de Portugal"
-# compDescription1 = "A Federação de Triatlo de Portugal, que usa a abreviatura FTP, nasceu a 16 de outubro de 1989, sucedendo à Associação Portuguesa de Triatlo, criada dois anos antes. A sua sede situa-se na Alameda do Sabugueiro, 1B, Murganhal, em Caxias."
-# compLogo1 = "ftp2015.gif"
-# Organization.create!(name: compName1, description: compDescription1, logo: compLogo1, articles_attributes: [ { title: "David Luís e Alexandra Santos vencem a 3ª etapa da Taça de Portugal em Cuba", description: "Disputou-se este sábado, a 3ª etapa da Taça de Portugal em Cuba. A prova teve como vencedores David Luís e Alexandra Santos do “Águias “de Alpiarça,  respetivamente em masculinos e femininos. Na prova masculina e no final do segmento de natação, Rui Tenrinho  do “Águias” de Alpiarça , Miguel Tiago Silva e José Felício do Garmin Olímpico de Oeiras,  Diogo Silva e David Luís do “Águias” de Alpiarça,  foram os primeiros a chegar ao parque de transição, para iniciarem o segmento de ciclismo. Durante o segmento de ciclismo, vários pequenos grupos juntaram-se, tendo chegado ao parque de transição, situado em Cuba, um numeroso grupo de atletas. Os atletas David Luís do “Águias”, José Cabeça do Kainagua e Luís Carlos Lopes do G.D.R Manique de Cima foram os primeiros a iniciar o segmento de corrida. Na corrida, David Luís do “Águias” de Alpiarça , Luís Pedro Ferreira do Alhandra Sporting Clube e Duarte Brás do Garmin Olímpico de Oeiras demonstraram ser mais fortes que os restantes atletas e terminaram a prova, respetivamente em 1º com o tempo de 00:53:51,  2º em 00:53:53  e 3º lugar com 00:53:57. David Luís considerou que foi na corrida onde se sentiu determinado e focado a ganhar, afirmando que ” tive um problema físico, não estava com andamento e habituado a correr. No entanto, quis provar o que estava a correr. Foi uma boa prova, fiquei contente. Quis lembrar às pessoas e ao Selecionador Nacional que estou pronto para tudo”. conclui. Já o atleta do Alhandra Sporting Clube, Luís Pedro Ferreira declarou que, “a natação não correu bem, mas não desanimei de forma alguma. Trabalhámos forte para apanhar o grupo da frente e penso que, esse desgaste refletiu-se um pouco na corrida. Tentei esticar no inicio para surpreender os adversários, mas na entrada para a segunda volta quebrei bastante, não consegui manter o ritmo e fui apanhado pelo David, que esticou no final. Já não tive pernas, dei tudo, mas arrisquei no inicio da corrida e foi fatal. No entanto, estou bastante satisfeito“, termina dizendo. O terceiro classificado do Garmin Olímpico de Oeiras, Duarte Brás, afirmou que “estive parado duas semanas por causa de uma queda no ciclismo e o 3º lugar já foi uma grande surpresa, não estava à espera, foi muito bom”. O atleta sentiu-se mais forte na corrida. “Consegui ir com os atletas que estavam na frente e penso que foi aqui que fez toda a diferença”. Na prova feminina, no segmento de natação, Helena Carvalho saiu em primeiro lugar seguida de Sara Tenrinho, Alexandra Santos e Luísa Condeço, atletas do “Águias” de Alpiarça, que conquistaram alguma vantagem relativamente às restantes atletas.  Na chegada ao parque de transição para darem início ao segmento de corrida, as atletas Alexandra Santos, Sara Tenrinho, Luísa Condeço, Helena Carvalho do “Águias” de Alpiarça e Madalena Almeida do Teleperformance “Os Belenenses”, foram as mais rápidas a sair do parque de transição, mas foram Alexandra Santos, Madalena Almeida e Helena Carvalho que acabaram por chegar à meta respetivamente em 1º,  2º e 3º lugar. O pódio no género feminino ficou composto pela atleta Alexandra Santos com o tempo de 01:00:43.  Em 2º lugar Madalena Almeida em 01:00:45, logo seguida da atleta Helena Carvalho com o tempo de 01:01:42. O pódio no género feminino ficou composto pela atleta Alexandra Santos com o tempo de 01:00:43.  Em 2º lugar Madalena Almeida em 01:00:45, logo seguida da atleta Helena Carvalho com o tempo de 01:01:42 . A atleta vencedora afirma que “senti-me bem, com boas sensações. A natação foi totalmente à morte, saí no grupo. No ciclismo. tive sorte porque tive com as minhas colegas de equipa, o que ajudou muito e na corrida foi dar o que tinha até ao final”, conlui. Madalena Almeida, sentiu que “no parque de transição baralhei-me um bocadinho e tive que começar mais rápido para apanhar a Alexandra, mas faltou-me força no fim” A atleta, vai competir na Taça da Europa na Áustria no final do mês e tem como objetivo fazer o melhor resultado possível. A fechar o pódio, a atleta Helena Carvalho, “não estava a contar com mais do que isto. A natação correu bem, no ciclismo descolei uma vez , mas fiquei feliz por ter chegado com as minhas colegas. Na corrida foi melhor do que estava a contar”, termina dizendo. Na classificação por equipas masculinas, o Garmin Olímpico de Oeiras, alcançou o 1º lugar com os atletas Duarte Brás, Tiago Fonseca e José Felício.  O Alhandra Sporting Clube com Luís Pedro Ferreira, Nuno Ribeiro e Miguel Fortunato, alcançou o 2º lugar. Em 3º lugar ficou o “Águias” de Alpiarça, com os atletas David Luís, Tomás Azevedo e Nuno Lima. Na classificação por equipas femininas, o lugar mais alto do pódio, foi alcançado pelo “Águias” de Alpiarça com as atletas Alexandra Santos, Helena Carvalho e Luísa Condeço. O Alhandra Sporting Clube com Ana Filipa Ferreira, Sofia Hipólito e Ana Filipa Sampaio alcançou o 2º lugar. No último lugar do pódio, ficou o Sporting CP, equipa constituída pelas atletas Inês Oliveira, Ana Casteleiro e Mónica Vera Cruz . Consulte os resultados da Taça de Portugal aqui.", author: compName1 }, { title: "Portugueses destacam-se no Triatlo Longo de Lisboa", description: "Realizaram-se este sábado, as provas do Triatlo Internacional de Longa Distância, em Lisboa, na zona da Expo, a contar para o Campeonato Nacional de Triatlo Longo. Na competição disputada na distância olímpica da Batalha dos sexos, o vencedor da prova masculina foi Rodrigo Baltazar, que declarou: “Foi a minha primeira prova do ano. No ano passado acabou mal porque tive um acidente na bicicleta e a minha preparação começou mais tarde. Por isso não fiz a prova longa, decidi vir como um começo da época. Não podia ter começado melhor, foi excelente.” Na mesma competição, a prova feminina foi ganha por Liliana Alexandre. “Fiquei muito contente, sempre quis fazer esta prova e ter ganho foi espectacular! Sinto-me mais fraca no ciclismo, como era contra relógio dava para fazer um treino mais puxado, mas como consegui ter vantagem para a segunda classificada, na corrida geri o esforço.” Na prova de Triatlo Longo, foi o espanhol Hector Guerra o grande vencedor, logo seguido de Bruno Pais e José Estrangeiro. Para o atleta espanhol a parte final do percurso foi o que custou mais. “A prova foi dificil. A primeira parte na natação correu mais ou menos, estamos habituados a muitos dias de trabalho, mas os últimos cinco quilómetros custaram muito. O meu objetivo era realmente participar neste Triatlo pela sua importância.” Bruno Pais, que terminou em segundo, sentiu-se, também, um vencedor. “Sinto-me como se tivesse vencido, já conhecia o atleta que venceu. Conheço o seu historial, por isso estava à espera que fizesse uma grande prova. Para mim esta prova foi uma preparação para o Campeonato da Europa, o meu principal objetivo. No ano passado fui vice campeão da Europa, por isso este ano vou tentar defender novamente o pódio.” A fechar o pódio esteve o atleta José Estrangeiro, conseguindo um resultado motivador. “Foi a minha melhor prestação em termos desportivos. O resultado foi o melhor que consegui. A natação foi mais ou menos aquilo que estava à espera, não estava com grandes expetativas na natação. Saí-me bem na bicicleta e na corrida, senti que fiz uma corrida muito boa, forte . Consegui ganhar mais de dois minutos ao Belga que ia em terceiro e garanti o terceiro lugar. A última volta custou bastante, mas consegui gerir a vantagem que tinha.” Na prova feminina, destaque para a vitória da suiça Simone Braendli, apesar do seu reconhecimento de que a bicicleta continua a ser a sua maior fraqueza. “O ciclismo é a minha maior fraqueza, mas estou a trabalhar nisso e na corrida tentei ser constante porque treinei para isso mesmo. Foi a minha primeira vez em Lisboa e estou a adorar”. A atleta Vanessa Pereira foi a única portuguesa com lugar no pódio, terminando em segundo lugar. “Estive a descansar para a prova dois dias, vim aqui com algum peso de treino nas pernas. Foi o primeiro Triatlo da época, não pensei sentir-te tão bem. Na corrida vi que já não conseguia apanhar a primeira, mas fui a um ritmo perfeitamente confortável. Estou muito contente por ser a primeira portuguesa e de levar Portugal ao pódio.” Em terceiro lugar da competição feminina ficou a atleta espanhola Natalia Raña que não prestou qualquer declaração.", author: compName1 }, { title: "Taça de Portugal no 1º Triatlo de Cuba", description: "Domingo irá realizar-se o I Triatlo de Cuba. A prova terá início na Barragem de Albergaria dos Fusos às 11h00. O 1º Triatlo de Cuba é uma organização da Câmara Municipal de Cuba e da Federação de Triatlo de Portugal. É composto por uma prova de estrada, pontuável para a Taça de Portugal de Triatlo, disputada na distância Sprint. Para mais informações consulte o regulamento.", author: compName1 }, { title: "Lisboa Long Distance International Triathlon", description: "É já amanhã que irá realizar-se o Triatlo Internacional de Longa Distância, em Lisboa. As provas irão ter lugar no lago artificial do Oceanário de Lisboa, no Parque das Nações , pontuáveis para o Campeonato Nacional de Triatlo Longo de Clubes. Esta é uma organização do Clube Oriental de Lisboa com o apoio das Câmaras Municipais de Lisboa e de Loures, produção da Empresa S4a, Lda. e o apoio técnico da Federação de Triatlo de Portugal, Consulte o regulamento ou vá a www.lisboatriathlon.com Apareça e faça-nos companhia neste grande dia de provas!", author: compName1 } ])
+params2 = { :organization =>
+	{
+		:name => "Federação de Desportos de Inverno de Portugal",
+		:description => "A Federação de Desportos de Inverno de Portugal ou FDI-Portugal, é a autoridade portuguesa em matéria de desportos relacionados com a neve, filiada na Federação Internacional de Esqui.",
+		:logo => "fdi_pt.jpg",
+		:feed_attributes =>
+		{
+			:title => "FDI-PT",
+			:url => "http://www.fdiportugal.pt/feed/",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params2[:organization])
 
-# compName2 = "Federação de Desportos de Inverno de Portugal"
-# compDescription2 = "A Federação de Desportos de Inverno de Portugal ou FDI-Portugal, é a autoridade portuguesa em matéria de desportos relacionados com a neve, filiada na Federação Internacional de Esqui."
-# compLogo2 = "fdi_pt.jpg"
+params3 = { :organization =>
+	{
+		:name => "World Curling Federation",
+		:description => "The World Curling Federation is the world governing body of the Olympic Winter Sport of Curling and the Paralympic Winter Sport of Wheelchair Curling. Originally founded in 1966 as the International Curling Federation, the ICF changed its name to the World Curling Federation in 1991.",
+		:logo => "world_curling.jpg",
+		:feed_attributes =>
+		{
+			:title => "World Curling",
+			:url => "http://www.worldcurling.org/rss/news",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params3[:organization])
 
-# Organization.create!(name: compName2, description: compDescription2, logo: compLogo2, articles_attributes: [ { title: "Esqui Open de Outono", description: "Dezembro marca o início do calendário competitivo da FDI-Portugal, e como já vem sendo hábito vai ser realizado o Esqui Open de Outono. Esta prova é aberta a todos os praticantes e apaixonados do Esqui, e tem como objetivo proporcionar mais um momento competitivo, a todos os que se preparam para a temporada de inverno 2015. Fruto de uma colaboração de longa data, entre a FDI-Portugal e a Sabores Altaneiros, esta prova visa ainda promover a utilização da pista artificial do Skiparque e todas as suas potencialidades. Traga a família e amigos, venha fazer parte deste dia dedicado à competição e convívio. Inscrição On-line aqui!", author: compName2 }, { title: "Brincar na Neve – Prolongamento das Inscrições", description: "BRINCAR NA NEVE 2015 – INSCRIÇÕES ABERTAS ATÉ 7 DE JANEIRO A Federação de Desportos de Inverno de Portugal (FDI-Portugal) vai realizar na época 2014/2015, pelo sétimo ano consecutivo, o programa “BRINCAR NA NEVE”. Este é um projeto que se destina as crianças entre os 6 e os 12 anos e tem como principal objetivo a divulgação dos desportos de inverno, mais concretamente o Esqui Alpino e o Snowboard. As atividades decorrerão na Estância de Ski – Serra da Estrela em três momentos distintos durante os meses de Janeiro, Fevereiro e Março.", author: compName2 }, { title: "Adiamento dos Campeonatos Nacionais de Snowboard", description: "A Federação de Desportos de Inverno de Portugal (FDI-Portugal), informa que devido à inexistência de condições de neve favoráveis para a realização dos Campeonatos Nacionais de Snowboard, os mesmos serão adiados até que se reúnam condições mínimas que permitam o normal decorrer das provas. A FDI-Portugal lamenta qualquer incómodo originado pelo adiamento das provas e ressalva que tal acontecimento se deve em exclusivo às condições precárias de neve que se verificam na estância de esqui. A federação agradece o empenho a todos os parceiros, patrocinadores, desportistas, juízes, colaboradores e demais envolvidos. Informamos ainda que aos atletas já inscritos, a federação manterá o valor da inscrição da prova em crédito ou efetuará a devolução do mesmo. Qualquer novidade ou alteração será publicada nesta página e partilhada no facebook e website da FDI-Portugal. Com os melhores cumprimentos, Jaime Rendeiro Coordenador dos Campeonatos Nacionais de Snowboard 2015", author: compName2 } ])
+params4 = { :organization =>
+	{
+		:name => "International Tennis Federation",
+		:description => "The need to establish a world governing body for tennis became obvious in 1911. By that time lawn tennis was beginning to develop rapidly worldwide and it seemed natural that National Associations already established should come together to form a liaison whereby the universal game would be uniformly structured.",
+		:logo => "itf.jpg",
+		:feed_attributes =>
+		{
+			:title => "ITF",
+			:url => "http://www.itftennis.com/data/rss/itfprocircuitnews.xml",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params4[:organization])
 
-# compName3 = "International Ski Federation"
-# compDescription3 = "The International Ski Federation - Fédération Internationale de Ski, Internationaler Ski Verband - is abbreviated in all languages as FIS. The group became formally known as the International Ski Federation on 2nd February 1924 during the first Olympic Winter Games in Chamonix, France with 14 member nations."
-# compLogo3 = "fis_ski.png"
+params5 = { :organization =>
+	{
+		:name => "World Taekwondo Federation",
+		:description => "The World Taekwondo Federation is the International Federation (IF) governing the sport of Taekwondo and is a member of the Association of Summer Olympic International Federations (ASOIF). The WTF recognizes national Taekwondo governing bodies recognized by the NOCs in the pertinent country as its members.",
+		:logo => "wtf.jpg",
+		:feed_attributes =>
+		{
+			:title => "WTF",
+			:url => "http://www.worldtaekwondofederation.net/news-news?format=feed&type=rss",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params5[:organization])
 
-# Organization.create!(name: compName3, description: compDescription3, logo: compLogo3, articles_attributes: [ { title: "FIS awarded for Legacy & Environment", description: "Yesterday, it was announced that FIS won the inaugural SportBusiness Ultimate Sports Federation Award in the category of Legacy & Environment. The award was presented to FIS President Gian Franco Kasper at the 2015 SportAccord Convention in Sochi (RUS). “I am very proud that FIS was recognised for its environmental efforts in the first year of this award,” said Kasper. “Being an outdoor winter sport, sustainability is a very important theme and something that we, and our Organisers, take very seriously.” FIS secured the Legacy/Environment award, with judges highlighting that FIS recognises environmental sustainability as part of the organisation’s Statutes. The judges added that hosts must conform with environmental protection guidelines and that FIS has very good guidelines in place containing tangible best practice. The judging panel was comprised of 13 industry experts and included head judge Rachael Church (SportBusiness Intelligence), Peter Cox (Sport New Zealand), Lars Vallentin Christensen (Wonderful Copenhagen), Paul Dunphy (SportBusiness Intelligence), Abimbola Ilo (Integral, Nigeria), Paul Freudensprung (bcn events), Iain Edmondson (London & Partners), Ann Duffy (Ann Duffy Group) and Emy Ritt (Paris 2018 Gay Games). The process involved analysing an initial cut of 30 International Federations and Associations and then asking them to complete a detailed survey across the nine key categories. These surveys were then analysed by a panel of external judges who are all experts in their respective fields. The results will create a benchmark of excellence for International Federations and foster industry best practices through the learnings generated by the Awards. Head judge Rachael Church, Major Events Consultant at SportBusiness Intelligence, said: “We have been overwhelmed with the excellent response to these inaugural SportBusiness Ultimate Sports Federations awards which we are confident will be on a par with the long-established SportBusiness Ultimate Sports Cities Awards and Rankings in terms of creating an industry best practice benchmark and invaluable learnings.”", author: compName3 }, { title: "International Forum for Sports Integrity adopts roadmap for future action to protect clean athletes", description: "At the initiative of the International Olympic Committee, the International Forum for Sports Integrity (IFSI) met for the first time in Lausanne (SUI) on Monday, 13th April 2015. The meeting was chaired by IOC President Thomas Bach and included representatives from world governments, the Council of Europe, the European Union, INTERPOL, Europol, United Nations agencies, sports betting operators, Olympic Movement stakeholders and others. FIS was represented by Sarah Lewis in her capacity as Secretary General of the Association of International Olympic Winter Sports Federations (AIOWF). The Forum prepared a roadmap for future action aimed at strengthening and coordinating all activities to protect clean athletes from match-fixing, manipulation of competitions and related corruption. The measures adopted by the IFSI are centred on three main themes: Education and Information	Intelligence and Investigations  Legislation and Regulation The IFSI forms part of Recommendation 16 of Olympic Agenda 2020, the IOC’s strategic roadmap for the future of the Olympic Movement. Coinciding with the forum, the IOC launched its new Integrity and Compliance Hotline, a new reporting mechanism for potential cases of competition manipulation as well as other violations of the integrity of sport. For further information, visit here: http://www.olympic.org/news/first-international-forum-for-sports-integrity-adopts-roadmap-for-future-action-to-protect-clean-athletes/244384", author: compName3 } ])
+params6 = { :organization =>
+	{
+		:name => "International Surfing Association",
+		:description => "The International Surfing Association (ISA), founded in 1964, is recognized by the International Olympic Committee as the world governing authority for surfing, standup paddle racing and surfing, bodysurfing, wakesurfing, and all other wave riding activities on any type of waves, and on flat water using wave riding equipment.",
+		:logo => "isa.png",
+		:feed_attributes =>
+		{
+			:title => "ISA",
+			:url => "http://www.isasurf.org/world-surfing-news/feed/",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params6[:organization])
+
+params7 = { :organization =>
+	{
+		:name => "World Chess Federation",
+		:description => "Founded in Paris on 20 July 1924, the World Chess Federation (Federation Internationale des Echecs, known as FIDE from its French acronym) was recognized by the International Olympic Committee as an International Sports Federation in 1999.",
+		:logo => "wcf.jpg",
+		:feed_attributes =>
+		{
+			:title => "WCF",
+			:url => "http://www.fide.com/index.php?format=feed&type=rss",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params7[:organization])
+
+params8 = { :organization =>
+	{
+		:name => "FIFA.com",
+		:description => "The Fédération Internationale de Football Association (FIFA) is an association governed by Swiss law founded in 1904 and based in Zurich. It has 209 member associations and its goal, enshrined in its Statutes, is the constant improvement of football.",
+		:logo => "fifa.png",
+		:feed_attributes =>
+		{
+			:title => "FIFA",
+			:url => "http://www.fifa.com/rss/index.xml",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params8[:organization])

@@ -3,6 +3,7 @@
 <h2 class="event-creator">created by <%= link_to User.find(@event.user_id).name, user_path(User.find(@event.user_id)) %></h2>
 
 <div class="anchor-links">
+	<a href="#schedule" class="btn btn-primary">view schedule</a>
 	<a href="#participants" class="btn btn-primary">view participants</a>
 	<a href="#photos" class="btn btn-primary">view photos</a>
 </div>
@@ -15,6 +16,20 @@
 		<p class="event-description">
 			<%= @event.description %>
 		</p>
+	</div>
+</div>
+
+<div class="row" id="schedule">
+	<div class="border-top event-info">
+		<h3><span class="sched-icon">&#xe1ef;</span> Event Schedule</h3>
+	</div>
+	<div class="col-md-12">
+		<%= render 'event_schedule' %>
+		<% if current_user.event_creator?(@event) %>
+			<div class="col-md-6 entry-form">
+				<%= render 'shared/schedule_entry_form' %>
+			</div>
+		<% end %>
 	</div>
 	<div class="border-top event-info">
 		<div class="col-md-4 border-right timeloc margin-top no-padding-left">

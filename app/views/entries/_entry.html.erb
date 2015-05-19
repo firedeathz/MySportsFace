@@ -1,0 +1,6 @@
+<li class="news-article">
+	<p class="article-title"><%= link_to entry.title, article_path(entry.id) %></p>
+	<p class="article-author">by <%= @organization.name %></p>
+	<p class="article-summary"><%= raw(entry.description) %></p>
+	<p class="article-comments"><%= link_to "view original post", entry.url %></p>	
+</li>

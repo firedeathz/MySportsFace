@@ -1,0 +1,7 @@
+<div class="schedule">
+	<% if @event.schedule_entries.count > 0 %>
+		<%= render @event.schedule_entries %>
+	<% else %>
+		<p class="no-sched"><span>&#x2716;</span> This event has no schedule yet.</p>
+	<% end %>
+</div>
