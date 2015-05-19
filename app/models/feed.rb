@@ -14,7 +14,11 @@ class Feed < ActiveRecord::Base
 		update_attributes(:status => params["status"]["http"])
 		params['items'].each do |i|
 			entries.create(:atom_id => i["id"], :title => i["title"], :url => i["id"], :description => i["summary"], :content => i["content"])
-			organization.articles.create(:atom_id => i["id"], :author => organization.name, :title => i["title"], :url => i["id"], :description => i["summary"], :content => i["content"])
+			if i["permalinkUrl"].nil?
+				organization.articles.create(:atom_id => i["id"], :author => organization.name, :title => i["title"], :url => i["id"], :description => i["summary"], :content => i["content"])
+			else
+				organization.articles.create(:atom_id => i["id"], :author => organization.name, :title => i["title"], :url => i["permalinkUrl"], :description => i["summary"], :content => i["content"])
+			end
 		end
 	end
 end
