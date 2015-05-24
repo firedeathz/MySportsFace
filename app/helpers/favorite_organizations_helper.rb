@@ -1,0 +1,2 @@
+module FavoriteOrganizationsHelper
+end

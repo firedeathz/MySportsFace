@@ -2,6 +2,10 @@
 <h1><%= @organization.name %></h1>
 <h2>Visit their website at: <%= link_to @organization.url, @organization.url, :target => "_blank" %></h2>
 
+<div class="favoritize">
+	<%= render 'favorite_form' if logged_in? %>
+</div>
+
 <ul class="organization-x">
 	<li>
 		<span class="org-link">

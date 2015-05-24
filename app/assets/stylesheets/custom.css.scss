@@ -127,6 +127,17 @@ select {
 	font-size: 1.2em;
 }
 
+.alert-error {
+	background-color: #ffccff;
+	color: #cc0000;	
+}
+
+.alert-notice {
+	background-color: #ffffcc;
+	color: #cc9900;
+	border: 1px solid #ffff99;
+}
+
 .wide {
 	margin-top: 20px;
 	width: 100%;
@@ -679,60 +690,112 @@ span.picture {
 
 /* organizations index */
 
+.ul-title {
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+	width: 100%;
+	li {
+		display: block;
+		margin: 10px 10px 10px 5px;
+		height: 50px;
+	}
+}
+
 .og-grid {
 	list-style: none;
 	padding: 0;
 	margin: 0 auto;
-	text-align: center;
 	width: 100%;
 }
 
 .og-grid li {
-	display: inline-block;
-	margin: 20px 10px 0 5px;
-	vertical-align: top;
-	height: 150px;
+	display: block;
+	margin: 10px 10px 10px 10px;
+	height: 50px;
 }
 
 .imgover {
-	z-index: -1;
+	z-index: 0;
 }
 
-.overlay {
-	padding-top: 75px;
+.fav-title-count, .all-title-count, .exp-close {
+	font-size: 1.2em;
 	font-weight: bold;
-	height: 150px;
-	width: 150px;
-	border-radius: 20px;
-	position: absolute;
-	border: 1px solid #333;
-	box-shadow: 2px 2px 2px #888888;
-	background: -moz-linear-gradient(top, rgba(238,238,238,0) 0%, rgba(66,139,202,0.25) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,0)), color-stop(100%,rgba(66,139,202,0.25)));
-	background: -webkit-linear-gradient(top, rgba(238,238,238,0) 0%,rgba(66,139,202,0.25) 100%);
-	background: -o-linear-gradient(top, rgba(238,238,238,0) 0%,rgba(66,139,202,0.25) 100%);
-	background: -ms-linear-gradient(top, rgba(238,238,238,0) 0%,rgba(66,139,202,0.25) 100%);
-	background: linear-gradient(to bottom, rgba(238,238,238,0) 0%,rgba(66,139,202,0.25) 100%);
+	letter-spacing: 1px;	
 }
 
-.overlay + a:hover, .overlay + a:focus {
-	background: -moz-linear-gradient(top, rgba(238,238,238,0) 50%, rgba(66,139,202,0.5) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,rgba(238,238,238,0)), color-stop(100%,rgba(66,139,202,0.55)));
-	background: -webkit-linear-gradient(top, rgba(238,238,238,0) 50%,rgba(66,139,202,0.5) 100%);
-	background: -o-linear-gradient(top, rgba(238,238,238,0) 50%,rgba(66,139,202,0.5) 100%);
-	background: -ms-linear-gradient(top, rgba(238,238,238,0) 50%,rgba(66,139,202,0.5) 100%);
-	background: linear-gradient(to bottom, rgba(238,238,238,0) 50%,rgba(66,139,202,0.5) 100%);
+.fav-title-count, .all-title-count {
+	padding-left: 10px;
+}
+
+.favorite-orgs, .rest-orgs {
+	cursor: pointer;
+	border: 1px solid #333;
+	box-shadow: 0px 2px 2px #888;
+	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(255,255,51,0.5) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(255,255,51,0.75)));
+	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(255,255,51,0.75) 100%);
+	background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(255,255,51,0.75) 100%);
+	background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(255,255,51,0.75) 100%);
+	background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(255,255,51,0.75) 100%);
+	margin: 0px 0px 10px 0px !important;
+	border-radius: 5px;
+	padding-left: 10px;
+	padding-top: 12.5px;
+	padding-right: 10px;
+}
+
+.og-grid li > a {
+	height: 52px;
+	border: 1px solid #333;
+	box-shadow: 2px 2px 2px #888;
+	color: #333;
+	font-weight: bold;
+	letter-spacing: 1px;
+	padding-top: 15px;
+	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
+	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	&:hover {
+		background: -moz-linear-gradient(right, rgba(238,238,238,0) 0%, rgba(66,139,202,0.5) 100%);
+		background: -webkit-gradient(linear, right top, left top, color-stop(0%,rgba(238,238,238,0)), color-stop(100%,rgba(66,139,202,0.55)));
+		background: -webkit-linear-gradient(right, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
+		background: -o-linear-gradient(right, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
+		background: -ms-linear-gradient(right, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
+		background: linear-gradient(to left, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
+		text-decoration: none;
+		color: white;
+	}
+	&:focus {
+		text-decoration: none;
+	}
+}
+
+.og-grid li > a img {
+	width: auto;
+	height: 50px;
+	float: left;
+	margin-top: -15px;
+	border-right: 1px solid #333;
+}
+
+.og-grid li > a span {
+	padding-left: 10px;
 }
 
 .og-grid li > a,
 .og-grid li > a img {
-	border: none;
 	outline: none;
 	display: block;
 	position: relative;
-	border-radius: 20px;
+	border-radius: 5px;
 }
 
+/* Little Arrow 
 .og-grid li.og-expanded > a::after {
 	top: auto;
 	border: solid transparent;
@@ -746,6 +809,7 @@ span.picture {
 	left: 50%;
 	margin: -20px 0 0 -15px;
 }
+*/
 
 .og-expander {
 	position: absolute;
@@ -804,6 +868,7 @@ span.picture {
 	overflow: hidden;
 	position: relative;
 	img {
+		margin-top: 65px;
 		display: inline-block;
 		max-height: 100%;
 		max-width: 100%;
@@ -908,8 +973,11 @@ span.picture {
 	width: 33%;
 }
 
-.subscribe {
+.favoritize {
 	text-align: center;
+	a {
+		width: 200px;
+	}
 }
 
 .organization-x {
@@ -1063,6 +1131,7 @@ a {
 }
 
 body {
+	overflow-y: scroll;
 	font-family: Ubuntu;
 	padding-top: 60px;
 	background: url("bg_blur.jpg") no-repeat center center fixed;

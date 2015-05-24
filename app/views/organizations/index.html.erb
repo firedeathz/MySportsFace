@@ -1,11 +1,44 @@
 <%= provide(:title, 'Organizations') %>
-<h1>Pick an organization!</h1>
 
-<ul id="og-grid" class="og-grid">
-	<% if @organizations.count > 0 %>
-		<%= render @organizations %>
-	<% else %>
-		<h3>There are no organizations at this moment :(</h3>
-		<h3>Please come back later!</h3>
-	<% end %>
-</ul>
+<div class="row">
+	<div class="col-md-12">
+		<h1>Organizations</h1>
+		<ul class="og-grid">
+			<% if @favorites.count > 0 %>
+				<li class="favorite-orgs">
+					<span class="exp-close">-</span>
+					<span class="fav-title-count">Favorites (<%= @favorites.count %>)</span>
+				</li>	
+				<%= render @favorites %>
+			<% end %>
+			<% if @organizations.count > 0 %>
+				<li class="rest-orgs">
+					<span class="exp-close">-</span>
+					<span class="all-title-count">All (<%= @organizations.count %>)</span>
+				</li>
+				<%= render @organizations %>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery(".favorite-orgs").click(function() {
+			if (jQuery(this).find(".exp-close").text() === "-") { 
+				jQuery(this).find(".exp-close").text("+"); 
+			} else {
+				jQuery(this).find(".exp-close").text("-"); 
+			}
+			jQuery(this).nextUntil(".rest-orgs").slideToggle(200);
+		});
+		jQuery(".rest-orgs").click(function() {
+			if (jQuery(this).find(".exp-close").text() === "-") { 
+				jQuery(this).find(".exp-close").text("+"); 
+			} else {
+				jQuery(this).find(".exp-close").text("-"); 
+			}
+			jQuery(this).nextAll("li").slideToggle(200);
+		});
+	});
+</script>

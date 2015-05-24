@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post   'login'   						=> 'sessions#create'
   delete 'logout'  						=> 'sessions#destroy'
   
+  resources :favorite_organizations, only: [:create, :destroy]
   resources :participations, only: [:create, :destroy, :update]
   resources :events, only: [:index, :show, :create] do
     resources :pictures, only: [:create]

@@ -2,7 +2,8 @@ class OrganizationsController < ApplicationController
   before_action :logged_in_user, only: [:index, :show]
 
   def index
-	@organizations = Organization.all
+	@favorites = current_user.favorite_organizations
+	@organizations = Organization.where.not(id: @favorites.ids)
   end
   
   def show

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :favorites
+  has_many :favorite_organizations, through: :favorites, source: :favorited, source_type: 'Organization'
+
   has_many :events
   has_many :active_participations, class_name:  "Participation",
                                    foreign_key: "user_id",
