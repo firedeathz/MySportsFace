@@ -22,7 +22,7 @@
 			<a href="#photos" class="btn btn-primary">view photos</a>
 		</div>
 
-		<div class="row">
+		<div class="col-md-12">
 			<div class="border-top event-info">
 				<h3><span>&#x1f518;</span> Event Information</h3>
 			</div>
@@ -33,14 +33,14 @@
 			</div>
 		</div>
 
-		<div class="row" id="schedule">
+		<div class="col-md-12" id="schedule">
 			<div class="border-top event-info">
 				<h3><span class="sched-icon">&#xe1ef;</span> Event Schedule</h3>
 			</div>
 			<div class="col-md-12">
 				<%= render 'event_schedule' %>
 				<% if current_user.event_creator?(@event) %>
-					<div class="col-md-6 entry-form">
+					<div class="col-md-8 col-md-offset-2 entry-form">
 						<%= render 'shared/schedule_entry_form' %>
 					</div>
 				<% end %>
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 
-		<div class="row" id="participants">
+		<div class="col-md-12" id="participants">
 			<div class="border-top event-info">
 				<h3><span>&#x1f464;</span> Participants (<%= @event.participants.count %>)</h3>
 			</div>
@@ -84,7 +84,7 @@
 			</div>
 		</div>
 
-		<div class="row" id="photos">
+		<div class="col-md-12" id="photos">
 			<div class="border-top event-info">
 				<h3><span>&#x1f4f7;</span> Photos (<%= @event.pictures.count %>)</h3>
 			</div>
@@ -92,7 +92,7 @@
 				<%= render 'event_pictures' %>
 			</div>
 			<% if !current_user.active_participations.find_by(event_id: @event.id).nil? %>
-				<div class="col-md-4 margin-top-sm">
+				<div class="col-md-6 col-md-offset-3 margin-top-sm">
 					<%= render 'shared/upload_picture_form' %>
 				</div>
 			<% end %>

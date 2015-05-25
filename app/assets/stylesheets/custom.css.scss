@@ -439,49 +439,35 @@ select {
 
 #prev, #next {
 	z-index: 1;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	font-weight: bold;
+	font-size: 22.5px;
+	background-color: $btn-bg;
+	border: 1px solid $btn-border;
+	border-radius: 50px;
+	width: 35px;
+	height: 35px;
+	position: absolute;
 	&:active {
 		transform: scale(0.8);
+	}
+	&:hover {
+		background-color: #3071A9;
+		border-color: #285E8E;
 	}
 }
 
 #prev {
 	box-shadow: 3px 3px 2px #888888;
-	color: white;
-	text-decoration: none;
-	text-align: center;
-	font-size: 2em;
-	vertical-align: middle;
-	background-color: $btn-bg;
-	border: 1px solid $btn-border;
-	border-radius: 50px;
-	width: 45px;
-	height: 45px;
-	position: absolute;
-	top: 42.5%;
-	&:hover {
-		background-color: #3071A9;
-		border-color: #285E8E;
-	}
+	top: 45%;
 }
 
 #next {
 	box-shadow: -3px 3px 2px #888888;
-	color: white;
-	text-decoration: none;
-	text-align: center;
-	font-size: 2em;
-	background-color: $btn-bg;
-	border: 1px solid $btn-border;
-	border-radius: 50px;
-	width: 45px;
-	height: 45px;
-	position: absolute;
-	top: 42.5%;
-	left: 92.5%;
-	&:hover {
-		background-color: #3071A9;
-		border-color: #285E8E;
-	}
+	top: 45%;
+	left: 93%;
 }
 
 .no-photos, .no-participants {
@@ -491,7 +477,6 @@ select {
 
 .margin-top-sm {
 	margin-top: 15px;
-	left: 33%;
 }
 
 /* participants */
@@ -1278,6 +1263,10 @@ p {
 	color: #fff;
 	text-decoration: none;
   }
+}
+
+.row {
+	min-height: 450px;
 }
 
 /* footer */
