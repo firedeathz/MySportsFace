@@ -1,5 +1,5 @@
 <li>
-  <%= gravatar_for user %>
+  <%= link_to gravatar_for(user), user %>
   <%= link_to user.name, user %>
   <br>
   <span><b>Posts:</b> <%= user.microposts.count %></span>

@@ -1,14 +1,64 @@
 <% provide(:title, 'Events') %>
-<h1>Events</h1>
 
-<div class="col-md-12 new-event-btn">
-	<%= link_to "Create an event", events_new_path, class: "btn btn-primary" %>
+<div class="row">
+	<aside class="col-md-4">
+		<div class="fixed">
+			<section class="user_info">
+				<%= render 'shared/user_info' %>
+			</section>
+			<section class="stats">
+				<%= render 'shared/stats' %>
+			</section>
+		</div>
+	</aside>
+
+	<div class="col-md-8">
+		<h1>Events</h1>
+
+		<div class="col-md-12 new-event-btn">
+			<%= link_to "Create an event", events_new_path, class: "btn btn-primary" %>
+		</div>
+			
+		<%= will_paginate %>
+
+		<ul class="events">
+			<% if @attending.count > 0 %>
+				<li class="favorites">
+					<span class="exp-close">-</span>
+					<span class="fav-title-count">Attending (<%= @attending.count %>)</span>
+				</li>
+				<%= render @attending %>
+			<% end %>
+			<% if @events.count > 0 %>
+				<li class="rest">
+					<span class="exp-close">-</span>
+					<span class="rest-title-count">All (<%= @events.count %>)</span>
+				</li>
+				<%= render @events %>
+			<% end %>
+		</ul>
+
+		<%= will_paginate %>
+	</div>
 </div>
-	
-<%= will_paginate %>
 
-<ul class="events">
-  <%= render @events %>
-</ul>
-
-<%= will_paginate %>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery(".favorites").click(function() {
+			if (jQuery(this).find(".exp-close").text() === "-") { 
+				jQuery(this).find(".exp-close").text("+"); 
+			} else {
+				jQuery(this).find(".exp-close").text("-"); 
+			}
+			jQuery(this).nextUntil(".rest").slideToggle(200);
+		});
+		jQuery(".rest").click(function() {
+			if (jQuery(this).find(".exp-close").text() === "-") { 
+				jQuery(this).find(".exp-close").text("+"); 
+			} else {
+				jQuery(this).find(".exp-close").text("-"); 
+			}
+			jQuery(this).nextAll("li").slideToggle(200);
+		});
+	});
+</script>

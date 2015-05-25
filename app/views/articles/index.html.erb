@@ -1,10 +1,30 @@
 <%= provide(:title, @organization.name) %>
-<div class="back-btn">
-	<%= link_to "Go back", organization_path, class: "btn btn-lg btn-primary" %>
-</div>
-<h1>News</h1>
-<h2><%= @organization.name %></h2>
 
-<ul class="articles">
-	<%= render @articles.reverse %>
-</ul>
+<div class="row">
+	<aside class="col-md-4">
+		<div class="fixed">
+			<section class="user_info">
+				<%= render 'shared/user_info' %>
+			</section>
+			<section class="stats">
+				<%= render 'shared/stats' %>
+			</section>
+		</div>
+	</aside>
+
+	<div class="col-md-8">	
+		<div class="back-btn">
+			<%= link_to "Go back", organization_path, class: "btn btn-primary" %>
+		</div>
+		<h1>News</h1>
+		<h2><%= @organization.name %></h2>
+
+		<%= will_paginate %>
+		
+		<ul class="articles">
+			<%= render @articles.reverse %>
+		</ul>
+		
+		<%= will_paginate %>
+	</div>
+</div>

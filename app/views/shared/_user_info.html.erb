@@ -1,2 +1,3 @@
 <%= link_to gravatar_for(current_user), current_user %>
-<h1><%= current_user.name %></h1>
+<h1 class="username"><%= link_to current_user.name, current_user %></h1>
+<span class="handle">@<%= current_user.name %></span>

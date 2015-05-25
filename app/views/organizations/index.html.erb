@@ -1,20 +1,31 @@
 <%= provide(:title, 'Organizations') %>
 
 <div class="row">
-	<div class="col-md-12">
+	<aside class="col-md-4">
+		<div class="fixed">
+			<section class="user_info">
+				<%= render 'shared/user_info' %>
+			</section>
+			<section class="stats">
+				<%= render 'shared/stats' %>
+			</section>
+		</div>
+	</aside>
+
+	<div class="col-md-8">
 		<h1>Organizations</h1>
 		<ul class="og-grid">
 			<% if @favorites.count > 0 %>
-				<li class="favorite-orgs">
+				<li class="favorites">
 					<span class="exp-close">-</span>
 					<span class="fav-title-count">Favorites (<%= @favorites.count %>)</span>
 				</li>	
 				<%= render @favorites %>
 			<% end %>
 			<% if @organizations.count > 0 %>
-				<li class="rest-orgs">
+				<li class="rest">
 					<span class="exp-close">-</span>
-					<span class="all-title-count">All (<%= @organizations.count %>)</span>
+					<span class="rest-title-count">All (<%= @organizations.count %>)</span>
 				</li>
 				<%= render @organizations %>
 			<% end %>
@@ -24,15 +35,15 @@
 
 <script type="text/javascript">
 	jQuery(document).ready(function() {
-		jQuery(".favorite-orgs").click(function() {
+		jQuery(".favorites").click(function() {
 			if (jQuery(this).find(".exp-close").text() === "-") { 
 				jQuery(this).find(".exp-close").text("+"); 
 			} else {
 				jQuery(this).find(".exp-close").text("-"); 
 			}
-			jQuery(this).nextUntil(".rest-orgs").slideToggle(200);
+			jQuery(this).nextUntil(".rest").slideToggle(200);
 		});
-		jQuery(".rest-orgs").click(function() {
+		jQuery(".rest").click(function() {
 			if (jQuery(this).find(".exp-close").text() === "-") { 
 				jQuery(this).find(".exp-close").text("+"); 
 			} else {

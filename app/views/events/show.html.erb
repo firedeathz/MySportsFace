@@ -1,87 +1,103 @@
 <%= provide(:title, @event.name) %>
-<h1><%= @event.name %></h1>
-<h2 class="event-creator">created by <%= link_to User.find(@event.user_id).name, user_path(User.find(@event.user_id)) %></h2>
-
-<div class="anchor-links">
-	<a href="#schedule" class="btn btn-primary">view schedule</a>
-	<a href="#participants" class="btn btn-primary">view participants</a>
-	<a href="#photos" class="btn btn-primary">view photos</a>
-</div>
 
 <div class="row">
-	<div class="border-top event-info">
-		<h3><span>&#x1f518;</span> Event Information</h3>
-	</div>
-	<div class="col-md-12">
-		<p class="event-description">
-			<%= @event.description %>
-		</p>
-	</div>
-</div>
+	<aside class="col-md-4">
+		<div class="fixed">
+			<section class="user_info">
+				<%= render 'shared/user_info' %>
+			</section>
+			<section class="stats">
+				<%= render 'shared/stats' %>
+			</section>
+		</div>
+	</aside>
 
-<div class="row" id="schedule">
-	<div class="border-top event-info">
-		<h3><span class="sched-icon">&#xe1ef;</span> Event Schedule</h3>
-	</div>
-	<div class="col-md-12">
-		<%= render 'event_schedule' %>
-		<% if current_user.event_creator?(@event) %>
-			<div class="col-md-6 entry-form">
-				<%= render 'shared/schedule_entry_form' %>
+	<div class="col-md-8">
+		<h1><%= @event.name %></h1>
+		<h2 class="event-creator">created by <%= link_to User.find(@event.user_id).name, user_path(User.find(@event.user_id)) %></h2>
+
+		<div class="anchor-links">
+			<a href="#schedule" class="btn btn-primary">view schedule</a>
+			<a href="#participants" class="btn btn-primary">view participants</a>
+			<a href="#photos" class="btn btn-primary">view photos</a>
+		</div>
+
+		<div class="row">
+			<div class="border-top event-info">
+				<h3><span>&#x1f518;</span> Event Information</h3>
 			</div>
-		<% end %>
-	</div>
-	<div class="border-top event-info">
-		<div class="col-md-4 border-right timeloc margin-top no-padding-left">
-			<h3><span>&#x1f4c6;</span> Date </h3>
-			<p><%= @event.date.day %> <%= month_name(@event.date.month) %> <%= @event.date.year %></p>
-		</div>
-		<div class="col-md-4 border-right timeloc margin-top">
-			<h3><span>&#x1f552;</span> Time</h3>
-			<p><%= @event.time.strftime("%H : %M") %></p>
-		</div>
-		<div class="col-md-4 timeloc margin-top">
-			<h3><span>&#x1f30f;</span> Location</h3>
-			<p id="loc"><%= @event.location %></p>
-			<p style="display: none" id="lat"><%= @event.lat %></p>
-			<p style="display: none" id="lng"><%= @event.lng %></p>				
-		</div>
-		<div id="gmap" class="col-md-12 locationmap"></div>
-	</div>
-</div>
-
-<div class="row" id="participants">
-	<div class="border-top event-info">
-		<h3><span>&#x1f464;</span> Participants (<%= @event.participants.count %>)</h3>
-	</div>
-	<div class="col-md-12">
-		<% if @event.participants.count > 0 %>
-			<div class="participants">
-				<%= render 'creator' %>
-				<%= render 'admins' %>
-				<%= render 'user_participants' %>
+			<div class="col-md-12">
+				<p class="event-description">
+					<%= @event.description %>
+				</p>
 			</div>
-		<% else %>
-			<span class="no-participants">This event has no participants yet. Be the first to sign up!</span>
-		<% end %>
-		<div class="col-md-4 margin-top-sm">
-			<%= render 'participate_form' if logged_in? and not_creator(current_user, @event) %>
 		</div>
-	</div>
-</div>
 
-<div class="row" id="photos">
-	<div class="border-top event-info">
-		<h3><span>&#x1f4f7;</span> Photos (<%= @event.pictures.count %>)</h3>
-	</div>
-	<div class="col-md-12">
-		<%= render 'event_pictures' %>
-	</div>
-	<% if !current_user.active_participations.find_by(event_id: @event.id).nil? %>
-		<div class="col-md-4 margin-top-sm">
-			<%= render 'shared/upload_picture_form' %>
+		<div class="row" id="schedule">
+			<div class="border-top event-info">
+				<h3><span class="sched-icon">&#xe1ef;</span> Event Schedule</h3>
+			</div>
+			<div class="col-md-12">
+				<%= render 'event_schedule' %>
+				<% if current_user.event_creator?(@event) %>
+					<div class="col-md-6 entry-form">
+						<%= render 'shared/schedule_entry_form' %>
+					</div>
+				<% end %>
+			</div>
+			<div class="border-top event-info">
+				<div class="col-md-4 border-right timeloc margin-top no-padding-left">
+					<h3><span>&#x1f4c6;</span> Date </h3>
+					<p><%= @event.date.day %> <%= month_name(@event.date.month) %> <%= @event.date.year %></p>
+				</div>
+				<div class="col-md-4 border-right timeloc margin-top">
+					<h3><span>&#x1f552;</span> Time</h3>
+					<p><%= @event.time.strftime("%H : %M") %></p>
+				</div>
+				<div class="col-md-4 timeloc margin-top">
+					<h3><span>&#x1f30f;</span> Location</h3>
+					<p id="loc"><%= @event.location %></p>
+					<p style="display: none" id="lat"><%= @event.lat %></p>
+					<p style="display: none" id="lng"><%= @event.lng %></p>				
+				</div>
+				<div id="gmap" class="col-md-12 locationmap"></div>
+			</div>
 		</div>
-	<% end %>
+
+		<div class="row" id="participants">
+			<div class="border-top event-info">
+				<h3><span>&#x1f464;</span> Participants (<%= @event.participants.count %>)</h3>
+			</div>
+			<div class="col-md-12">
+				<% if @event.participants.count > 0 %>
+					<div class="participants">
+						<%= render 'creator' %>
+						<%= render 'admins' %>
+						<%= render 'user_participants' %>
+					</div>
+				<% else %>
+					<span class="no-participants">This event has no participants yet. Be the first to sign up!</span>
+				<% end %>
+				<div class="col-md-4 margin-top-sm">
+					<%= render 'participate_form' if logged_in? and not_creator(current_user, @event) %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" id="photos">
+			<div class="border-top event-info">
+				<h3><span>&#x1f4f7;</span> Photos (<%= @event.pictures.count %>)</h3>
+			</div>
+			<div class="col-md-12">
+				<%= render 'event_pictures' %>
+			</div>
+			<% if !current_user.active_participations.find_by(event_id: @event.id).nil? %>
+				<div class="col-md-4 margin-top-sm">
+					<%= render 'shared/upload_picture_form' %>
+				</div>
+			<% end %>
+		</div>
+	</div>	
 </div>
 
 <script src="http://maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=places" type="text/javascript"></script>

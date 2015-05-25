@@ -1,6 +1,18 @@
 <% provide(:title, 'Users') %>
+
 <div class="row">
-	<div class="col-md-12">
+	<aside class="col-md-4">
+		<div class="fixed">
+			<section class="user_info">
+				<%= render 'shared/user_info' %>
+			</section>
+			<section class="stats">
+				<%= render 'shared/stats' %>
+			</section>
+		</div>
+	</aside>
+
+	<div class="col-md-8">
 		<h1>Users</h1>
 
 		<%= will_paginate %>

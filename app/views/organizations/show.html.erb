@@ -1,15 +1,29 @@
 <%= provide(:title, @organization.name) %>
-<h1><%= @organization.name %></h1>
-<h2>Visit their website at: <%= link_to @organization.url, @organization.url, :target => "_blank" %></h2>
 
-<div class="favoritize">
-	<%= render 'favorite_form' if logged_in? %>
+<div class="row">
+	<aside class="col-md-4">
+		<section class="user_info">
+			<%= render 'shared/user_info' %>
+		</section>
+		<section class="stats">
+			<%= render 'shared/stats' %>
+		</section>
+	</aside>
+
+	<div class="col-md-8">
+		<h1><%= @organization.name %></h1>
+		<h2>Visit their website at: <%= link_to @organization.url, @organization.url, :target => "_blank" %></h2>
+		
+		<div class="favoritize">
+			<%= render 'favorite_form' if logged_in? %>
+		</div>
+
+		<ul class="organization-x">
+			<li>
+				<span class="org-link">
+					<%= link_to "News", organization_articles_path(@organization) %> (<%= @organization.articles.count %>)
+				</span>
+			</li>
+		</ul>
+	</div>
 </div>
-
-<ul class="organization-x">
-	<li>
-		<span class="org-link">
-			<%= link_to "News", organization_articles_path(@organization) %> (<%= @organization.articles.count %>)
-		</span>
-	</li>
-</ul>

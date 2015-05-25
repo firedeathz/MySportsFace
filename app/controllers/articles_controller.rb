@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
 	@organization = Organization.find(params[:id])
-	@articles = @organization.articles
+	@articles = @organization.articles.paginate(page: params[:page])
   end
   
   def show
