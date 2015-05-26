@@ -42,27 +42,30 @@ $btn-bg: #428BCA;
 }
 
 .sched-time, .sched-separator, .sched-desc {
-	margin-bottom: -30px;
-}
-
-.sched-time {
 	float: left;
-}
-
-.sched-separator {
-	width: 5%;
-	float: left;
-	margin-left: -20px;
-	padding-right: 5px;
-}
-
-.sched-desc {
-	float: left;
-	margin-left: -30px;
+	color: #333;
+	font-weight: bold;
+	margin-left: 0 !important;
+	padding-right: 10px;
 }
 
 .schedule {
-	margin-bottom: 10px;
+	list-style: none;
+	padding: 0;
+	li {
+		padding-top: 5px;
+		padding-bottom: 0;
+		padding-left: 10px;
+		border-left: 5px solid $btn-bg;
+		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
+		background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		margin-bottom: 10px;
+		box-shadow: 3px 3px 2px #888888;
+	}
 }
 
 .no-sched {
@@ -77,7 +80,6 @@ $btn-bg: #428BCA;
 }
 
 .entry-form {
-	padding-left: 40px;
 	margin-bottom: 20px;
 }
 
@@ -514,10 +516,17 @@ select {
 	vertical-align: middle;
 }
 
+.creator-part {
+	border-left: 5px solid rgb(100,200,0) !important;
+}
+
+.admin-part {
+	border-left: 5px solid #c0aa27 !important;
+}
+
 .part {
-	border: 1px solid #333;
+	border-left: 5px solid $btn-bg;
 	margin-bottom: 10px;
-	border-radius: 5px;
 	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
 	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
@@ -1046,6 +1055,31 @@ span.picture {
 
 /* sidebar */
 
+.add-transition {
+	position: relative;
+	color: #333;
+	font-weight: bold;
+	letter-spacing: 1px;
+	&:after {
+		display: block;
+		position: absolute;
+		left: 0;
+		background-color: #333;
+		width: 0;
+		top: 20px;
+		height: 2px;
+		content: "";
+		transition: width 0.2s;
+	}
+	&:hover, &:focus {
+		color: #333;
+		text-decoration: none;
+	}
+	&:hover:after {
+		width: 101%;
+	}
+}
+
 .link-transition a {
 	position: relative;
 	color: $btn-bg;
@@ -1145,10 +1179,6 @@ aside {
 		outline: 0px none;
 		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset, 0px 0px 8px rgba(53, 126, 189, 0.6);
 	}
-}
-
-.datetime-field {
-	height: 50px !important;
 }
 
 .datetime {

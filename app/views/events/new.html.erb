@@ -13,17 +13,17 @@
 			<%= f.label :description, "Event description" %>
 			<%= f.text_area :description, class: 'form-control' %>
 
-			<div class="col-md-6 border-right datetime-field no-padding-left">
+			<div class="col-md-6 no-padding-left">
 				<div class="datetime">
 					<%= f.label :date, "Date" %>
 				</div>			
-				<%= f.date_select :date, :order => [ :day, :month, :year ], selected: 5.days.from_now %>
+				<%= f.date_select :date, { :order => [ :day, :month, :year ], selected: 5.days.from_now }, { class: 'sched-entry' } %>
 			</div>
 			<div class="col-md-6">
 				<div class="datetime">
 					<%= f.label :time, "Time" %>
 				</div>
-				<%= f.time_select :time, default: Time.now %>
+				<%= f.time_select :time, { default: Time.now }, { class: 'sched-entry' } %>
 			</div>
 			
 			<%= f.label :location, "Location" %>

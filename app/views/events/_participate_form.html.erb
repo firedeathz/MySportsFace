@@ -1,11 +1,9 @@
-<% unless current_user?(@user) %>
-  <div id="participate_form">
-  <% if current_user.participating?(@event) and !current_user.active_participations.find_by(event_id: @event.id).creator? %>
-    <%= render 'unparticipate' %>
-  <% else %>
-	<% if current_user.active_participations.find_by(event_id: @event.id).nil? or !current_user.active_participations.find_by(event_id: @event.id).creator? %>
-		<%= render 'participate' %>
+<div id="participate_form">
+	<% if current_user.participating?(@event) and !current_user.active_participations.find_by(event_id: @event.id).creator? %>
+		<%= render 'unparticipate' %>
+	<% else %>
+		<% if current_user.active_participations.find_by(event_id: @event.id).nil? or !current_user.active_participations.find_by(event_id: @event.id).creator? %>
+			<%= render 'participate' %>
+		<% end %>
 	<% end %>
-  <% end %>
-  </div>
-<% end %>
+</div>

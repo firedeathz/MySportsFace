@@ -40,7 +40,7 @@
 			<div class="col-md-12">
 				<%= render 'event_schedule' %>
 				<% if current_user.event_creator?(@event) %>
-					<div class="col-md-8 col-md-offset-2 entry-form">
+					<div class="entry-form">
 						<%= render 'shared/schedule_entry_form' %>
 					</div>
 				<% end %>
@@ -78,7 +78,7 @@
 				<% else %>
 					<span class="no-participants">This event has no participants yet. Be the first to sign up!</span>
 				<% end %>
-				<div class="col-md-4 margin-top-sm">
+				<div class="col-md-6 col-md-offset-3 margin-top-sm">
 					<%= render 'participate_form' if logged_in? and not_creator(current_user, @event) %>
 				</div>
 			</div>
