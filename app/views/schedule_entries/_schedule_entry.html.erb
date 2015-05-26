@@ -1,6 +1,6 @@
 <% if schedule_entry.id != nil %>
 	<li id="entry-<%= schedule_entry.id %>" class="event-info">
-		<p class="sched-time"><%= schedule_entry.time.strftime("%H : %M") %></p>
+		<p class="sched-time"><%= schedule_entry.timeloc.strftime("%H : %M") %></p>
 		<p class="sched-separator">-</p>
 		<p class="sched-desc"><%= schedule_entry.description %></p>
 	</li>

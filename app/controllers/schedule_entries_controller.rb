@@ -14,6 +14,6 @@ class ScheduleEntriesController < ApplicationController
 	private
 	
 		def schedule_entry_params
-			params.require(:schedule_entry).permit(:time, :description, :event_id)
+			params.require(:schedule_entry).permit(:timeloc, :description, :event_id)
 		end
 end

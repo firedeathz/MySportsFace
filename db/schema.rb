@@ -144,14 +144,14 @@ ActiveRecord::Schema.define(version: 20150524121151) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "schedule_entries", force: :cascade do |t|
-    t.time     "time"
+    t.time     "timeloc"
     t.string   "description"
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "schedule_entries", ["event_id", "created_at"], name: "index_schedule_entries_on_event_id_and_created_at"
+  add_index "schedule_entries", ["event_id", "timeloc"], name: "index_schedule_entries_on_event_id_and_timeloc"
   add_index "schedule_entries", ["event_id"], name: "index_schedule_entries_on_event_id"
 
   create_table "users", force: :cascade do |t|

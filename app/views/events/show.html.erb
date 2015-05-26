@@ -40,7 +40,8 @@
 			<div class="col-md-12">
 				<%= render 'event_schedule' %>
 				<% if current_user.event_creator?(@event) %>
-					<div class="entry-form">
+					<div class="add-new-entry-link"><a id="edit-schedule" href="javascript:void(0)">Edit event schedule</a></div>
+					<div id="entry-form" class="entry-form">
 						<%= render 'shared/schedule_entry_form' %>
 					</div>
 				<% end %>
@@ -118,6 +119,19 @@
 			scrollTop: $( $.attr(this, 'href') ).offset().top - 40
 		}, 500);
 		return false;
+	});
+</script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery(this).find("#edit-schedule").click(function() {
+			if (jQuery(this).find(".entry-form").text() === "Edit event schedule") { 
+				jQuery(this).find(".entry-form").text("Stop editing"); 
+			} else {
+				jQuery(this).find(".entry-form").text("Edit event schedule"); 
+			}
+			jQuery(this).next("div").slideToggle(200);
+		});
 	});
 </script>
 
