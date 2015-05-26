@@ -13,51 +13,50 @@
 	</aside>
 
 	<div class="col-md-8">
-		<div class="back-btn"><%= link_to "Go back", organization_articles_path(@organization), class: "btn btn-primary" %></div>
 		<h1><%= @article.title %></h1>
-		<h2 class="event-creator">by <%= @article.author %></h2>
+		<h2 class="article-creator">by <%= link_to @article.author, @organization %></h2>
+		<div class="back-btn"><%= link_to "Go back", organization_articles_path(@organization), class: "btn btn-primary" %></div>
 
 		<div class="event-info">
 			<h3><span class="icon">&#x1f4ac;</span> Article Information</h3>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="article-description">
-					<% if @article.content.nil? %>
-						<% if !@article.description.nil? %>
-							<%= @article.description.html_safe %><span> [...]</span>
-						<% end %>
-						<p class="extra-info">&#x279c; Please visit the <%= link_to "original article", @article.url, target: "_blank" %> to read the full post.</p>
-					<% else %>
-						<%= @article.content.html_safe %>
+
+		<div class="col-md-12">
+			<div class="article-description">
+				<% if @article.content.nil? %>
+					<% if !@article.description.nil? %>
+						<%= @article.description.html_safe %><span> [...]</span>
 					<% end %>
-				</div>
+					<p class="extra-info">&#x279c; Please visit the <%= link_to "original article", @article.url, target: "_blank" %> to read the full post.</p>
+				<% else %>
+					<%= @article.content.html_safe %>
+				<% end %>
 			</div>
 		</div>
 
-		<div class="comment-form" id="comments">
-			<h3><span>&#xe134;</span> Comments (<%= @article.comments.count %>)</h3>
-			<%= render 'shared/comment_form' %>
-		</div>
-		<ul class="comments">
-			<% @comments.reverse_each do |comment| %>
-				<% if comment.user_id != nil %>
-					<li>
-						<%= gravatar_for User.find(comment.user_id) %>
-						<div>
+		<div class="col-md-12">
+			<div class="comment-form" id="comments">
+				<h3><span>&#xe134;</span> Comments (<%= @article.comments.count %>)</h3>
+				<%= render 'shared/comment_form' %>
+			</div>
+			<ul class="comments">
+				<% @comments.reverse_each do |comment| %>
+					<% if comment.user_id != nil %>
+						<li>
+							<%= link_to gravatar_for(User.find(comment.user_id)), User.find(comment.user_id) %>
 							<p class="comment-author"><%= link_to comment.author, user_path(User.find(comment.user_id)) %></p>
-							<span class="comment-timestamp">
+							<p class="comment-timestamp">
 								<%= time_ago_in_words(comment.created_at) %> ago.
 								<% if current_user.id == comment.user_id %>
 									<%= link_to "delete", comment, method: :delete,
 																   data: { confirm: "Are you sure you want to delete this comment?" } %>
 								<% end %>
-							</span>
-							<p class="comment-body"><%= comment.body %></p>	
-						</div>
-					</li>
+							</p>
+							<p class="comment-body"><%= comment.body.html_safe %></p>	
+						</li>
+					<% end %>
 				<% end %>
-			<% end %>
-		</ul>
+			</ul>
+		</div>
 	</div>
 </div>

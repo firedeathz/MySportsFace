@@ -188,8 +188,8 @@ select {
 }
 
 .back-btn {
-	padding-top: 20px;
-	float: none;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 /* events */
@@ -201,14 +201,13 @@ select {
 		padding: 10px 0;
 		padding-left: 10px;
 		margin: 0 10px 0 10px;
-		border: 1px solid #333;
+		border-left: 5px solid $btn-bg;
 		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
 		background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
-		border-radius: 5px;
 		margin-bottom: 10px;
 		box-shadow: 3px 3px 2px #888888;
 	}
@@ -363,6 +362,19 @@ select {
   }
 }
 
+.user-name {
+	font-weight: bold;
+}
+
+.user-post-count, .user-event-count {
+	font-size: 1em;
+	margin-top: -10px;
+}
+
+.user-event-count {
+	margin-bottom: -5px;
+}
+
 .users {
   list-style: none;
   margin: 0;
@@ -370,8 +382,7 @@ select {
   li {
     overflow: auto;
     padding: 10px 0;
-    border: 1px solid #333;
-	border-radius: 5px;
+    border-left: 5px solid $btn-bg;
 	margin-bottom: 10px;
 	padding-left: 10px;
 	font-weight: bold;
@@ -552,7 +563,7 @@ select {
   padding: 0;
   li {
     padding: 10px 0;
-    border: 1px solid #333;
+    border-left: 5px solid $btn-bg;
 	margin-left: 10px;
 	margin-right: 10px;
 	box-shadow: 3px 3px 2px #888888;
@@ -562,7 +573,6 @@ select {
 	background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 	background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 	background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
-	border-radius: 5px;
 	margin-bottom: 10px;
   }
   .user {
@@ -611,34 +621,29 @@ span.picture {
 	margin-top: -20px;
 }
 
+.article-creator {
+	margin-top: -10px;
+}
+
 .articles {
 	list-style: none;
 	padding: 0;
 	li {
 		padding: 10px 0;
 		padding-left: 10px;
-		border: 1px solid #333;
+		border-left: 5px solid $btn-bg;
 		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
 		background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
-		border-radius: 5px;
 		margin-bottom: 10px;
 		box-shadow: 3px 3px 2px #888888;
 	}
 	img {
 		display: none;
 	}
-}
-
-.news-article {
-	margin: 20px 0;
-	padding-left: 20px;
-	border: 2px solid #333;
-	border-radius: 20px;
-	background-color: #ccc;
 }
 
 .article-title {
@@ -653,7 +658,6 @@ span.picture {
 }
 
 .article-comments {
-	border-top: 1px solid #777;
 	margin-right: 10px;
 	font-size: 0.75em;
 	margin-bottom: -5px;
@@ -685,24 +689,19 @@ span.picture {
 	margin-right: 15px;
 }
 
-.text-area {
-	border-radius: 5px;
-}
-
 .comments {
 	list-style: none;
 	padding: 0;
 	li {
 		padding: 10px 0;
 		padding-left: 10px;
-		border: 1px solid #333;
+		border-left: 5px solid $btn-bg;
 		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
 		background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
-		border-radius: 5px;
 		margin-bottom: 10px;
 		box-shadow: 3px 3px 2px #888888;
 	}
@@ -714,21 +713,30 @@ span.picture {
 
 .comment-description {
 	float: none;
+	margin-top: -10px;
 }
 
 .comment-body {
+	margin-top: -10px;
 	word-wrap: break-word;
 	float: none;
+	display: block;
+	padding-right: 5px;
+	margin-bottom: 0px;
 }
 
 .comment-timestamp {
 	color: #777;
+	font-size: 1em;
 	display: block;
-	margin-left: 60px;
 	margin-top: -15px;
 }
 
 /* organizations index */
+
+.original-website {
+	letter-spacing: 1px;
+}
 
 .ul-title {
 	list-style: none;
@@ -771,7 +779,7 @@ span.picture {
 
 .favorites, .rest {
 	cursor: pointer;
-	border: 1px solid #333;
+	border-left: 5px solid #64C800 !important;
 	box-shadow: 0px 2px 2px #888;
 	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(100,200,0,0.5) 100%) !important;
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(100,200,0,0.5))) !important;
@@ -780,15 +788,14 @@ span.picture {
 	background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(100,200,0,0.5) 100%) !important;
 	background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(100,200,0,0.5) 100%) !important;
 	margin: 0px 0px 10px 0px !important;
-	border-radius: 5px;
 	padding-left: 10px;
 	padding-top: 12.5px;
 	padding-right: 10px;
 }
 
 .og-grid li > a {
-	height: 52px;
-	border: 1px solid #333;
+	height: 50px;
+	border-left: 5px solid $btn-bg;
 	box-shadow: 2px 2px 2px #888;
 	color: #333;
 	transition: color 0.2s;
@@ -802,14 +809,8 @@ span.picture {
 	background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 	background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 	&:hover {
-		background: -moz-linear-gradient(right, rgba(238,238,238,0) 0%, rgba(66,139,202,0.5) 100%);
-		background: -webkit-gradient(linear, right top, left top, color-stop(0%,rgba(238,238,238,0)), color-stop(100%,rgba(66,139,202,0.5)));
-		background: -webkit-linear-gradient(right, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
-		background: -o-linear-gradient(right, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
-		background: -ms-linear-gradient(right, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
-		background: linear-gradient(to left, rgba(238,238,238,0) 0%,rgba(66,139,202,0.5) 100%);
 		text-decoration: none;
-		color: #fff;
+		color: $btn-bg;
 	}
 	&:focus {
 		text-decoration: none;
@@ -821,7 +822,6 @@ span.picture {
 	height: 50px;
 	float: left;
 	margin-top: -15px;
-	border-right: 1px solid #333;
 }
 
 .og-grid li > a span {
@@ -833,7 +833,6 @@ span.picture {
 	outline: none;
 	display: block;
 	position: relative;
-	border-radius: 5px;
 }
 
 /* Little Arrow 
@@ -1028,14 +1027,13 @@ span.picture {
 	li {
 		padding: 10px 0;
 		padding-left: 10px;
-		border: 1px solid #333;
+		border-left: 5px solid $btn-bg;
 		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
 		background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
-		border-radius: 5px;
 		margin-bottom: 10px;
 		box-shadow: 3px 3px 2px #888888;
 	}
@@ -1047,6 +1045,31 @@ span.picture {
 }
 
 /* sidebar */
+
+.link-transition a {
+	position: relative;
+	color: $btn-bg;
+	font-weight: bold;
+	letter-spacing: 1px;
+	&:after {
+		display: block;
+		position: absolute;
+		left: 0;
+		background-color: $btn-bg;
+		width: 0;
+		top: 20px;
+		height: 5px;
+		content: "";
+		transition: width 0.2s;
+	}
+	&:hover, &:focus {
+		color: $btn-bg;
+		text-decoration: none;
+	}
+	&:hover:after {
+		width: 101%;
+	}
+}
 
 .username a {
 	color: #333;
@@ -1116,6 +1139,7 @@ aside {
 /* forms */
 
 .form-control {
+	border-radius: 0;
 	&:focus {
 		border-color: $btn-border;
 		outline: 0px none;
@@ -1132,9 +1156,7 @@ aside {
 }
 
 select {
-	appearance:none;
-	-moz-appearance:none;
-	-webkit-appearance:none;
+	border-radius: 0;
 	border: 1px solid #bbb;
 	margin-bottom: 15px;
 	padding-left: 7.5px;
@@ -1147,6 +1169,10 @@ select {
 		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset, 0px 0px 8px rgba(53, 126, 189, 0.6);
 	}
 	@include box_sizing;
+	transition: border-color 0.15s;
+	&:focus:after {
+		border-color: $btn-border;
+	}
 }
 
 input, textarea, .uneditable-input {

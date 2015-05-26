@@ -17,13 +17,13 @@
 				<div class="datetime">
 					<%= f.label :date, "Date" %>
 				</div>			
-				<%= f.date_select :date, :order => [ :day, :month, :year ] %>
+				<%= f.date_select :date, :order => [ :day, :month, :year ], selected: 5.days.from_now %>
 			</div>
 			<div class="col-md-6">
 				<div class="datetime">
 					<%= f.label :time, "Time" %>
 				</div>
-				<%= f.time_select :time %>
+				<%= f.time_select :time, default: Time.now %>
 			</div>
 			
 			<%= f.label :location, "Location" %>
@@ -39,7 +39,7 @@
 	</div>
 </div>
 
-<script src="http://maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=places" type="text/javascript"></script>
+<script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=places" type="text/javascript"></script>
 
 <script type="text/javascript">	
 	var oldMarker = null;

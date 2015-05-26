@@ -13,13 +13,9 @@
 	</aside>
 
 	<div class="col-md-8">	
-		<div class="back-btn">
-			<%= link_to "Go back", organization_path, class: "btn btn-primary" %>
-		</div>
 		<h1>News</h1>
-		<h2><%= @organization.name %></h2>
-
-		<%= will_paginate %>
+		<h2 class="link-transition"><%= link_to @organization.name, @organization %></h2>
+		<div class="back-btn"><%= link_to "Go back", organization_path, class: "btn btn-primary" %></div>
 		
 		<ul class="articles">
 			<%= render @articles.reverse %>
