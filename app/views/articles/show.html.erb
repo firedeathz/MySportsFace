@@ -3,12 +3,7 @@
 <div class="row">
 	<aside class="col-md-4">
 		<div class="fixed">
-			<section class="user_info">
-				<%= render 'shared/user_info' %>
-			</section>
-			<section class="stats">
-				<%= render 'shared/stats' %>
-			</section>
+			<%= render 'shared/small_profile' %>
 		</div>
 	</aside>
 
@@ -17,15 +12,14 @@
 		<h2 class="article-creator">by <%= link_to @article.author, @organization %></h2>
 		<div class="back-btn"><%= link_to "Go back", organization_articles_path(@organization), class: "btn btn-primary" %></div>
 
-		<div class="event-info">
-			<h3><span class="icon">&#x1f4ac;</span> Article Information</h3>
-		</div>
-
 		<div class="col-md-12">
-			<div class="article-description">
+			<div class="border-top event-info">
+				<h3><span class="icon">&#x1f4ac;</span> Article Information</h3>
+			</div>
+			<div class="col-md-12 article-description">
 				<% if @article.content.nil? %>
 					<% if !@article.description.nil? %>
-						<%= @article.description.html_safe %><span> [...]</span>
+						<%= @article.description.html_safe %><span class="truncated"> [...]</span>
 					<% end %>
 					<p class="extra-info">&#x279c; Please visit the <%= link_to "original article", @article.url, target: "_blank" %> to read the full post.</p>
 				<% else %>
@@ -35,16 +29,20 @@
 		</div>
 
 		<div class="col-md-12">
-			<div class="comment-form" id="comments">
+			<div class="border-top comment-form" id="comments">
 				<h3><span>&#xe134;</span> Comments (<%= @article.comments.count %>)</h3>
 				<%= render 'shared/comment_form' %>
 			</div>
 			<ul class="comments">
 				<% @comments.reverse_each do |comment| %>
 					<% if comment.user_id != nil %>
+						<% if comment.user_id == current_user.id %>
 						<li>
+						<% else %>
+						<li class="other-user-li">
+						<% end %>
 							<%= link_to gravatar_for(User.find(comment.user_id)), User.find(comment.user_id) %>
-							<p class="comment-author"><%= link_to comment.author, user_path(User.find(comment.user_id)) %></p>
+							<p class="comment-author"><%= link_to comment.author, user_path(User.find(comment.user_id)), class: 'add-transition' %></p>
 							<p class="comment-timestamp">
 								<%= time_ago_in_words(comment.created_at) %> ago.
 								<% if current_user.id == comment.user_id %>

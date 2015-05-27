@@ -4,6 +4,6 @@
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :article_id, :value => @article.id %>
   
-  <%= f.text_area :body, class: "text-area form-control", placeholder: "Leave your comments here. . ." %>
+  <%= f.text_area :body, class: "comment-text-area form-control", placeholder: "Leave your comments here. . ." %>
   <%= f.submit "Add Comment", class: "btn btn-primary" %>
 <% end %>

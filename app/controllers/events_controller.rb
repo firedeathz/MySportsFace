@@ -2,11 +2,13 @@ class EventsController < ApplicationController
 	before_action :logged_in_user, only: [:index, :show]
 	
 	def index
+		@user = current_user
 		@attending = current_user.participations
 		@events = Event.paginate(page: params[:page]).where.not(id: @attending.ids)
 	end
 	
 	def show
+		@user = current_user
 		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 		@event = Event.find(params[:id])
 		@picture = @event.pictures.build if logged_in?

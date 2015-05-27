@@ -1,3 +1,5 @@
-<%= link_to gravatar_for(current_user), current_user %>
-<h1 class="username"><%= link_to current_user.name, current_user %></h1>
-<span class="handle">@<%= current_user.name %></span>
+<%= link_to gravatar_for(@user), @user %>
+<h1 class="username"><%= link_to @user.name, @user %></h1>
+<% if current_user == @user %>
+	<span class="settings link-transition"><%= link_to "Settings", edit_user_path(current_user) %></span>
+<% end %>

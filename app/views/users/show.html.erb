@@ -1,26 +1,33 @@
 <% provide(:title, 'Profile') %>
 <div class="row">
   <aside class="col-md-4">
-    <div class="fixed">
-		<section class="user_info">
-		  <%= link_to gravatar_for(@user), @user %>
-		  <h1 class="username"><%= link_to @user.name, @user %></h1>
-		  <% if current_user == @user %>
-			<span><%= link_to "Settings", edit_user_path(current_user) %></span>
-		  <% end %>
-		</section>
-		<section class="stats">
-			<%= render 'shared/stats' %>
-		</section>
+	<div class="fixed">
+      <%= render 'shared/small_profile' %>
 	</div>
   </aside>
   <div class="col-md-8">
+	<h1>Profile</h1>
     <%= render 'follow_form' if logged_in? %>
-	<%= render 'shared/events' %>
-    <h3>Posts (<%= @user.microposts.count %>)</h3>
-    <ol class="microposts">
+    <ul class="microposts">
+	  <li class="list-title">
+		<span class="exp-close">-</span>
+		<span class="fav-title-count"><% if current_user == @user %>Your<% else %><%= @user.name %>'s<% end %> Posts (<%= @user.microposts.count %>)</span>
+	  </li>	
       <%= render @microposts %>
-    </ol>
+    </ul>
     <%= will_paginate @microposts %>
   </div>  
 </div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery(".list-title").click(function() {
+			if (jQuery(this).find(".exp-close").text() === "-") { 
+				jQuery(this).find(".exp-close").text("+"); 
+			} else {
+				jQuery(this).find(".exp-close").text("-"); 
+			}
+			jQuery(this).nextAll("li").slideToggle(200);
+		});
+	});
+</script>

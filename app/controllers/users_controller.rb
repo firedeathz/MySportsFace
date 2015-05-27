@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
+    @user = current_user
 	@users = User.paginate(page: params[:page])
   end
   
@@ -13,8 +14,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-	@microposts = @user.microposts.paginate(page: params[:page])
-	@events = @user.events.paginate(page: params[:page])
+	@microposts = @user.microposts.paginate(page: params[:page], :per_page => 15)
+	@events = @user.events.paginate(page: params[:page], :per_page => 10)
   end
   
   def create
@@ -40,13 +41,6 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-  end 
-  
-  def events
-	@title = "Events"
-	@user = User.find(params[:id])
-	@events = @user.events
-	render 'show_events'
   end
   
   def participations

@@ -1,6 +1,30 @@
 <li class="user-banner">
   <%= link_to gravatar_for(user), user %>
-  <p class="user-name"><%= link_to user.name, user %></p>
-  <p class="user-post-count">Posts: <%= user.microposts.count %></p>
-  <p class="user-event-count">Events: <%= user.events.count %></p>
+  <p class="user-name"><%= link_to user.name, user, class: 'add-transition' %></p>
+  <div class="stats">
+  <a href="<%= following_user_path(user) %>">
+    <span class="small-caps">following</span>
+	<strong id="following" class="stat">
+      <%= user.following.count %>
+    </strong>
+  </a>
+  <a href="<%= followers_user_path(user) %>">
+    <span class="small-caps">followers</span>
+	<strong id="followers" class="stat">
+      <%= user.followers.count %>
+    </strong>
+  </a>
+  <a href="<%= user_path(user) %>">
+    <span class="small-caps">posts</span>
+	<strong id="posts" class="stat">
+      <%= user.microposts.count %>
+    </strong>
+  </a>  
+  <a href="<%= participations_user_path(user) %>">
+    <span class="small-caps">events</span>
+	<strong id="participations" class="stat">
+      <%= user.participations.count %>
+    </strong>
+  </a>
+</div>
 </li>

@@ -1,5 +1,5 @@
 <li id="event-<%= event.id %>">
-  <span class="event-name"><%= link_to event.name, event_path(event) %></span>
+  <span class="event-name"><%= link_to event.name, event_path(event), class: 'add-transition' %></span>
   <span class="description">
 	<%= event.description.truncate(99, omission: " [...]") %>
   </span>
