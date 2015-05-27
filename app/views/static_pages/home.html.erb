@@ -9,13 +9,13 @@
 				<section class="stats">
 					<%= render 'shared/stats' %>
 				</section>
-				<section class="micropost_form">
-					<%= render 'shared/micropost_form' %>
-				</section>
 			</div>
 		</aside>
 		<div class="col-md-8">
-			<h1>Feed</h1>
+			<h1>Recent Posts</h1>
+			<section class="micropost_form" style="margin-bottom: 20px; padding: 0 10px 0 10px">
+				<%= render 'shared/micropost_form' %>
+			</section>
 			<%= render 'shared/feed' %>
 		</div>
 	</div>

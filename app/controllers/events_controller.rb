@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 	end
 	
 	def show
+		@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 		@event = Event.find(params[:id])
 		@picture = @event.pictures.build if logged_in?
 		@schedule_entry = @event.schedule_entries.build if logged_in?

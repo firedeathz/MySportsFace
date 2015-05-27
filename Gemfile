@@ -16,8 +16,10 @@ gem 'jquery-turbolinks'
 group :development do
 	gem 'sqlite3'
 	gem 'faker',				'1.4.3'
+	gem 'dotenv-rails',			:require => 'dotenv/rails-now'
 end
 
+gem 'aws-sdk',					'< 2.0'
 gem 'bcrypt',					'~> 3.1.7'
 gem 'will_paginate',			'3.0.7'
 gem 'bootstrap-will_paginate',	'0.0.10'
