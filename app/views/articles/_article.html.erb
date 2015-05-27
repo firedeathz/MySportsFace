@@ -1,5 +1,5 @@
 <li class="news-article">
-	<p class="article-title"><%= link_to article.title, article_path(article) %></p>
+	<p class="article-title"><%= link_to article.title, article_path(article), class: 'add-transition' %></p>
 	<p class="article-author">by <%= article.author %> | <%= link_to "view original post", article.url, :target => "_blank" %></p>
 	<p class="article-comments"><%= link_to "Comments: #{article.comments.count}", article_path(article, anchor: 'comments') %></p>	
 </li>

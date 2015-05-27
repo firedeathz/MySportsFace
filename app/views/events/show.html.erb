@@ -41,21 +41,27 @@
 					</div>
 				<% end %>
 			</div>
+		</div>
+		<div class="col-md-12" id="datetimeloc">
 			<div class="border-top event-info">
-				<div class="col-md-4 border-right timeloc margin-top no-padding-left">
+				<div class="col-md-3 timeloc margin-top no-padding-left">
 					<h3><span>&#x1f4c6;</span> Date </h3>
 					<p><%= @event.date.day %> <%= month_name(@event.date.month) %> <%= @event.date.year %></p>
 				</div>
-				<div class="col-md-4 border-right timeloc margin-top">
+				<div class="col-md-3 timeloc margin-top">
 					<h3><span>&#x1f552;</span> Time</h3>
 					<p><%= @event.time.strftime("%H : %M") %></p>
 				</div>
-				<div class="col-md-4 timeloc margin-top">
+				<div class="col-md-6 timeloc margin-top">
 					<h3><span>&#x1f30f;</span> Location</h3>
 					<p id="loc"><%= @event.location %></p>
 					<p style="display: none" id="lat"><%= @event.lat %></p>
 					<p style="display: none" id="lng"><%= @event.lng %></p>				
 				</div>
+			</div>
+		</div>
+		<div class="col-md-12" id="googlemap">
+			<div class="border-top">
 				<div id="gmap" class="col-md-12 locationmap"></div>
 			</div>
 		</div>
