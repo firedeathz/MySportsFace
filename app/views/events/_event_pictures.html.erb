@@ -1,9 +1,24 @@
 <% if @event.pictures.count > 0 %>
-	<a href="javascript:void(0)" id="prev">&#65513;</a>
-	<div class="photos">
-		<%= render @event.pictures %>
+	<div class="msg_slideshow" id="msg_slideshow">
+		<div id="msg_wrapper" class="msg_wrapper"></div>
+		<div id="msg_controls" class="msg_controls">
+			<a href="#" id="msg_grid" class="msg_grid"></a>
+			<a href="#" id="msg_prev" class="msg_prev"></a>
+			<a href="#" id="msg_pause_play" class="msg_pause"></a>
+			<a href="#" id="msg_next" class="msg_next"></a>
+		</div>
+		<div id="msg_thumbs" class="msg_thumbs">
+			<% @event.pictures.in_groups_of(6, false) do |pics| %>
+				<div class="msg_thumb_wrapper">
+					<%= render pics %>
+				</div>
+			<% end %>
+			<a href="#" id="msg_thumb_next" class="msg_thumb_next"></a>
+			<a href="#" id="msg_thumb_prev" class="msg_thumb_prev"></a>
+			<a href="#" id="msg_thumb_close" class="msg_thumb_close"></a>
+			<span class="msg_loading"></span>
+		</div>
 	</div>
-	<a href="javascript:void(0)" id="next">&#65515;</a>
 <% else %>
-	<span class="no-photos">This event has no photos yet.</span>
+	<p class="no-photos">This event has no photos yet.</p>
 <% end %>

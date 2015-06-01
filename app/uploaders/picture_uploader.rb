@@ -18,6 +18,9 @@ class PictureUploader < CarrierWave::Uploader::Base
   
   # Create different versions of your uploaded files:
   # process :resize_to_fit => [500, 250]
+  version :thumb do
+	process :resize_to_fill => [75, 75]
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

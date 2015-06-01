@@ -1,11 +1,11 @@
-<% if picture.id != nil %>
+<% if !picture.id.nil? %>
 	<% if picture.url.blank? %>
-		<div id="picture-<%= picture.id %>" class="pic">
-			<%= image_tag("missing.png") %>	
-		</div>
+		<a href="#" id="picture-thumb-<%= picture.id %>">
+			<%= image_tag "missing.png", alt: "missing.png" %>
+		</a>
 	<% else %>
-		<div id="picture-<%= picture.id %>" class="pic">
-			<%= image_tag picture.url %>	
-		</div>
+		<a href="#" id="picture-thumb-<%= picture.id %>">
+			<%= image_tag picture.url.thumb, alt: picture.url %>
+		</a>
 	<% end %>
 <% end %>

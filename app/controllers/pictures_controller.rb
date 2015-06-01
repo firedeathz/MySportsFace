@@ -9,7 +9,7 @@ class PicturesController < ApplicationController
 			redirect_to @event
 		else
 			redirect_to @event
-			flash[:notice] = "Error: Upload failed."
+			flash[:notice] = "Failed to upload your picture."
 		end
 	end
 	

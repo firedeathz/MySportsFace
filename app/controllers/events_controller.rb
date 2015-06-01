@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 		@user = current_user
 		@event = Event.find(params[:id])
 		@picture = @event.pictures.build if logged_in?
+		@video = @event.videos.build if logged_in?
 		@schedule_entry = @event.schedule_entries.build if logged_in?
 		@participants = @event.participants
 	end

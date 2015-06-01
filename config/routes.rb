@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :favorite_organizations, only: [:create, :destroy]
   resources :participations, only: [:create, :destroy, :update]
   resources :events, only: [:index, :show, :create] do
+    resources :videos, only: [:create]
     resources :pictures, only: [:create]
 	resources :schedule_entries, only: [:create, :destroy]
 	member do

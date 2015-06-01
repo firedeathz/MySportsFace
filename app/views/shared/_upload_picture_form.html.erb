@@ -1,7 +1,8 @@
-<%= form_for([@event, @picture], html: { multipart: true, class: "directUpload" }) do |f| %>
+<%= form_for([@event, @picture], html: { multipart: true }) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	
 	<%= f.file_field :url, accept: 'image/jpeg,image/gif,image/png', :required => true %>
 
 	<%= f.submit "Upload Photo", class: "btn btn-primary" %>
+	<h3><small>&#x26D4; Accepted formats are .jpg, .jpeg, .gif and .png</small></h3>
 <% end %>

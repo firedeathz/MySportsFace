@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :pictures
+  has_many :videos
   has_many :schedule_entries
   belongs_to :user
   

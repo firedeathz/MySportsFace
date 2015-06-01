@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524121151) do
+ActiveRecord::Schema.define(version: 20150601101611) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "atom_id"
@@ -162,5 +162,19 @@ ActiveRecord::Schema.define(version: 20150524121151) do
     t.string   "password_digest"
     t.string   "remember_digest"
   end
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "link"
+    t.string   "title"
+    t.string   "author"
+    t.string   "duration"
+    t.integer  "likes"
+    t.integer  "dislikes"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "videos", ["event_id"], name: "index_videos_on_event_id"
 
 end
