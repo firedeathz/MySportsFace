@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   root   'static_pages#home'
   get 	 'help'    						=> 'static_pages#help'
+  get	 'admin_board'					=> 'static_pages#admin_board'
   get	 'organizations'				=> 'organizations#index'
   get	 'signup'  						=> 'users#new'
   get	 'events/new'					=> 'events#new'

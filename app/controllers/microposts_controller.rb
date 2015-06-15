@@ -8,14 +8,15 @@ class MicropostsController < ApplicationController
 			flash[:success] = "Post created!"
 			redirect_to root_url
 		else
-			@feed_items = []
+			@feed_items = current_user.feed.paginate(page: params[:page]) if logged_in?
+			@user = current_user
 			render 'static_pages/home'
 		end
 	end
 
 	def destroy
 		@micropost.destroy
-		flash[:success] = "Micropost successfully deleted"
+		flash[:success] = "Post successfully deleted."
 		redirect_to request.referrer || root_url		
 	end
 	

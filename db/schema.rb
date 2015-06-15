@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601101611) do
+ActiveRecord::Schema.define(version: 20150602111553) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "atom_id"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20150601101611) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.boolean  "admin",           default: false
   end
 
   create_table "videos", force: :cascade do |t|

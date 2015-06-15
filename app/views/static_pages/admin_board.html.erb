@@ -1,0 +1,18 @@
+<% provide(:title, "Admin Board") %>
+<% if logged_in? and admin? %>
+	<div class="row">
+		<aside class="col-md-4">
+			<div class="fixed">
+				<%= render 'shared/small_profile' %>
+			</div>
+		</aside>
+		<div class="col-md-8">
+			<h1>Admin Board</h1>
+			<div class="col-md-12">
+				<ul class="event-info admin-links">
+					<li><%= link_to "Create an new Organization", new_organization_path, class: 'add-transition' %></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<% end %>

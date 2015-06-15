@@ -9,7 +9,7 @@ class VideosController < ApplicationController
 			redirect_to @event
 		else
 			redirect_to @event
-			flash[:notice] = "Failed to add your video."
+			flash[:notice] = "Failed to add your video. Link is invalid."
 		end
 	end
 

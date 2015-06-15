@@ -21,17 +21,23 @@ $btn-bg: #428BCA;
   box-sizing:         border-box;
 }
 
-.progress {
-  margin-bottom: 0;
-  height: 5px;
-  border-radius: 0;
-}
-
-.progress .bar {
-  color: white;
-  padding-left: 5px;
-  height: 5px;
-  border-radius: 0;
+.admin-links {
+	list-style: none;
+	padding: 0;
+	li {
+		padding: 10px 0;
+		padding-left: 10px;
+		margin: 0 10px 0 10px;
+		border-left: 5px solid $btn-bg;
+		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
+		background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+		margin-bottom: 10px;
+		box-shadow: 3px 3px 2px #888888;
+	}
 }
 
 .fixed {
