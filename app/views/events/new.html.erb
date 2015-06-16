@@ -10,9 +10,13 @@
 			<%= f.label :name, "Event name" %>
 			<%= f.text_field :name, class: 'form-control' %>
 
+			<%= f.label :summary, "Event summary" %>
+			<%= f.text_field :summary, class: 'form-control' %>
+			
 			<%= f.label :description, "Event description" %>
 			<%= f.text_area :description, class: 'form-control' %>
-
+			
+			<div class="empty-space"></div>
 			<div class="col-md-6 no-padding-left">
 				<div class="datetime">
 					<%= f.label :date, "Date" %>

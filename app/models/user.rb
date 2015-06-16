@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy								  
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  
+  has_many :identities
   
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 				format: { with: VALID_EMAIL_REGEX },
 				uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: { minimum: 8 }, allow_blank: true
+  validates :password, length: { minimum: 8 }
 
   def User.digest(string)
 	cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -105,4 +105,26 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end  
+  
+  def self.find_for_oauth(auth, signed_in_resource = nil)
+	identity = Identity.find_for_oauth(auth)
+	
+	user = signed_in_resource ? signed_in_resource : identity.user
+	
+	if user.nil?
+		email = auth.info.email
+		user = User.where(:email => email).first if email
+		
+		if user.nil?
+			user = User.new(name: auth.info.name, email: auth.info.email, password: "********")
+			user.save!
+		end
+	end
+	
+	if identity.user != user
+		identity.user = user
+		identity.save!
+	end
+	user
+  end
 end

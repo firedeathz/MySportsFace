@@ -49,11 +49,11 @@
 					<h3><span>&#x1f4c6;</span> Date </h3>
 					<p><%= @event.date.day %> <%= month_name(@event.date.month) %> <%= @event.date.year %></p>
 				</div>
-				<div class="col-md-3 timeloc margin-top">
+				<div class="col-md-3 timeloc margin-top no-padding-left">
 					<h3><span>&#x1f552;</span> Time</h3>
 					<p><%= @event.time.strftime("%H : %M") %></p>
 				</div>
-				<div class="col-md-6 timeloc margin-top">
+				<div class="col-md-6 timeloc margin-top no-padding-left">
 					<h3><span>&#x1f30f;</span> Location</h3>
 					<p id="loc"><%= @event.location %></p>
 					<p style="display: none" id="lat"><%= @event.lat %></p>

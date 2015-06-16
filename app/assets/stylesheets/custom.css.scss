@@ -27,7 +27,7 @@ $btn-bg: #428BCA;
 	li {
 		padding: 10px 0;
 		padding-left: 10px;
-		margin: 0 10px 0 10px;
+		margin: 0px 0px 10px 0px;
 		border-left: 5px solid $btn-bg;
 		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
@@ -35,13 +35,12 @@ $btn-bg: #428BCA;
 		background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
 		background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
-		margin-bottom: 10px;
 		box-shadow: 3px 3px 2px #888888;
 	}
 }
 
 .fixed {
-	position: fixed;
+	position: relative;
 	padding-left: 5px;
 }
 
@@ -415,7 +414,7 @@ h3 small {
 	li {
 		padding: 10px 0;
 		padding-left: 10px;
-		margin: 0 10px 0 10px;
+		margin: 0;
 		border-left: 5px solid $btn-bg;
 		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
@@ -604,8 +603,6 @@ h3 small {
     border-left: 5px solid $btn-bg;
 	margin-bottom: 10px;
 	padding-left: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
 	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
 	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
@@ -625,6 +622,10 @@ h3 small {
 	border-radius: 5px;
 	width: 50px;
 	height: 50px;
+}
+
+.comments .gravatar {
+	border-radius: 5px;
 }
 
 .user_avatars {
@@ -786,13 +787,17 @@ h3 small {
 
 /* microposts */
 
+.micropost-form {
+	margin-bottom: 20px;
+}
+
 .microposts {
 	list-style: none;
 	padding: 0;
 	li {
 		padding: 10px 0;
 		padding-left: 10px;
-		margin: 0 10px 0 10px;
+		margin: 0;
 		border-left: 5px solid $btn-bg;
 		background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
 		background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
@@ -806,7 +811,7 @@ h3 small {
 	.other-user-li {
 		padding: 10px 0;
 		padding-left: 10px;
-		margin: 0 10px 0 10px;
+		margin: 0;
 		border-left: 5px solid rgb(100,200,0);
 		margin-bottom: 10px;
 		box-shadow: 3px 3px 2px #888888;
@@ -1041,8 +1046,7 @@ span.picture {
 
 .og-grid li {
 	display: block;
-	margin: 10px 10px 10px 10px;
-	height: 50px;
+	margin: 10px 0px 10px 0px;
 }
 
 .imgover {
@@ -1067,7 +1071,7 @@ span.picture {
 	-o-user-select:none;
 	cursor: pointer;
 	border-left: 5px solid #64C800 !important;
-	box-shadow: 0px 2px 2px #888;
+	box-shadow: 3px 3px 2px #888;
 	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(100,200,0,0.5) 100%) !important;
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(100,200,0,0.5))) !important;
 	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(100,200,0,0.5) 100%) !important;
@@ -1088,7 +1092,7 @@ span.picture {
 	-o-user-select:none;
 	cursor: pointer;
 	border-left: 5px solid #64C800 !important;
-	box-shadow: 0px 2px 2px #888;
+	box-shadow: 3px 3px 2px #888;
 	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(100,200,0,0.5) 100%) !important;
 	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(100,200,0,0.5))) !important;
 	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(100,200,0,0.5) 100%) !important;
@@ -1101,10 +1105,14 @@ span.picture {
 	padding-right: 10px;
 }
 
+.og-grid .favorites, .og-grid .rest {
+	padding: 10px 0 10px 10px;
+}
+
 .og-grid li > a {
-	height: 50px;
+	padding-bottom: 15px;
 	border-left: 5px solid $btn-bg;
-	box-shadow: 2px 2px 2px #888;
+	box-shadow: 3px 3px 2px #888;
 	color: #333;
 	transition: color 0.2s;
 	font-weight: bold;
@@ -1126,8 +1134,8 @@ span.picture {
 }
 
 .og-grid li > a img {
-	width: auto;
-	height: 50px;
+	width: 109px;
+	height: auto;
 	float: left;
 	margin-top: -15px;
 }
@@ -1160,15 +1168,13 @@ span.picture {
 */
 
 .og-expander {
-	position: absolute;
+	position: relative;
 	background: rgba(238,238,238,1);
-	top: auto;
-	left: 0;
-	width: 100%;
 	margin-top: 10px;
 	text-align: left;
 	height: 0;
 	overflow: hidden;
+	box-shadow: 3px 3px 2px #888;
 }
 
 .og-expander-inner {
@@ -1633,10 +1639,6 @@ p {
   }
 }
 
-.row {
-	min-height: 450px;
-}
-
 /* footer */
 
 footer {
@@ -1662,4 +1664,24 @@ footer {
 
 i {
 	font-family: Arial, sans-serif;
+}
+
+.jumbotron {
+	background-color: rgba(0,0,0,0);
+}
+
+.nicEdit-main {
+	margin: 0 !important;
+	width: 100% !important;
+	background-color: #fff;
+	padding: 6px 12px;
+	word-wrap: break-word;
+}
+
+.empty-space {
+	margin-bottom: 15px;
+}
+
+.fb-login-button {
+	background: url(/assets/fb_login_button.png);
 }

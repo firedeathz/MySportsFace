@@ -18,5 +18,5 @@
 # Ignore uploaded test images.
 /public/uploads
 
-# Ignore AWS S3 credential files
-*.env
+# Ignore all environment variable files
+*.env.development

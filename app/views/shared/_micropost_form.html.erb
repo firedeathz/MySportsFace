@@ -1,7 +1,7 @@
 <%= form_for(@micropost, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_field :content, class: "text-area form-control col-md-10", placeholder: "Post something new for others to see...", :required => true %>
+    <%= f.text_field :content, class: "text-area form-control col-md-10", placeholder: "What are you thinking about right now?", :required => true %>
   </div>
   <% if false %>
   <span class="picture">

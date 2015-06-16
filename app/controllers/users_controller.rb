@@ -19,14 +19,36 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(user_params)
-    if @user.save
-	  log_in @user
-      flash[:success] = "Welcome to the MySportsFace community!"
-      redirect_to @user
-    else
-      render 'new'
-    end
+    @user = User.find_by(email: user_params[:email])
+	if @user
+		identity = Identity.new
+		identity.user = @user
+		identity.provider = "mysportsface"
+		identity.uid = rand().to_s
+		identity.save!
+		@user.password = user_params[:password]
+		if @user.save!
+			session[:user_id] = @user.id
+			flash[:success] = "Welcome! Your account has been linked with either of your Facebook/Google+ accounts."
+		    redirect_to @user
+		else
+			render 'new'
+		end
+	else
+		@user = User.new(user_params)
+		identity = Identity.new
+		identity.user = user
+		identity.provider = "mysportsface"
+		identity.uid = rand().to_s
+		identity.save!
+		if @user.save
+		  session[:user_id] = @user.id
+		  flash[:success] = "Welcome to the MySportsFace community!"
+		  redirect_to @user
+		else
+		  render 'new'
+		end
+	end
   end
   
   def update
@@ -67,7 +89,7 @@ class UsersController < ApplicationController
   private
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+		params.require(:user).permit(:name, :email, :password, :password_confirmation, :uid, :provider, :oauth_token, :oauth_expires_at)
 	end
 	
 	def correct_user

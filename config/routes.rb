@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   mount SuperfeedrEngine::Engine => SuperfeedrEngine::Engine.base_path
+  get	 'auth/:provider/callback'		=> 'sessions#create'
+  patch	 'auth/:provider/callback'		=> 'sessions#create'
+  get	 'auth/failure'					=> redirect('/')
+  get	 'signout'						=> 'sessions#destroy'
   
   get 'organizations/index'
   get 'sessions/new'
@@ -12,8 +16,10 @@ Rails.application.routes.draw do
   get	 'events/new'					=> 'events#new'
   get	 'organizations/:id/articles'	=> 'articles#index'
   get    'login'   						=> 'sessions#new'
-  post   'login'   						=> 'sessions#create'
+  post   'login'   						=> 'sessions#create_identity'
   delete 'logout'  						=> 'sessions#destroy'
+  
+  resources :sessions, only: [:create, :destroy]
   
   resources :favorite_organizations, only: [:create, :destroy]
   resources :participations, only: [:create, :destroy, :update]

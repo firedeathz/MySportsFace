@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602111553) do
+ActiveRecord::Schema.define(version: 20150616152240) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "atom_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150602111553) do
     t.decimal  "lng"
     t.date     "date"
     t.time     "time"
+    t.string   "summary"
   end
 
   add_index "events", ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
@@ -90,6 +91,16 @@ ActiveRecord::Schema.define(version: 20150602111553) do
   end
 
   add_index "feeds", ["organization_id"], name: "index_feeds_on_organization_id"
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "microposts", force: :cascade do |t|
     t.text     "content"

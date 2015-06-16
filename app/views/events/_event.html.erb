@@ -1,7 +1,11 @@
 <li id="event-<%= event.id %>">
   <span class="event-name"><%= link_to event.name, event_path(event), class: 'add-transition' %></span>
   <span class="description">
-	<%= event.description.truncate(99, omission: " [...]") %>
+	<% if event.summary.nil? %>
+		This event has no summary.
+	<% else %>	
+		<%= event.summary.truncate(99, omission: " [...]") %>
+	<% end %>
   </span>
   <span class="timestamp">
     created <%= time_ago_in_words(event.created_at) %> ago by <%= link_to User.find(event.user_id).name, user_path(User.find(event.user_id)) %>
