@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   
   
   has_many :comments
+  has_many :event_comments
   has_many :microposts, dependent: :destroy
   
   

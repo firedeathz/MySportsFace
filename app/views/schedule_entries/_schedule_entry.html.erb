@@ -3,5 +3,9 @@
 		<p class="sched-time"><%= schedule_entry.timeloc.strftime("%H : %M") %></p>
 		<p class="sched-separator">-</p>
 		<p class="sched-desc"><%= schedule_entry.description %></p>
+		<% if current_user.event_creator?(Event.find(schedule_entry.event_id)) %>
+		<%= link_to "delete", event_schedule_entry_path(@event, schedule_entry), method: :delete,
+										 data: { confirm: "Are you sure you want to delete this schedule entry?" }, class: "delete-sched" %>
+	<% end %>
 	</li>
 <% end %>

@@ -3,10 +3,20 @@ class ScheduleEntriesController < ApplicationController
 
 	def create
 		@event = Event.find(params[:event_id])
-		@schedule_entry = @event.schedule_entries.build(schedule_entry_params)
+		@schedule_entry = @event.schedule_entries.create(schedule_entry_params)
 		if @schedule_entry.save
-			redirect_to @event
+			redirect_to event_path(@event)
 		else 
+			render 'events/show'
+		end
+	end
+	
+	def destroy
+		@schedule_entry = ScheduleEntry.find(params[:id])
+		if @schedule_entry.destroy
+			flash[:success] = "Schedule entry successfully deleted"
+			redirect_to request.referrer || event_path(@event)
+		else
 			render 'events/show'
 		end
 	end

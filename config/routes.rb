@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :videos, only: [:create]
     resources :pictures, only: [:create]
 	resources :schedule_entries, only: [:create, :destroy]
+	resources :event_comments, only: [:create, :destroy]
 	member do
 		get :participants
 	end

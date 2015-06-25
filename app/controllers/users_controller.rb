@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+	@micropost = current_user.microposts.build if logged_in?
 	@microposts = @user.microposts.paginate(page: params[:page], :per_page => 15)
 	@events = @user.events.paginate(page: params[:page], :per_page => 10)
   end
@@ -21,23 +22,28 @@ class UsersController < ApplicationController
   def create
     @user = User.find_by(email: user_params[:email])
 	if @user
-		identity = Identity.new
-		identity.user = @user
-		identity.provider = "mysportsface"
-		identity.uid = rand().to_s
-		identity.save!
-		@user.password = user_params[:password]
-		if @user.save!
-			session[:user_id] = @user.id
-			flash[:success] = "Welcome! Your account has been linked with either of your Facebook/Google+ accounts."
-		    redirect_to @user
+		if @user.identities.find_by_provider("mysportsface").nil?
+			identity = Identity.new
+			identity.user = @user
+			identity.provider = "mysportsface"
+			identity.uid = rand().to_s
+			identity.save!
+			@user.password = user_params[:password]
+			if @user.save!
+				session[:user_id] = @user.id
+				flash[:success] = "Welcome! Your account has been linked with either of your Facebook/Google+ accounts."
+				redirect_to @user
+			else
+				render 'new'
+			end
 		else
-			render 'new'
+			flash[:danger] = "An account with that email already exists."
+			redirect_to signup_path
 		end
 	else
 		@user = User.new(user_params)
 		identity = Identity.new
-		identity.user = user
+		identity.user = @user
 		identity.provider = "mysportsface"
 		identity.uid = rand().to_s
 		identity.save!

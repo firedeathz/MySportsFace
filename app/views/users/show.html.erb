@@ -8,6 +8,11 @@
   <div class="col-md-8">
 	<h1>Profile</h1>
     <%= render 'follow_form' if logged_in? %>
+	<% if current_user == @user %>
+		<section class="micropost-form">
+			<%= render 'shared/micropost_form' %>
+		</section>
+	<% end %>
     <ul class="microposts">
 	  <li class="list-title">
 		<span class="exp-close">-</span>

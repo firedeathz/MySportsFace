@@ -68,6 +68,17 @@ $btn-bg: #428BCA;
 	font-weight: bold;
 	margin-left: 0 !important;
 	padding-right: 10px;
+	line-height: 2.5em;
+	font-size: 1em;
+}
+
+.delete-sched {
+	float: right;
+	margin-right: 10px;
+	line-height: 2.5em;
+	font-size: 1em;
+	color: #333;
+	text-decoration: underline;
 }
 
 .schedule {
@@ -1684,4 +1695,17 @@ i {
 
 .fb-login-button {
 	background: url(/assets/fb_login_button.png);
+}
+
+::-webkit-input-placeholder {
+	font-style: italic;
+}
+:-moz-placeholder {
+	font-style: italic;
+}
+::-moz-placeholder {
+	font-style: italic;
+} 
+:-ms-input-placeholder { 
+	font-style: italic;
 }

@@ -1,9 +1,9 @@
-<%= form_for([@article, @article.comments.build]) do |f| %>
+<%= form_for([@event, @comments.build]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   
   <%= f.hidden_field :author, :value => current_user.name %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :article_id, :value => @article.id %>
+  <%= f.hidden_field :event_id, :value => @event.id %>
   
   <%= f.text_area :body, class: "comment-text-area form-control" %>
   <div class="empty-space"></div>

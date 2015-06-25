@@ -14,6 +14,7 @@ class EventsController < ApplicationController
 		@video = @event.videos.build if logged_in?
 		@schedule_entry = @event.schedule_entries.build if logged_in?
 		@participants = @event.participants
+		@comments = @event.event_comments
 	end
 	
 	def new

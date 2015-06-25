@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616152240) do
+ActiveRecord::Schema.define(version: 20150619152347) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "atom_id"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20150616152240) do
   end
 
   add_index "entries", ["feed_id"], name: "index_entries_on_feed_id"
+
+  create_table "event_comments", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.string   "author"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "event_comments", ["event_id"], name: "index_event_comments_on_event_id"
+  add_index "event_comments", ["user_id"], name: "index_event_comments_on_user_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "name"

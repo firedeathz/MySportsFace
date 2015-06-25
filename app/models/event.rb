@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   has_many :pictures
   has_many :videos
   has_many :schedule_entries
+  has_many :event_comments
   belongs_to :user
   
   has_many :passive_participations, class_name:  "Participation",
