@@ -10,6 +10,12 @@ class StaticPagesController < ApplicationController
   def help
   end
   
+  def about
+  end
+  
+  def contacts
+  end
+  
   def admin_board
 	@user = current_user
   end

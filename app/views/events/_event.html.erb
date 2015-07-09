@@ -1,5 +1,18 @@
 <li id="event-<%= event.id %>">
-  <span class="event-name"><%= link_to event.name, event_path(event), class: 'add-transition' %></span>
+  <span class="event-name">
+	<%= link_to event.name, event_path(event), class: 'add-transition' %>
+	<% if current_user.voted_on?(event) %>
+		<div class="star-form">
+			<%= event.votes_for %>
+			<%= content_tag("span", "", class: "star-empty") %>
+		</div>
+	<% else %>
+		<div class="star-form">
+			<%= event.votes_for %>
+			<%= content_tag("span", "", class: "star-full") %>
+		</div>
+	<% end %>
+  </span>
   <span class="description">
 	<% if event.summary.nil? %>
 		This event has no summary.

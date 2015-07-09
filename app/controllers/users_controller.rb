@@ -5,7 +5,17 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-	@users = User.paginate(page: params[:page])
+	if params[:search]
+		@users = User.search(params[:search]).paginate(page: params[:page])
+		if @users.count < 1
+			@noresults = true
+			@searched = params[:search]
+		else
+			@noresults = false
+		end
+	else
+		@users = User.paginate(page: params[:page])
+	end
   end
   
   def new

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   root   'static_pages#home'
   get 	 'help'    						=> 'static_pages#help'
+  get	 'about'						=> 'static_pages#about'
+  get	 'contacts'						=> 'static_pages#contacts'
   get	 'admin_board'					=> 'static_pages#admin_board'
   get	 'organizations'				=> 'organizations#index'
   get	 'signup'  						=> 'users#new'
@@ -30,6 +32,8 @@ Rails.application.routes.draw do
 	resources :event_comments, only: [:create, :destroy]
 	member do
 		get :participants
+		post :star
+		post :unstar
 	end
   end
   resources :users do
@@ -37,11 +41,20 @@ Rails.application.routes.draw do
       get :following, :followers, :events, :participations
     end
   end
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts, only: [:create, :destroy] do
+	member do
+	  post :star
+	  post :unstar
+	end
+  end
   resources :relationships, only: [:create, :destroy]
   resources :organizations do
     resources :articles, shallow: true do
 	  resources :comments
+	  member do
+		post :star
+		post :unstar
+	  end
 	end
   end
 end

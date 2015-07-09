@@ -6,7 +6,7 @@
 		<%= bootstrap_form_for(@user, inline_errors: false) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<%= f.text_field :name, id: "username-input" %>
+			<%= f.text_field :name, id: "username-input", :autofocus => "true" %>
 
 			<%= f.email_field :email, id: "email-input" %>
 

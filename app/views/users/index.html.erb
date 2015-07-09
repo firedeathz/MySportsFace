@@ -10,9 +10,20 @@
 	<div class="col-md-8">
 		<h1>Users</h1>
 
+		<div class="event-info">
+			<%= form_tag(users_path, :method => "get") do %>
+				<%= text_field_tag :search, params[:search], class: "text-area col-md-10 form-control", placeholder: "Search Users. . .", :autofocus => "true" %>
+				<button type="submit" class="btn btn-primary col-md-2 search-btn"><i class="glyphicon glyphicon-search"></i></button>
+			<% end %>
+		</div>
+		
+		<% if @noresults %>
+			<h3>No users were found in your search for: '<%= @searched %>'.</h3>
+		<% else %>
 		<ul class="users">
 		  <%= render @users %>
 		</ul>
+		<% end %>
 
 		<%= will_paginate %>
 	</div>

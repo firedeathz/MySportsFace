@@ -11,7 +11,20 @@
 		<h1><%= @article.title %></h1>
 		<h2 class="article-creator">by <%= link_to @article.author, @organization %></h2>
 		<div class="back-btn"><%= link_to "Go back", organization_articles_path(@organization), class: "btn btn-primary" %></div>
-
+		
+		<div class="col-md-12">
+			<div class="stars">
+				<div class="star-votes">
+					<%= @article.votes_for %> <i class="glyphicon glyphicon-star"></i>
+				</div>
+				<% if current_user.voted_for?(@article) %>
+					<%= render 'unstar_form' %>
+				<% else %>
+					<%= render 'star_form' %>
+				<% end %>
+			</div>
+		</div>
+		
 		<div class="col-md-12">
 			<div class="border-top event-info">
 				<h3><span class="icon">&#x1f4ac;</span> Article Information</h3>
@@ -27,7 +40,7 @@
 				<% end %>
 			</div>
 		</div>
-
+		
 		<div class="col-md-12">
 			<div class="border-top comment-form" id="comments">
 				<h3><span>&#xe134;</span> Comments (<%= @article.comments.count %>)</h3>

@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   has_many :event_comments
   belongs_to :user
   
+  acts_as_voteable
+  
   has_many :passive_participations, class_name:  "Participation",
                                     foreign_key: "event_id",
                                     dependent:   :destroy
@@ -45,6 +47,10 @@ class Event < ActiveRecord::Base
 	participant_ids = "SELECT user_id FROM participations
 					   WHERE  event_id = :event_id AND admin = :admin AND creator = :creator"
 	User.where("id IN (#{participant_ids})", event_id: id, admin: false, creator: false) 
+  end
+  
+  def self.search(query)
+	where("name like ?", "%#{query}%")
   end
 
 end

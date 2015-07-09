@@ -3,8 +3,19 @@ class EventsController < ApplicationController
 	
 	def index
 		@user = current_user
-		@attending = current_user.participations
-		@events = Event.paginate(page: params[:page]).where.not(id: @attending.ids)
+		if params[:search]
+			@attending = current_user.participations.search(params[:search])
+			@events = Event.search(params[:search]).where.not(id: @attending.ids).paginate(page: params[:page])
+			if @attending.count < 1 && @events.count < 1
+				@noresults = true
+				@searched = params[:search]
+			else
+				@noresults = false
+			end
+		else
+			@attending = current_user.participations
+			@events = Event.where.not(id: @attending.ids).paginate(page: params[:page])
+		end
 	end
 	
 	def show
@@ -30,6 +41,20 @@ class EventsController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+	
+	def star
+		@event = Event.find(params[:id])
+		current_user.vote_for(@event)
+		redirect_to @event
+		flash[:success] = "Successfully starred this event"
+	end
+
+	def unstar
+		@event = Event.find(params[:id])
+		current_user.unvote_for(@event)
+		redirect_to @event
+		flash[:success] = "Removed your star from this event"
 	end
 	
 	private

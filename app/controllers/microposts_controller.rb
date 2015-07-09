@@ -20,6 +20,20 @@ class MicropostsController < ApplicationController
 		redirect_to request.referrer || root_url		
 	end
 	
+	def star
+		@micropost = Micropost.find(params[:id])
+		current_user.vote_for(@micropost)
+		redirect_to root_url
+		flash[:success] = "Successfully starred this post"
+	end
+
+	def unstar
+		@micropost = Micropost.find(params[:id])
+		current_user.unvote_for(@micropost)
+		redirect_to root_url
+		flash[:warning] = "Removed your star from this post"
+	end
+	
 	private
 
 		def micropost_params

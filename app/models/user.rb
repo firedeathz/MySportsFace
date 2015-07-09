@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  acts_as_voter
+  
   has_many :favorites
   has_many :favorite_organizations, through: :favorites, source: :favorited, source_type: 'Organization'
 
@@ -127,5 +129,9 @@ class User < ActiveRecord::Base
 		identity.save!
 	end
 	user
+  end
+  
+  def self.search(query)
+	where("name like ?", "%#{query}%")
   end
 end

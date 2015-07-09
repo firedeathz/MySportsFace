@@ -14,8 +14,21 @@
 		<div class="anchor-links">
 			<a id="view-sched" href="#schedule" class="btn btn-primary">view schedule</a>
 			<a id="view-part" href="#participants" class="btn btn-primary">view participants</a>
-			<a id="view-photos" href="#photos" class="btn btn-primary">view photos</a>
+			<a id="view-images" href="#images" class="btn btn-primary">view images</a>
 			<a id="view-videos" href="#videos" class="btn btn-primary">view videos</a>
+		</div>
+		
+		<div class="col-md-12">
+			<div class="stars">
+				<div class="star-votes">
+					<%= @event.votes_for %> <i class="glyphicon glyphicon-star"></i>
+				</div>
+				<% if current_user.voted_for?(@event) %>
+					<%= render 'unstar_form' %>
+				<% else %>
+					<%= render 'star_form' %>
+				<% end %>
+			</div>
 		</div>
 
 		<div class="col-md-12">
@@ -171,7 +184,7 @@
 		}, 500);
 		return false;
 	});
-	$('#view-photos').click(function() {
+	$('#view-images').click(function() {
 		$root.animate({
 			scrollTop: $( $.attr(this, 'href') ).offset().top - 40
 		}, 500);

@@ -1,5 +1,6 @@
 class Micropost < ActiveRecord::Base
   belongs_to :user
+  acts_as_voteable
   mount_uploader :picture, PictureUploader
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true

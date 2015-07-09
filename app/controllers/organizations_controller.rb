@@ -3,8 +3,19 @@ class OrganizationsController < ApplicationController
 
   def index
 	@user = current_user
-	@favorites = current_user.favorite_organizations
-	@organizations = Organization.where.not(id: @favorites.ids)
+	if params[:search]
+		@favorites = current_user.favorite_organizations.search(params[:search])
+		@organizations = Organization.search(params[:search]).where.not(id: @favorites.ids)
+		if @favorites.count < 1 && @organizations.count < 1
+			@noresults = true
+			@searched = params[:search]
+		else
+			@noresults = false
+		end
+	else
+		@favorites = current_user.favorite_organizations
+		@organizations = Organization.where.not(id: @favorites.ids)
+	end
   end
   
   def new

@@ -13,9 +13,19 @@
 		<div class="col-md-12 new-event-btn">
 			<%= link_to "Create an event", events_new_path, class: "btn btn-primary" %>
 		</div>
+		
+		<div class="event-info">
+			<%= form_tag(events_path, :method => "get") do %>
+				<%= text_field_tag :search, params[:search], class: "text-area col-md-10 form-control", placeholder: "Search Events. . .", :autofocus => "true" %>
+				<button type="submit" class="btn btn-primary col-md-2 search-btn"><i class="glyphicon glyphicon-search"></i></button>
+			<% end %>
+		</div>
 			
 		<%= will_paginate %>
 
+		<% if @noresults %>
+			<h3>No events were found in your search for: '<%= @searched %>'.</h3>
+		<% else %>
 		<ul class="events">
 			<% if @attending.count > 0 %>
 				<li class="favorites">
@@ -31,7 +41,8 @@
 				</li>
 				<%= render @events %>
 			<% end %>
-		</ul>
+		</ul>			
+		<% end %>
 
 		<%= will_paginate %>
 	</div>

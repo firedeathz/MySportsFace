@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619152347) do
+ActiveRecord::Schema.define(version: 20150630120525) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "atom_id"
@@ -200,5 +200,19 @@ ActiveRecord::Schema.define(version: 20150619152347) do
   end
 
   add_index "videos", ["event_id"], name: "index_videos_on_event_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.boolean  "vote",          default: false, null: false
+    t.integer  "voteable_id",                   null: false
+    t.string   "voteable_type",                 null: false
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true
+  add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type"
 
 end
