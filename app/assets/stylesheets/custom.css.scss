@@ -21,6 +21,11 @@ $btn-bg: #428BCA;
   box-sizing:         border-box;
 }
 
+.carousel {
+	border-top: 5px solid #333;
+	border-bottom: 5px solid #333;
+}
+
 .search-btn, .special-btn {
 	border-left: none;
 	box-shadow: none !important;
@@ -838,6 +843,32 @@ h3 small {
 
 /* navbar links */
 
+.navbar-nav li a {
+	transition: color 0.2s;
+	color: #ccc !important;
+	&:hover, &:focus {
+		color: #fff !important;
+	}
+}
+
+.dropdown-menu {
+	background-color: #222 !important;
+	.divider {
+		background-color: #777;
+	}
+}
+
+.dropdown-menu > li > a {
+	&:hover, &:focus {
+		background-color: #222 !important;
+	}
+	border-left: 0px solid #fff;
+	transition: all 0.1s ease;
+	&:hover {
+		border-left: 4px solid #fff;
+	}
+}
+
 .navbar li {
 	position: relative;
 	&:after {
@@ -849,23 +880,19 @@ h3 small {
 		bottom: 0px;
 		height: 0;
 		content: "";
-		transition: height 0.2s;
-	}
-	ul li {
-		&:after {
-			height: 0;
-			content: "";
-		}
-		&:hover:after {
-			height: 0;
-		}
+		transition: 0.2s ease;
 	}
 	&:hover, &:focus {
 		color: #333;
 		text-decoration: none;
 	}
-	&:hover:after {
-		height: 5px;
+	ul li {
+		&:hover:after {
+			height: 0px;
+		}
+	}
+	&:hover:after, &:active:after, &:focus:after {
+		height: 4px;
 	}
 }
 

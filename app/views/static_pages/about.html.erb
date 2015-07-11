@@ -2,6 +2,98 @@
 <div class="row">
 	<div class="col-md-12">
 		<h1>About MySportsFace</h1>
-		<p>TODO</p>
+	</div>
+	<div class="col-md-12">
+		<div class="slide carousel" id="about-carousel" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#about-carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#about-carousel" data-slide-to="1"></li>
+				<li data-target="#about-carousel" data-slide-to="2"></li>
+				<li data-target="#about-carousel" data-slide-to="3"></li>
+				<li data-target="#about-carousel" data-slide-to="4"></li>
+				<li data-target="#about-carousel" data-slide-to="5"></li>
+			</ol>
+	  
+			<div class="carousel-inner">
+				<div class="active item">
+					<%= image_tag "hockey-slide.png", :alt => "slide0", width: "100%" %>
+				</div>
+				<div class="item">
+					<%= image_tag "athlete-slide.png", :alt => "slide1", width: "100%" %>
+				</div>
+				<div class="item">
+					<%= image_tag "tennis-slide.png", :alt => "slide2", width: "100%" %>
+				</div>
+				<div class="item">
+					<%= image_tag "football-slide.png", :alt => "slide3", width: "100%" %>
+				</div>	
+				<div class="item">
+					<%= image_tag "surf-slide.png", :alt => "slide4", width: "100%" %>
+				</div>
+				<div class="item">
+					<%= image_tag "ski-slide.png", :alt => "slide5", width: "100%" %>
+				</div>			
+			</div>
+			<a class="carousel-control left" href="#about-carousel" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control right" href="#about-carousel" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+	
+	<div class="col-md-6">
+		<h3><i class="glyphicon glyphicon-chevron-right"></i> What is MySportsFace?</h3>
+		<p>
+			MySportsFace is an innovative <%= link_to "Ruby on Rails", "http://rubyonrails.org/", target: "_blank" %> web application that collects news articles from the websites of many sports organizations all across the world. 
+		</p>
+		<p>
+			Any registered user can now browse their favorite sports organizations for a wide variety of information and even make content of their own, by creating personal customized events open for everyone in the community to see and sign up as they like! Besides, everyone can also share their thoughts by commenting on events and news articles and also send their mood messages through their posts feed.
+		</p>
+		<p>
+			The application was created in 2015 by Marcos Germano as a project proposal for a MSc Thesis Project at <%= link_to "Instituto Superior T&eacute;cnico".html_safe, "http://tecnico.ulisboa.pt", target: "_blank" %>, Lisbon, Portugal.
+		</p>
+	</div>
+	
+	<div class="col-md-6">
+		<h3><i class="glyphicon glyphicon-chevron-right"></i> What can you do here?</h3>
+		<p>
+			There are various activities any person, including you, can perform with MySportsFace after creating a new account. Plenty enough so that no one gets bored!
+		</p>
+		<p>
+			Here are a few examples of what you can do with this web application: 
+			<ul>
+				<li>post as many mood updates as you want</li>
+				<li>create custom events</li>
+				<li>sign up for events of other people</li>
+				<li>browse many sports organizations for information</li>
+				<li>add organizations to your collection of favorites with a single click</li>
+				<li>leave your comments on news articles and events</li>
+				<li>drop a few stars here and there to show your appreciation for the content you like</li>
+				<li>and follow or be followed by your friends and new people</li>
+			</ul>
+			If you are not yet convinced, then follow the "Getting Started" guide below!
+		</p>
+	</div>
+	
+	<div class="col-md-6">
+		<h3><i class="glyphicon glyphicon-chevron-right"></i> Getting Started</h3>
+		<p>
+			TODO - Here is a tutorial for using this website
+		</p>
+	</div>
+	
+	<div class="col-md-6">
+		<h3><i class="glyphicon glyphicon-chevron-right"></i> Contacts</h3>
+		<p>
+			In the case that you are interested in anything you have seen in this website or regarding its design, you can send a message to one of the following email addresses:
+			<ul>
+				<li><%= mail_to "mikazzz_pro@hotmail.com" %></li>
+				<li><%= mail_to "marcos.germano@tecnico.ulisboa.pt" %></li>
+			</ul>
+		</p>
 	</div>
 </div>
