@@ -21,6 +21,71 @@ $btn-bg: #428BCA;
   box-sizing:         border-box;
 }
 
+.faq-title {
+	margin-bottom: 20px;
+	a {
+		font-size: 14px;
+	}
+	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
+	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	border-left: 5px solid $btn-bg;
+	//border-top-right-radius: 20px;
+	//border-bottom-right-radius: 20px;
+	box-shadow: 3px 3px 2px #888;
+	padding: 5px;
+}
+
+.divider {
+	margin-top: 10px;
+	border-bottom: 1px solid #888;
+}
+
+.tab-contents {
+	li {
+		font-size: 16px;
+	}
+}
+
+#tab-contents {
+	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select:none; 
+	user-select:none;
+	-o-user-select:none;
+	background: -moz-linear-gradient(left, rgba(238,238,238,0.75) 0%, rgba(66,139,202,0.5) 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,0.75)), color-stop(100%,rgba(66,139,202,0.5)));
+	background: -webkit-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: -o-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: -ms-linear-gradient(left, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	background: linear-gradient(to right, rgba(238,238,238,0.75) 0%,rgba(66,139,202,0.5) 100%);
+	border-left: 5px solid $btn-bg;
+	box-shadow: 3px 3px 2px #888;
+	padding: 5px;
+}
+
+.faq-q {
+	font-weight: bold;
+}
+
+.faq-entry {
+	padding-top: 10px;
+	border-bottom: 1px solid #888;
+	&:first-child {
+		border-top: 1px solid #888;
+	}
+}
+
+.things-you-can-do {
+	li {
+		font-weight: bold;
+	}
+}
+
 .carousel {
 	border-top: 5px solid #333;
 	border-bottom: 5px solid #333;
@@ -29,6 +94,27 @@ $btn-bg: #428BCA;
 .search-btn, .special-btn {
 	border-left: none;
 	box-shadow: none !important;
+}
+
+.tutorial {
+	clear: left;
+}
+
+.bullet {
+	float: left;
+	height: 30px;
+	width: 30px;
+	border-radius: 30px;
+	background-color: #333;
+	color: #eee;
+	line-height: 200px;
+	text-align: center;
+}
+
+.guide {
+	float: left;
+	margin-left: 20px;
+	font-weight: bold;
 }
 
 .star-form {
