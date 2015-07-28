@@ -1086,6 +1086,10 @@ h3 small {
 	margin-bottom: 0;
 }
 
+.comment-div {
+	margin-left: 80px;
+}
+
 .comment-text-area {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -1464,7 +1468,6 @@ span.picture {
 		color: #777;
 	}
 	a {
-		font-weight: 700;
 		font-size: 14px;
 		color: #fff;
 		background-color: $btn-bg;
@@ -1476,7 +1479,7 @@ span.picture {
 		display: inline-block;
 		margin: 30px 0 0;
 		outline: none;
-		&:hover {
+		&:hover, &:focus {
 			border-color: #285E8E;
 			color: #fff;
 			background-color: #3071A9;
