@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-	before_action :logged_in_user, only: [:index, :show]
+	before_action :logged_in_user, only: [:index, :show, :destroy]
+	before_action :correct_user,   only: :destroy
 	
 	def index
 		@user = current_user
@@ -43,6 +44,12 @@ class EventsController < ApplicationController
 		end
 	end
 	
+	def destroy
+		@event.destroy
+		flash[:success] = "Event successfully deleted"
+		redirect_to request.referrer || event_path(@event)
+	end
+	
 	def star
 		@event = Event.find(params[:id])
 		current_user.vote_for(@event)
@@ -61,5 +68,10 @@ class EventsController < ApplicationController
 
 		def event_params
 			params.require(:event).permit(:name, :summary, :description, :date, :time, :location, :lat, :lng, :user_id)
+		end
+		
+		def correct_user
+			@event = current_user.events.find_by(id: params[:id])
+			redirect_to events_path if @event.nil?
 		end
 end

@@ -21,6 +21,18 @@ $btn-bg: #428BCA;
   box-sizing:         border-box;
 }
 
+.videos {
+	width: 100%;
+	background: none !important;
+}
+
+.delete-event {
+	float: right;
+	padding-right: 10px;
+	color: #333;
+	text-decoration: underline;
+}
+
 .faq-title {
 	margin-bottom: 20px;
 	a {
@@ -86,7 +98,21 @@ $btn-bg: #428BCA;
 	}
 }
 
-.carousel {
+.video-selector {
+	top: -30px !important;
+	li {
+		border: 1px solid #333;
+		width: 14px;
+		height: 14px;
+	}
+	.active {
+		background-color: #333;
+		width: 17px;
+		height: 17px;
+	}
+}
+
+#about-carousel {
 	border-top: 5px solid #333;
 	border-bottom: 5px solid #333;
 }
@@ -312,7 +338,7 @@ select {
 }
 
 .extra {
-	background-color: rgba(238,238,238,0.75);
+	background-color: rgba(255,255,255,0.75);
 	margin-bottom: 20px;
 	border-radius: 5px;
 }
@@ -882,6 +908,7 @@ h3 small {
 
 .participants {
 	padding-top: 10px;
+	margin-bottom: 20px;
 	list-style: none;
 	li {
 		padding-bottom: 5px;
@@ -923,7 +950,7 @@ h3 small {
 }
 
 #participate_form {
-	margin-top: 10px;
+	margin-top: -15px;
 	margin-bottom: 20px;
 }
 
@@ -1773,7 +1800,8 @@ body {
 	overflow-y: scroll;
 	font-family: Ubuntu;
 	padding-top: 60px;
-	background: url("bg_blur.jpg") no-repeat center center fixed;
+	//background: url("bg_blur.jpg") no-repeat center center fixed;
+	background: url("bg.png") repeat;
 }
 
 section {

@@ -1,0 +1,7 @@
+<% for i in 0..@event.videos.count-1 %>
+	<% if i == 0 %>
+		<li data-target="#video-carousel" data-slide-to="<%= i %>" class="active"></li>
+	<% else %>
+		<li data-target="#video-carousel" data-slide-to="<%= i %>"></li>
+	<% end %>
+<% end %>

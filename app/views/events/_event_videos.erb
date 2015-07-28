@@ -1,10 +1,12 @@
 <% if @event.videos.count > 0 %>
-	<div class="videos">
-		<%= render @event.videos %>
-	</div>
-	<div class="col-md-12">
-		<a href="javascript:void(0)" id="prev" class="btn btn-primary"><span>&#x2190; Previous<span></a>
-		<a href="javascript:void(0)" id="next" class="btn btn-primary"><span>Next &#x2192;<span></a>
+	<div class="videos slide carousel" id="video-carousel" data-ride="carousel">
+		<ol class="carousel-indicators video-selector">
+			<%= render 'event_video_selector' %>
+		</ol>
+
+		<div class="carousel-inner">
+			<%= render @event.videos %>
+		</div>
 	</div>
 <% else %>
 	<span class="no-videos">This event has no videos yet.</span>

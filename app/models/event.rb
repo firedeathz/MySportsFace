@@ -1,8 +1,8 @@
 class Event < ActiveRecord::Base
-  has_many :pictures
-  has_many :videos
-  has_many :schedule_entries
-  has_many :event_comments
+  has_many :pictures, :dependent => :destroy
+  has_many :videos, :dependent => :destroy
+  has_many :schedule_entries, :dependent => :destroy
+  has_many :event_comments, :dependent => :destroy
   belongs_to :user
   
   acts_as_voteable

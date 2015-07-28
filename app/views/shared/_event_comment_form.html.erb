@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 	$(window).load(function() {
-		$("div.nicEdit-main").on("blur", function() {
+		$("div.nicEdit-main").on("keyup", function() {
 			if($("div.nicEdit-main").text().length > 0) {
 				$("input#add-comment").removeAttr("disabled");
 			}

@@ -1,3 +1,12 @@
 <% if !video.link.blank? %>
-	<iframe class="yt-frame" src="<%= video.link %>" frameborder="0" allowfullscreen></iframe>
+	<% if @event.videos.first.id == video.id %>
+	<div class="active item">
+	<% else %>
+	<div class="item">
+	<% end %>
+		<iframe class="yt-frame" src="<%= video.link %>" frameborder="0" allowfullscreen></iframe>
+		<% if !current_user.active_participations.find_by(event_id: @event.id).nil? and (current_user.active_participations.find_by(event_id: @event.id).creator? or current_user.active_participations.find_by(event_id: @event.id).admin?) %>
+			<%= button_to "Remove", event_video_path(@event, video), method: :delete, data: { confirm: "Are you sure you want to remove this video?" }, class: "btn btn-primary" %>
+		<% end %>
+	</div>
 <% end %>

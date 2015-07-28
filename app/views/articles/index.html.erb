@@ -10,7 +10,7 @@
 	<div class="col-md-8">	
 		<h1>News</h1>
 		<h2 class="link-transition"><%= link_to @organization.name, @organization %></h2>
-		<div class="back-btn"><%= link_to "Go back", organization_path, class: "btn btn-primary" %></div>
+		<div class="back-btn"><%= link_to "<i class='glyphicon glyphicon-chevron-left'></i> Go back".html_safe, organization_path, class: "btn btn-primary" %></div>
 		
 		<div class="event-info">
 			<%= form_tag(organization_articles_path(@organization), :method => "get") do %>

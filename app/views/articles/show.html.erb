@@ -10,7 +10,7 @@
 	<div class="col-md-8">
 		<h1><%= @article.title %></h1>
 		<h2 class="article-creator">by <%= link_to @article.author, @organization %></h2>
-		<div class="back-btn"><%= link_to "Go back", organization_articles_path(@organization), class: "btn btn-primary" %></div>
+		<div class="back-btn"><%= link_to "<i class='glyphicon glyphicon-chevron-left'></i> Go back".html_safe, organization_articles_path(@organization), class: "btn btn-primary" %></div>
 		
 		<div class="col-md-12">
 			<div class="stars">
