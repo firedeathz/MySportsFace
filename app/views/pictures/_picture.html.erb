@@ -4,8 +4,11 @@
 			<%= image_tag "missing.png", alt: "missing.png" %>
 		</a>
 	<% else %>
-		<a href="#" id="picture-thumb-<%= picture.id %>">
+		<a href="#" class="img_thumb" id="picture-thumb-<%= picture.id %>">
 			<%= image_tag picture.url.thumb, alt: picture.url %>
 		</a>
+		<% if !current_user.active_participations.find_by(event_id: @event.id).nil? and (current_user.active_participations.find_by(event_id: @event.id).creator? or current_user.active_participations.find_by(event_id: @event.id).admin?) %>
+			<%= link_to "<i class='fa fa-times'></i>".html_safe, event_picture_path(@event, picture), method: :delete, data: { confirm: "Are you sure you want to remove this image?" }, class: "remove-img" %>
+		<% end %>
 	<% end %>
 <% end %>

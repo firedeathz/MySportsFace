@@ -9,12 +9,12 @@
 	<% if current_user.voted_on?(micropost) %>
 		<div class="star-form">
 			<%= micropost.votes_for %>
-			<%= link_to(content_tag("span", "", class: "star-empty"), unstar_micropost_path(micropost), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star"), unstar_micropost_path(micropost), :method => :post) %>
 		</div>
 	<% else %>
 		<div class="star-form">
 			<%= micropost.votes_for %>
-			<%= link_to(content_tag("span", "", class: "star-full"), star_micropost_path(micropost), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star-o"), star_micropost_path(micropost), :method => :post) %>
 		</div>
 	<% end %>
   </span>
@@ -29,7 +29,23 @@
 	<%= micropost.content %>
 	<%= image_tag micropost.picture.url if micropost.picture? %>	
   </span>
-  <span>
-	
-  </span>
 </li>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fa-star").hover(function() {
+			$(this).addClass("fa-star-o");
+			$(this).removeClass("fa-star");
+		}, function() {
+			$(this).addClass("fa-star");
+			$(this).removeClass("fa-star-o");
+		});
+		$(".fa-star-o").hover(function() {
+			$(this).addClass("fa-star");
+			$(this).removeClass("fa-star-o");
+		}, function() {
+			$(this).addClass("fa-star-o");
+			$(this).removeClass("fa-star");
+		});
+	});
+</script>

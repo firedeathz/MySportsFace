@@ -10,18 +10,29 @@
 	<div class="col-md-8">
 		<h1><%= @event.name %></h1>
 		<h2 class="event-creator">created by <%= link_to User.find(@event.user_id).name, user_path(User.find(@event.user_id)) %></h2>
-
-		<div class="anchor-links">
-			<a id="view-sched" href="#schedule" class="btn btn-primary">view schedule</a>
-			<a id="view-part" href="#participants" class="btn btn-primary">view participants</a>
-			<a id="view-images" href="#images" class="btn btn-primary">view images</a>
-			<a id="view-videos" href="#videos" class="btn btn-primary">view videos</a>
+		
+		<div class="col-md-12">
+			<h3 id="tab-contents"><i id="arrow-tab" class="glyphicon glyphicon-chevron-down"></i> View Details</h3>
+			<ul class="tab-contents">
+				<li class="link-transition">
+					<a id="view-sched" href="#schedule">Schedule</a>
+				</li>
+				<li class="link-transition">
+					<a id="view-part" href="#participants">Participants</a>
+				</li>
+				<li class="link-transition">
+					<a id="view-images" href="#images">Images</a>
+				</li>
+				<li class="link-transition">
+					<a id="view-videos" href="#videos">Videos</a>
+				</li>
+			</ul>
 		</div>
 		
 		<div class="col-md-12">
 			<div class="stars">
 				<div class="star-votes">
-					<%= @event.votes_for %> <i class="glyphicon glyphicon-star"></i>
+					<%= @event.votes_for %> <i class="fa fa-star"></i>
 				</div>
 				<% if current_user.voted_for?(@event) %>
 					<%= render 'unstar_form' %>
@@ -48,9 +59,9 @@
 
 		<div class="col-md-12" id="schedule">
 			<div class="border-top event-info">
-				<h3><i class="glyphicon glyphicon-list"></i> Event Schedule</h3>
+				<h3><i class="fa fa-list"></i> Event Schedule</h3>
 			</div>
-			<div class="col-md-12">
+			<div class="">
 				<%= render 'event_schedule' %>
 				<% if current_user.event_creator?(@event) %>
 					<div class="add-new-entry-link"><a id="edit-schedule" href="javascript:void(0)">Edit event schedule</a></div>
@@ -63,15 +74,15 @@
 		<div class="col-md-12" id="datetimeloc">
 			<div class="border-top event-info">
 				<div class="col-md-3 timeloc margin-top no-padding-left">
-					<h3><i class="glyphicon glyphicon-calendar"></i> Date </h3>
+					<h3><i class="fa fa-calendar"></i> Date </h3>
 					<p><%= @event.date.day %> <%= month_name(@event.date.month) %> <%= @event.date.year %></p>
 				</div>
 				<div class="col-md-3 timeloc margin-top no-padding-left">
-					<h3><i class="glyphicon glyphicon-time"></i> Time</h3>
+					<h3><i class="fa fa-clock-o"></i> Time</h3>
 					<p><%= @event.time.strftime("%H : %M") %></p>
 				</div>
 				<div class="col-md-6 timeloc margin-top no-padding-left">
-					<h3><i class="glyphicon glyphicon-map-marker"></i> Location</h3>
+					<h3><i class="fa fa-map-marker"></i> Location</h3>
 					<p id="loc"><%= @event.location %></p>
 					<p style="display: none" id="lat"><%= @event.lat %></p>
 					<p style="display: none" id="lng"><%= @event.lng %></p>				
@@ -86,9 +97,9 @@
 
 		<div class="col-md-12" id="participants">
 			<div class="border-top event-info">
-				<h3><i class="glyphicon glyphicon-user"></i> Participants (<%= @event.participants.count %>)</h3>
+				<h3><i class="fa fa-group"></i> Participants (<%= @event.participants.count %>)</h3>
 			</div>
-			<div class="col-md-12">
+			<div>
 				<% if @event.participants.count > 0 %>
 					<div class="participants">
 						<%= render 'creator' %>
@@ -103,9 +114,9 @@
 
 		<div class="col-md-12" id="images">
 			<div class="border-top event-info">
-				<h3><i class="glyphicon glyphicon-camera"></i> Images (<%= @event.pictures.count %>)</h3>
+				<h3><i class="fa fa-camera"></i> Images (<%= @event.pictures.count %>)</h3>
 			</div>
-			<div class="col-md-12">
+			<div>
 				<%= render 'event_pictures' %>
 			</div>
 			<% if !current_user.active_participations.find_by(event_id: @event.id).nil? %>
@@ -117,9 +128,9 @@
 		
 		<div class="col-md-12" id="videos">
 			<div class="border-top event-info">
-				<h3><i class="glyphicon glyphicon-forward"></i> Videos (<%= @event.videos.count %>)</h3>
+				<h3><i class="fa fa-play-circle"></i> Videos (<%= @event.videos.count %>)</h3>
 			</div>
-			<div class="col-md-12 videoframe">
+			<div class="videoframe">
 				<%= render 'event_videos' %>
 			</div>
 			<% if !current_user.active_participations.find_by(event_id: @event.id).nil? %>
@@ -131,7 +142,7 @@
 		
 		<div class="col-md-12" id="comments">
 			<div class="border-top comment-form" id="comments">
-				<h3><i class="glyphicon glyphicon-comment"></i> Comments (<%= @event.event_comments.count %>)</h3>
+				<h3><i class="fa fa-comments"></i> Comments (<%= @event.event_comments.count %>)</h3>
 				<%= render 'shared/event_comment_form' %>
 			</div>
 			<ul class="comments">
@@ -201,6 +212,18 @@
 				jQuery(this).find(".entry-form").text("Edit event schedule"); 
 			}
 			jQuery(this).next("div").slideToggle(200);
+		});
+	});
+	
+	jQuery(document).ready(function() {
+		jQuery("#tab-contents").click(function() {
+			if(jQuery(this).find("#arrow-tab").attr("class") == "glyphicon glyphicon-chevron-down") {
+				jQuery(this).find("#arrow-tab").attr("class", "glyphicon glyphicon-chevron-right");
+			}
+			else {
+				jQuery(this).find("#arrow-tab").attr("class", "glyphicon glyphicon-chevron-down");
+			}
+			jQuery(this).nextUntil(".divider").slideToggle(200);
 		});
 	});
 </script>

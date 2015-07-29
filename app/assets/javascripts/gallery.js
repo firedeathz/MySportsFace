@@ -1,9 +1,14 @@
-var current 			= 0;
-var current_thumb 		= 0;
+var current 			= 1;
+var current_thumb 		= 1;
 var nmb_thumb_wrappers	= $('#msg_thumbs .msg_thumb_wrapper').length;
-var nmb_images_wrapper  = 6;
+var nmb_images_wrapper  = 12;
+var total_imgs 			= 0;
 
-play();
+for(i = 1; i <= nmb_thumb_wrappers; i++) {
+	total_imgs += $('#msg_thumbs').find('.msg_thumb_wrapper:nth-child('+i+')').children('.img_thumb').length;
+}
+
+showImage();
 
 slideshowMouseEvent();
 function slideshowMouseEvent() {
@@ -68,26 +73,33 @@ function pause() {
 }
 
 function next() {
-	++current;
-	showImage('r');
+	current = current + 2;
+	if(current > total_imgs*2 - 1) {
+		current = 1;
+	}
+	showImage();
 }
 function prev() {
-	--current;
-	showImage('l');
+	current = current - 2;
+	if(current < 1) {
+		current = total_imgs*2 - 1;
+	}
+	showImage();
 }
 
-function showImage(dir){
+function showImage(){
 	/**
 	* the thumbs wrapper being shown, is always 
 	* the one containing the current image
 	*/
 	alternateThumbs();
-	
+	//alert("current:" + current);
 	/**
 	* the thumb that will be displayed in full mode
 	*/
-	var $thumb = $('#msg_thumbs .msg_thumb_wrapper:nth-child('+current_thumb+')')
-				.find('a:nth-child('+ parseInt(current - nmb_images_wrapper*(current_thumb -1)) +')')
+	//alert("SHOWING:"+ parseInt(current - nmb_images_wrapper*(current_thumb - 1)));
+	var $thumb = $('.msg_thumb_wrapper:nth-of-type('+current_thumb+')')
+				.find('.img_thumb:nth-of-type('+ parseInt(current - nmb_images_wrapper*(current_thumb - 1)) +')')
 				.find('img');
 	if($thumb.length){
 		var source = $thumb.attr('alt');
@@ -113,20 +125,19 @@ function showImage(dir){
 		}
 				
 	}
-	else{ //this is actually not necessary since we have a circular slideshow
-		if(dir == 'r')
-			--current;
-		else if(dir == 'l')
-			++current;	
-		alternateThumbs();
-		return;
-	}
 }
 
 function alternateThumbs(){
 	$('#msg_thumbs').find('.msg_thumb_wrapper:nth-child('+current_thumb+')')
 					.hide();
-	current_thumb = Math.ceil(current/nmb_images_wrapper);
+
+	if(current >= total_imgs * 2 - 1) {
+		current_thumb = nmb_thumb_wrappers;
+	}
+	else {
+		current_thumb = Math.ceil(current/nmb_images_wrapper);
+	}
+	//alert("current_thumb:" + current_thumb);
 	/**
 	* if we reach the end, start from the beggining
 	*/
@@ -139,9 +150,9 @@ function alternateThumbs(){
 	*/
 	else if(current_thumb == 0){
 		current_thumb 	= nmb_thumb_wrappers;
-		current 		= current_thumb*nmb_images_wrapper;
+		current 		= total_imgs;
 	}
-
+	
 	$('#msg_thumbs').find('.msg_thumb_wrapper:nth-child('+current_thumb+')')
 					.show();
 }
@@ -161,7 +172,7 @@ function next_thumb(){
 	if($next_wrapper.length){
 		$('#msg_thumbs').find('.msg_thumb_wrapper:nth-child('+current_thumb+')')
 						.fadeOut(function(){
-							++current_thumb;
+							current_thumb++;
 							$next_wrapper.fadeIn();
 						});
 	}
@@ -172,13 +183,13 @@ function prev_thumb(){
 	if($prev_wrapper.length){
 		$('#msg_thumbs').find('.msg_thumb_wrapper:nth-child('+current_thumb+')')
 						.fadeOut(function(){
-							--current_thumb;
+							current_thumb--;
 							$prev_wrapper.fadeIn();
 						});
 	}
 }
 
-$('#msg_thumbs .msg_thumb_wrapper > a').bind('click',function(e){
+$('#msg_thumbs .msg_thumb_wrapper > .img_thumb').bind('click',function(e){
 	var $this 		= $(this);
 	$('#msg_thumb_close').trigger('click');
 	var idx			= $this.index();

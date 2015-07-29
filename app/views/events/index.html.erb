@@ -29,14 +29,14 @@
 		<ul class="events">
 			<% if @attending.count > 0 %>
 				<li class="favorites">
-					<span class="exp-close">-</span>
+					<i class="glyphicon glyphicon-chevron-down"></i>
 					<span class="fav-title-count">Attending (<%= @attending.count %>)</span>
 				</li>
 				<%= render @attending %>
 			<% end %>
 			<% if @events.count > 0 %>
 				<li class="rest">
-					<span class="exp-close">-</span>
+					<i class="glyphicon glyphicon-chevron-down"></i>
 					<span class="rest-title-count">All (<%= @events.count %>)</span>
 				</li>
 				<%= render @events %>
@@ -51,18 +51,18 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		jQuery(".favorites").click(function() {
-			if (jQuery(this).find(".exp-close").text() === "-") { 
-				jQuery(this).find(".exp-close").text("+"); 
+			if (jQuery(this).find("i").attr("class") == "glyphicon glyphicon-chevron-down") { 
+				jQuery(this).find("i").attr("class", "glyphicon glyphicon-chevron-right"); 
 			} else {
-				jQuery(this).find(".exp-close").text("-"); 
+				jQuery(this).find("i").attr("class", "glyphicon glyphicon-chevron-down");
 			}
 			jQuery(this).nextUntil(".rest").slideToggle(200);
 		});
 		jQuery(".rest").click(function() {
-			if (jQuery(this).find(".exp-close").text() === "-") { 
-				jQuery(this).find(".exp-close").text("+"); 
+			if (jQuery(this).find("i").attr("class") == "glyphicon glyphicon-chevron-down") { 
+				jQuery(this).find("i").attr("class", "glyphicon glyphicon-chevron-right"); 
 			} else {
-				jQuery(this).find(".exp-close").text("-"); 
+				jQuery(this).find("i").attr("class", "glyphicon glyphicon-chevron-down");
 			}
 			jQuery(this).nextAll("li").slideToggle(200);
 		});

@@ -30,6 +30,7 @@ gem 'rails-gallery'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'dotenv'
+gem 'font-awesome-sass', 		'~> 4.3.0'
 gem 'thumbs_up', git: 'https://github.com/bouchard/thumbs_up.git', ref: 'f499a7c803c0a9fdcefe4275f2f0a10ca7964508'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

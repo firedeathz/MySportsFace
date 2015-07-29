@@ -15,7 +15,7 @@
 	<% end %>
     <ul class="microposts">
 	  <li class="list-title">
-		<span class="exp-close">-</span>
+		<i class="glyphicon glyphicon-chevron-down"></i>
 		<span class="fav-title-count"><% if current_user == @user %>Your<% else %><%= @user.name %>'s<% end %> Posts (<%= @user.microposts.count %>)</span>
 	  </li>	
       <%= render @microposts %>
@@ -27,10 +27,10 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		jQuery(".list-title").click(function() {
-			if (jQuery(this).find(".exp-close").text() === "-") { 
-				jQuery(this).find(".exp-close").text("+"); 
+			if (jQuery(this).find("i").attr("class") == "glyphicon glyphicon-chevron-down") { 
+				jQuery(this).find("i").attr("class", "glyphicon glyphicon-chevron-right"); 
 			} else {
-				jQuery(this).find(".exp-close").text("-"); 
+				jQuery(this).find("i").attr("class", "glyphicon glyphicon-chevron-down");
 			}
 			jQuery(this).nextAll("li").slideToggle(200);
 		});

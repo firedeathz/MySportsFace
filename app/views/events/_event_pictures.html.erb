@@ -9,9 +9,11 @@
 		</div>
 		<div id="msg_thumbs" class="msg_thumbs">
 			<% @event.pictures.in_groups_of(6, false) do |pics| %>
-				<div class="msg_thumb_wrapper">
-					<%= render pics %>
-				</div>
+				<% if pics.count - 1 > 0 %>
+					<div class="msg_thumb_wrapper">
+						<%= render pics %>
+					</div>
+				<% end %>
 			<% end %>
 			<a href="#" id="msg_thumb_next" class="msg_thumb_next"></a>
 			<a href="#" id="msg_thumb_prev" class="msg_thumb_prev"></a>

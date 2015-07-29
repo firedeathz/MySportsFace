@@ -2,6 +2,6 @@
 	<% if @event.schedule_entries.count > 0 %>
 		<%= render @event.schedule_entries.order("timeloc") %>
 	<% else %>
-		<p class="no-sched"><span>&#x2716;</span> This event has no schedule yet.</p>
+		<p class="no-sched"><i class="fa fa-times"></i> This event has no schedule yet.</p>
 	<% end %>
 </ul>
