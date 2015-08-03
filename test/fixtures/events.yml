@@ -3,9 +3,19 @@
 one:
   name: MyString
   description: MyText
-  organization_id: 
+  location: MyLoc
+  date: MyDate
+  time: MyTime
+  lat: MyLat
+  lng: MyLng
+  user_id: 
 
 two:
   name: MyString
   description: MyText
-  organization_id: 
+  location: MyLoc
+  date: MyDate
+  time: MyTime
+  lat: MyLat
+  lng: MyLng
+  user_id: 

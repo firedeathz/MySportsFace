@@ -15,11 +15,25 @@ class EventCommentsController < ApplicationController
 	def destroy
 		@comment = EventComment.find(params[:id])
 		if @comment.destroy
-			flash[:success] = "Comment successfully deleted"
+			flash[:notice] = "Your comment has been deleted."
 			redirect_to request.referrer || event_path(@event)
 		else
 			render 'events/show'
 		end
+	end
+	
+	def star
+		@comment = EventComment.find(params[:id])
+		current_user.vote_for(@comment)
+		redirect_to Event.find(@comment.event_id)
+		flash[:success] = "Successfully starred the comment."
+	end
+
+	def unstar
+		@comment = EventComment.find(params[:id])
+		current_user.unvote_for(@comment)
+		redirect_to Event.find(@comment.event_id)
+		flash[:success] = "Removed your star from the comment."
 	end
 	
 	private

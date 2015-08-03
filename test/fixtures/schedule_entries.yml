@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  time: 2015-05-07 13:22:31
+  timeloc: 2015-05-07 13:22:31
   description: MyString
   event_id: 
 
 two:
-  time: 2015-05-07 13:22:31
+  timeloc: 2015-05-07 13:22:31
   description: MyString
   event_id: 

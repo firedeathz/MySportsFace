@@ -29,7 +29,7 @@
 			<div class="border-top event-info">
 				<h3><i class="glyphicon glyphicon-th"></i> Article Information</h3>
 			</div>
-			<div class="col-md-12 article-description">
+			<div class="article-description">
 				<% if @article.content.nil? %>
 					<% if !@article.description.nil? %>
 						<%= @article.description.html_safe %><span class="truncated"> [...]</span>
@@ -43,7 +43,7 @@
 		
 		<div class="col-md-12">
 			<div class="border-top comment-form" id="comments">
-				<h3><i class="glyphicon glyphicon-comment"></i> Comments (<%= @article.comments.count %>)</h3>
+				<h3><i class="fa fa-comments"></i> Comments (<%= @article.comments.count %>)</h3>
 				<%= render 'shared/comment_form' %>
 			</div>
 			<ul class="comments">
@@ -56,15 +56,30 @@
 						<% end %>
 							<%= link_to gravatar_for(User.find(comment.user_id)), User.find(comment.user_id) %>
 							<div class="comment-div">
-								<p class="comment-author"><%= link_to comment.author, user_path(User.find(comment.user_id)), class: 'add-transition' %></p>
-								<p class="comment-timestamp">
-									Posted <%= time_ago_in_words(comment.created_at) %> ago.
-									<% if current_user.id == comment.user_id %>
-										<%= link_to "delete", comment, method: :delete,
-																	   data: { confirm: "Are you sure you want to delete this comment?" } %>
+								<span class="comment-author">
+									<%= link_to comment.author, user_path(User.find(comment.user_id)), class: 'add-transition' %>
+									<% if current_user.voted_on?(comment) %>
+										<div class="star-form">
+											<%= comment.votes_for %>
+											<%= link_to(content_tag("i", "", class: "fa fa-star"), unstar_comment_path(comment), :method => :post) %>
+										</div>
+									<% else %>
+										<div class="star-form">
+											<%= comment.votes_for %>
+											<%= link_to(content_tag("i", "", class: "fa fa-star-o"), star_comment_path(comment), :method => :post) %>
+										</div>
 									<% end %>
-								</p>
-								<p class="comment-body"><%= comment.body.html_safe %></p>	
+								</span>
+								<span class="comment-body">
+									<%= comment.body.html_safe %>
+								</span>
+								<span class="comment-timestamp">
+									posted <%= time_ago_in_words(comment.created_at) %> ago.
+									<% if current_user.id == comment.user_id %>
+										<%= link_to "delete <i class='fa fa-times'></i>".html_safe, comment, method: :delete,
+																	   data: { confirm: "Are you sure you want to delete this comment?" }, class: "delete-comment" %>
+									<% end %>
+								</span>								
 							</div>
 						</li>
 					<% end %>

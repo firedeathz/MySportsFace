@@ -1,18 +1,37 @@
 <li class="news-article">
 	<span class="article-title">
 		<%= link_to article.title, article_path(article), class: 'add-transition' %>
-		<% if current_user.voted_on?(article) %>
-			<div class="star-form">
-				<%= article.votes_for %>
-				<%= content_tag("span", "", class: "star-empty") %>
-			</div>
-		<% else %>
-			<div class="star-form">
-				<%= article.votes_for %>
-				<%= content_tag("span", "", class: "star-full") %>
-			</div>
-		<% end %>
+	<% if current_user.voted_on?(article) %>
+		<div class="star-form">
+			<%= article.votes_for %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star"), unstar_article_path(article), :method => :post) %>
+		</div>
+	<% else %>
+		<div class="star-form">
+			<%= article.votes_for %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star-o"), star_article_path(article), :method => :post) %>
+		</div>
+	<% end %>
 	</span>
 	<p class="article-author">by <%= article.author %> | <%= link_to "view original post", article.url, :target => "_blank" %></p>
-	<p class="article-comments"><%= link_to "Comments: #{article.comments.count}", article_path(article, anchor: 'comments') %></p>
+	<p class="article-comments"><%= link_to "#{article.comments.count} <i class='fa fa-comments'></i>".html_safe, article_path(article, anchor: 'comments') %></p>
 </li>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fa-star").hover(function() {
+			$(this).addClass("fa-star-o");
+			$(this).removeClass("fa-star");
+		}, function() {
+			$(this).addClass("fa-star");
+			$(this).removeClass("fa-star-o");
+		});
+		$(".fa-star-o").hover(function() {
+			$(this).addClass("fa-star");
+			$(this).removeClass("fa-star-o");
+		}, function() {
+			$(this).addClass("fa-star-o");
+			$(this).removeClass("fa-star");
+		});
+	});
+</script>

@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyTitle
+  name: MyString
+  description: MyText
+  logo: MyLogo
   url: MyUrl
-  status: MyStatus
-  organization_id: 
 
 two:
-  title: MyTitle
+  name: MyString
+  description: MyText
+  logo: MyLogo
   url: MyUrl
-  status: MyStatus
-  organization_id: 

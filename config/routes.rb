@@ -28,7 +28,12 @@ Rails.application.routes.draw do
     resources :videos, only: [:create, :destroy]
     resources :pictures, only: [:create, :destroy]
 	resources :schedule_entries, only: [:create, :destroy]
-	resources :event_comments, only: [:create, :destroy]
+	resources :event_comments, only: [:create, :destroy] do
+		member do
+			post :star
+			post :unstar
+		end
+	end
 	member do
 		get :participants
 		post :star
@@ -49,7 +54,12 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :organizations do
     resources :articles, shallow: true do
-	  resources :comments, only: [:create, :destroy]
+	  resources :comments, only: [:create, :destroy] do
+		member do
+			post :star
+			post :unstar
+		end
+	  end
 	  member do
 		post :star
 		post :unstar

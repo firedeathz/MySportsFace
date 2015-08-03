@@ -16,7 +16,7 @@ class MicropostsController < ApplicationController
 
 	def destroy
 		@micropost.destroy
-		flash[:success] = "Post successfully deleted."
+		flash[:notice] = "Your post has been deleted."
 		redirect_to request.referrer || root_url		
 	end
 	
@@ -24,14 +24,14 @@ class MicropostsController < ApplicationController
 		@micropost = Micropost.find(params[:id])
 		current_user.vote_for(@micropost)
 		redirect_to root_url
-		flash[:success] = "Successfully starred this post"
+		flash[:success] = "Successfully starred the post."
 	end
 
 	def unstar
 		@micropost = Micropost.find(params[:id])
 		current_user.unvote_for(@micropost)
 		redirect_to root_url
-		flash[:warning] = "Removed your star from this post"
+		flash[:notice] = "Removed your star from the post."
 	end
 	
 	private

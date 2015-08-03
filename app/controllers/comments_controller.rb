@@ -14,6 +14,20 @@ class CommentsController < ApplicationController
 		redirect_to request.referrer || article_path(@article)
 	end
 	
+	def star
+		@comment = Comment.find(params[:id])
+		current_user.vote_for(@comment)
+		redirect_to Article.find(@comment.article_id)
+		flash[:success] = "Successfully starred the comment."
+	end
+
+	def unstar
+		@comment = Comment.find(params[:id])
+		current_user.unvote_for(@comment)
+		redirect_to Article.find(@comment.article_id)
+		flash[:success] = "Removed your star from the comment."
+	end
+	
 	private
 		
 		def comment_params

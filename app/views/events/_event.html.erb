@@ -20,6 +20,7 @@
 		<%= event.summary.truncate(99, omission: " [...]") %>
 	<% end %>
   </span>
+  <p class="article-comments"><%= link_to "#{event.event_comments.count} <i class='fa fa-comments'></i>".html_safe, event_path(event, anchor: 'comments') %></p>
   <span class="timestamp">
     created <%= time_ago_in_words(event.created_at) %> ago by <%= link_to User.find(event.user_id).name, user_path(User.find(event.user_id)) %>
 	<% if current_user.id == event.user_id %>
