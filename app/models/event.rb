@@ -18,6 +18,8 @@ class Event < ActiveRecord::Base
   validates :location, presence: true
   validates :time, presence: true
   validates :date, presence: true
+  validates :summary, presence: true, length: { maximum: 255 }
+  validates :description, presence: true
   
   def add_participant(user, admin_val, creator_val)
 	passive_participations.create(user_id: user.id, admin: admin_val, creator: creator_val)

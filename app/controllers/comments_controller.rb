@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 	
 	def destroy
 		@comment.destroy
-		flash[:success] = "Comment successfully deleted"
+		flash[:success] = "Your comment has been deleted."
 		redirect_to request.referrer || article_path(@article)
 	end
 	
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 		@comment = Comment.find(params[:id])
 		current_user.unvote_for(@comment)
 		redirect_to Article.find(@comment.article_id)
-		flash[:success] = "Removed your star from the comment."
+		flash[:notice] = "Removed your star from the comment."
 	end
 	
 	private

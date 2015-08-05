@@ -1,9 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
-  user_id: 
+firsty:
+  content: "This is the first post"
+  created_at: <%= 999.days.ago %>
+  user_id: 1000
 
-two:
-  content: MyText
-  user_id: 
+<% 40.times do |n| %>
+post_<%= n %>:
+  content: <%= "post content #{n}" %>
+  created_at: <%= n.days.ago %>
+  user_id: 1000
+<% end %>
+
+<% 30.times do |n| %>
+other_post_<%= n %>:
+  content: <%= "other post #{n}" %>
+  created_at: <%= Time.zone.now %>
+  user_id: 500
+<% end %>

@@ -1,13 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyTitle
-  url: MyUrl
-  status: MyStatus
-  organization_id: 
-
-two:
-  title: MyTitle
-  url: MyUrl
-  status: MyStatus
-  organization_id: 
+exampleorgfeed:
+  title: "Example Org Feed"
+  url: "http://random.org"
+  status: ""
+  organization: exampleorg 

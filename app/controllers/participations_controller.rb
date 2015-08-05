@@ -3,7 +3,7 @@ class ParticipationsController < ApplicationController
 	def create
 		event = Event.find(params[:event_id])
 		current_user.participate(event, false, false)
-		flash[:success] = "Successfully signed up for this event!"
+		flash[:success] = "Successfully signed up for the event!"
 		redirect_to event
 	end
 	
@@ -20,7 +20,7 @@ class ParticipationsController < ApplicationController
 	def destroy
 		event = Participation.find(params[:id]).event
 		current_user.remove_participation(event)
-		flash[:success] = "You are now unsigned for this event."
+		flash[:notice] = "You are now unsigned for the event."
 		redirect_to event
 	end
 	

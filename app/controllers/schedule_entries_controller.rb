@@ -14,7 +14,7 @@ class ScheduleEntriesController < ApplicationController
 	def destroy
 		@schedule_entry = ScheduleEntry.find(params[:id])
 		if @schedule_entry.destroy
-			flash[:success] = "Schedule entry successfully deleted"
+			flash[:notice] = "The schedule entry has been removed."
 			redirect_to request.referrer || event_path(@event)
 		else
 			render 'events/show'

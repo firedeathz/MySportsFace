@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  atom_id: 1
-  title: MyString
-  url: MyString
-  content: MyString
-
-two:
-  atom_id: 1
-  title: MyString
-  url: MyString
-  content: MyString
+<% 50.times do |n| %>
+entry_<%= n %>:
+  atom_id: <%= n %>
+  title: <%= "Article entry #{n}" %>
+  url: <%= "www.articleentry#{n}.com" %>
+  content: <%= "Article entry content #{n}" %>
+<% end %>

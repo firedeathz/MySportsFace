@@ -6,17 +6,17 @@ class PicturesController < ApplicationController
 		@event = Event.find(params[:event_id])
 		@picture = @event.pictures.build(picture_params)
 		if @picture.save
-			flash[:success] = "Successfully uploaded your photo!"
+			flash[:success] = "Successfully uploaded your image!"
 			redirect_to @event
 		else
 			redirect_to @event
-			flash[:notice] = "Failed to upload your picture."
+			flash[:error] = "Failed to upload your image."
 		end
 	end
 	
 	def destroy
 		@picture.destroy
-		flash[:notice] = "Picture removed successfully."
+		flash[:notice] = "Your image has been removed."
 		redirect_to request.referrer || event_path(@event)
 	end	
 	

@@ -1,21 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-  location: MyLoc
-  date: MyDate
-  time: MyTime
-  lat: MyLat
-  lng: MyLng
-  user_id: 
-
-two:
-  name: MyString
-  description: MyText
-  location: MyLoc
-  date: MyDate
-  time: MyTime
-  lat: MyLat
-  lng: MyLng
-  user_id: 
+mexicana:
+  name: "La mexicana"
+  summary: "Come come, tacos"
+  description: "Los pollos hermanos"
+  location: "Lisboa"
+  date: "20-07-2016"
+  time: "20:20"
+  lat: ""
+  lng: ""
+  user_id: 1000

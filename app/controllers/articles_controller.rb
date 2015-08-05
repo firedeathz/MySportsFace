@@ -28,13 +28,13 @@ class ArticlesController < ApplicationController
 	@article = Article.find(params[:id])
 	current_user.vote_for(@article)
 	redirect_to @article
-	flash[:success] = "Successfully starred this article"
+	flash[:success] = "Successfully starred the article."
   end
   
   def unstar
 	@article = Article.find(params[:id])
 	current_user.unvote_for(@article)
 	redirect_to @article
-	flash[:warning] = "Removed your star from this article"
+	flash[:notice] = "Removed your star from the article."
   end
 end

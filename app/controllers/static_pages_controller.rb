@@ -22,11 +22,11 @@ class StaticPagesController < ApplicationController
 	def admin_user
 		if current_user.nil?
 			redirect_to login_url
-			flash[:danger] = "Please log in to access this page."
+			flash[:error] = "Please log in to access this page."
 		else
 			if !current_user.admin?
 				redirect_to login_url
-				flash[:danger] = "You do not have the rights to access this page. Please log in with an administrator account."
+				flash[:error] = "You do not have the rights to access this page. Please log in with an administrator account."
 			end
 		end
 	end

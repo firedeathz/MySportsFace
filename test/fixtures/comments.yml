@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  author: MyString
-  body: MyText
-  article_id: 
+firstcomment:
+  author: "Marcos Germano"
+  user_id: 1000
+  body: "trololo"
+  article: clownfiesta 
 
-two:
-  author: MyString
-  body: MyText
-  article_id: 
+secondcomment:
+  author: "Marcos Germano"
+  user_id: 1000
+  body: "derp herp"
+  article: clownfiesta

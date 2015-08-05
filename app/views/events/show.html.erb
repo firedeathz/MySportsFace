@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		
-		<div class="col-md-6 col-md-offset-3 margin-top-sm">
+		<div class="col-md-6 col-md-offset-3">
 			<%= render 'participate_form' if logged_in? and not_creator(current_user, @event) %>
 		</div>
 
@@ -59,7 +59,7 @@
 
 		<div class="col-md-12" id="schedule">
 			<div class="border-top event-info">
-				<h3><i class="fa fa-list"></i> Event Schedule</h3>
+				<h3><i class="fa fa-list"></i> Event Schedule <a class="backtop" href="#">back to top</a></h3>
 			</div>
 			<div class="">
 				<%= render 'event_schedule' %>
@@ -73,15 +73,15 @@
 		</div>
 		<div class="col-md-12" id="datetimeloc">
 			<div class="border-top event-info">
-				<div class="col-md-3 timeloc margin-top no-padding-left">
+				<div class="col-md-3 timeloc no-padding-left">
 					<h3><i class="fa fa-calendar"></i> Date </h3>
 					<p><%= @event.date.day %> <%= month_name(@event.date.month) %> <%= @event.date.year %></p>
 				</div>
-				<div class="col-md-3 timeloc margin-top no-padding-left">
+				<div class="col-md-3 timeloc no-padding-left">
 					<h3><i class="fa fa-clock-o"></i> Time</h3>
 					<p><%= @event.time.strftime("%H : %M") %></p>
 				</div>
-				<div class="col-md-6 timeloc margin-top no-padding-left">
+				<div class="col-md-6 timeloc no-padding-left no-padding-right">
 					<h3><i class="fa fa-map-marker"></i> Location</h3>
 					<p id="loc"><%= @event.location %></p>
 					<p style="display: none" id="lat"><%= @event.lat %></p>
@@ -90,14 +90,15 @@
 			</div>
 		</div>
 		<div class="col-md-12" id="googlemap">
-			<div class="border-top">
-				<div id="gmap" class="col-md-12 locationmap"></div>
+			<div class="border-top event-info">
+				<h3><i class="fa fa-compass"></i> Map <a class="backtop" href="#">back to top</a></h3>
 			</div>
+			<div id="gmap" class="col-md-12 locationmap"></div>
 		</div>
 
 		<div class="col-md-12" id="participants">
 			<div class="border-top event-info">
-				<h3><i class="fa fa-group"></i> Participants (<%= @event.participants.count %>)</h3>
+				<h3><i class="fa fa-group"></i> Participants (<%= @event.participants.count %>) <a class="backtop" href="#">back to top</a></h3>
 			</div>
 			<div>
 				<% if @event.participants.count > 0 %>
@@ -114,7 +115,7 @@
 
 		<div class="col-md-12" id="images">
 			<div class="border-top event-info">
-				<h3><i class="fa fa-camera"></i> Images (<%= @event.pictures.count %>)</h3>
+				<h3><i class="fa fa-camera"></i> Images (<%= @event.pictures.count %>) <a class="backtop" href="#">back to top</a></h3>
 			</div>
 			<div>
 				<%= render 'event_pictures' %>
@@ -128,7 +129,7 @@
 		
 		<div class="col-md-12" id="videos">
 			<div class="border-top event-info">
-				<h3><i class="fa fa-play-circle"></i> Videos (<%= @event.videos.count %>)</h3>
+				<h3><i class="fa fa-play-circle"></i> Videos (<%= @event.videos.count %>) <a class="backtop" href="#">back to top</a></h3>
 			</div>
 			<div class="videoframe">
 				<%= render 'event_videos' %>
@@ -141,8 +142,8 @@
 		</div>
 		
 		<div class="col-md-12" id="comments">
-			<div class="border-top comment-form" id="comments">
-				<h3><i class="fa fa-comments"></i> Comments (<%= @event.event_comments.count %>)</h3>
+			<div class="border-top event-info" id="comments">
+				<h3><i class="fa fa-comments"></i> Comments (<%= @event.event_comments.count %>) <a class="backtop" href="#">back to top</a></h3>
 				<%= render 'shared/event_comment_form' %>
 			</div>
 			<ul class="comments">
@@ -214,6 +215,11 @@
 		$root.animate({
 			scrollTop: $( $.attr(this, 'href') ).offset().top - 40
 		}, 500);
+		return false;
+	});
+	$('.backtop').click(function(e) {
+		e.preventDefault();
+		$root.animate({ scrollTop: 0 }, 250);
 		return false;
 	});
 </script>

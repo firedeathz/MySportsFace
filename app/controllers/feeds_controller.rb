@@ -16,14 +16,14 @@ class FeedsController < ApplicationController
 		body, ok = SuperfeedrEngine::Engine.subscribe(@feed)
 		if !ok
 			redirect_to organization_feeds_path(@organization)
-			flash[:success] = "Error subscribing"
+			flash[:error] = "Error subscribing to the feed."
 		else
 			redirect_to organization_feeds_path(@organization)
-			flash[:success] = "Successfully subscribed!"
+			flash[:success] = "Successfully subscribed to the feed."
 		end
 		body, ok = SuperfeedrEngine::Engine.retrieve(@feed)
 		if !ok
-			flash[:success] = "Failed to subscribe"
+			flash[:error] = "Failed to subscribe to the feed."
 		else
 			@feed.notified JSON.parse(body)
 		end

@@ -36,7 +36,7 @@ class EventsController < ApplicationController
 	def create
 		@event = Event.new(event_params)
 		if @event.save
-			flash[:success] = "Successfully created a new event!"
+			flash[:success] = "Your new event has been successfully created."
 			@event.add_participant(current_user, false, true)
 			redirect_to @event
 		else
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 	
 	def destroy
 		@event.destroy
-		flash[:success] = "Event successfully deleted"
+		flash[:notice] = "Your event has been deleted."
 		redirect_to request.referrer || event_path(@event)
 	end
 	
@@ -54,14 +54,14 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 		current_user.vote_for(@event)
 		redirect_to @event
-		flash[:success] = "Successfully starred this event"
+		flash[:success] = "Successfully starred the event."
 	end
 
 	def unstar
 		@event = Event.find(params[:id])
 		current_user.unvote_for(@event)
 		redirect_to @event
-		flash[:success] = "Removed your star from this event"
+		flash[:notice] = "Removed your star from the event."
 	end
 	
 	private

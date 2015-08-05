@@ -14,7 +14,7 @@
 			<%= link_to "Create an event", events_new_path, class: "btn btn-primary" %>
 		</div>
 		
-		<div class="event-info">
+		<div>
 			<%= form_tag(events_path, :method => "get") do %>
 				<%= text_field_tag :search, params[:search], class: "text-area col-md-10 form-control", placeholder: "Search Events. . .", :autofocus => "true" %>
 				<button type="submit" class="btn btn-primary col-md-2 search-btn"><i class="glyphicon glyphicon-search"></i></button>

@@ -1,4 +1,4 @@
 <%= form_for(current_user.active_participations.find_by(event_id: @event.id),
              html: { method: :delete }) do |f| %>
-  <%= f.submit "Unsign", class: "btn btn-primary" %>
+  <%= f.submit "Unsign from this event", class: "btn btn-primary" %>
 <% end %>

@@ -41,13 +41,13 @@ class UsersController < ApplicationController
 			@user.password = user_params[:password]
 			if @user.save!
 				session[:user_id] = @user.id
-				flash[:success] = "Welcome! Your account has been linked with either of your Facebook/Google+ accounts."
+				flash[:success] = "Welcome! Your account has been linked with either of your Facebook and/or Google+ accounts."
 				redirect_to @user
 			else
 				render 'new'
 			end
 		else
-			flash[:danger] = "An account with that email already exists."
+			flash[:error] = "An account with that email already exists."
 			redirect_to signup_path
 		end
 	else
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 		identity.save!
 		if @user.save
 		  session[:user_id] = @user.id
-		  flash[:success] = "Welcome to the MySportsFace community!"
+		  flash[:success] = "Welcome to the MySportsFace community, " + @user.name + "!"
 		  redirect_to @user
 		else
 		  render 'new'
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Your profile has been updated."
       redirect_to @user
     else
       render 'edit'

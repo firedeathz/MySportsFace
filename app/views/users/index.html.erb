@@ -17,6 +17,8 @@
 			<% end %>
 		</div>
 		
+		<%= will_paginate %>
+		
 		<% if @noresults %>
 			<h3>No users were found in your search for: '<%= @searched %>'.</h3>
 		<% else %>

@@ -6,7 +6,7 @@ class EventCommentsController < ApplicationController
 		@event = Event.find(params[:event_id])
 		@comment = @event.event_comments.create(comment_params)
 		if @comment.save
-			redirect_to event_path(@event)
+			redirect_to event_path(@event, anchor: "comments")
 		else 
 			render 'events/show'
 		end
@@ -33,7 +33,7 @@ class EventCommentsController < ApplicationController
 		@comment = EventComment.find(params[:id])
 		current_user.unvote_for(@comment)
 		redirect_to Event.find(@comment.event_id)
-		flash[:success] = "Removed your star from the comment."
+		flash[:notice] = "Removed your star from the comment."
 	end
 	
 	private

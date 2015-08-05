@@ -9,3 +9,8 @@ two:
   user_id: 
   provider: MyString
   uid: MyString
+
+marcos:
+  user_id: 1000
+  provider: mysportsface
+  uid: MyUID

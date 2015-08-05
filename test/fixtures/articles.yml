@@ -1,13 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  author: MyString
-  title: MyString
-  description: MyText
-  organization_id: 
-
-two:
-  author: MyString
-  title: MyString
-  description: MyText
-  organization_id: 
+clownfiesta:
+  author: "Example Org"
+  title: "Clown Fiesta"
+  description: "Don't mind me, this is just a clown fiesta."
+  organization: exampleorg 
