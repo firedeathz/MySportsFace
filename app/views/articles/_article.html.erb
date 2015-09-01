@@ -4,17 +4,17 @@
 	<% if current_user.voted_on?(article) %>
 		<div class="star-form">
 			<%= article.votes_for %>
-			<%= link_to(content_tag("i", "", class: "fa fa-star"), unstar_article_path(article), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star", title: "Unstar this article"), unstar_article_path(article), :method => :post) %>
 		</div>
 	<% else %>
 		<div class="star-form">
 			<%= article.votes_for %>
-			<%= link_to(content_tag("i", "", class: "fa fa-star-o"), star_article_path(article), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star-o", title: "Star this article"), star_article_path(article), :method => :post) %>
 		</div>
 	<% end %>
 	</span>
 	<p class="article-author">by <%= article.author %> | <%= link_to "view original post", article.url, :target => "_blank" %></p>
-	<p class="article-comments"><%= link_to "#{article.comments.count} <i class='fa fa-comments'></i>".html_safe, article_path(article, anchor: 'comments') %></p>
+	<p class="article-comments" title="View comments"><%= link_to "#{article.comments.count} <i class='fa fa-comments'></i>".html_safe, article_path(article, anchor: 'comments') %></p>
 </li>
 
 <script type="text/javascript">

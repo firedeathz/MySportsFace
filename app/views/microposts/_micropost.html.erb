@@ -9,12 +9,12 @@
 	<% if current_user.voted_on?(micropost) %>
 		<div class="star-form">
 			<%= micropost.votes_for %>
-			<%= link_to(content_tag("i", "", class: "fa fa-star"), unstar_micropost_path(micropost), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star", title: "Unstar this post"), unstar_micropost_path(micropost), :method => :post) %>
 		</div>
 	<% else %>
 		<div class="star-form">
 			<%= micropost.votes_for %>
-			<%= link_to(content_tag("i", "", class: "fa fa-star-o"), star_micropost_path(micropost), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star-o", title: "Star this post"), star_micropost_path(micropost), :method => :post) %>
 		</div>
 	<% end %>
   </span>

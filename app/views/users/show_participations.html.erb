@@ -7,14 +7,14 @@
   </aside>
   <div class="col-md-8">
 	<h1>Signed up for</h1>
-      <ul class="events">
+      <ul class="events no-margin-top">
 		<li class="list-title">
 			<span class="exp-close">-</span>
 			<span class="fav-title-count"><% if current_user == @user %>Your<% else %><%= @user.name %>'s<% end %> Events (<%= @events.where(:user_id => @user.id).count %>)</span>
 		</li>
         <%= render @events.where(:user_id => @user.id) %>
       </ul>
-	  <ul class="events">
+	  <ul class="events no-margin-top">
 		<li class="list-title">
 			<span class="exp-close">-</span>
 			<span class="fav-title-count">Other Events (<%= @events.where.not(:user_id => @user.id).count %>)</span>

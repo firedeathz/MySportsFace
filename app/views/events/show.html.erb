@@ -11,6 +11,10 @@
 		<h1><%= @event.name %></h1>
 		<h2 class="event-creator">created by <%= link_to User.find(@event.user_id).name, user_path(User.find(@event.user_id)) %></h2>
 		
+		<div class="col-md-6 col-md-offset-3">
+			<%= render 'participate_form' if logged_in? and not_creator(current_user, @event) %>
+		</div>
+		
 		<div class="col-md-12">
 			<h3 id="tab-contents"><i id="arrow-tab" class="glyphicon glyphicon-chevron-down"></i> View Details</h3>
 			<ul class="tab-contents">
@@ -40,10 +44,6 @@
 					<%= render 'star_form' %>
 				<% end %>
 			</div>
-		</div>
-		
-		<div class="col-md-6 col-md-offset-3">
-			<%= render 'participate_form' if logged_in? and not_creator(current_user, @event) %>
 		</div>
 
 		<div class="col-md-12">

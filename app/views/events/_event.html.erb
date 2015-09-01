@@ -4,12 +4,12 @@
 	<% if current_user.voted_on?(event) %>
 		<div class="star-form">
 			<%= event.votes_for %>
-			<%= link_to(content_tag("i", "", class: "fa fa-star"), unstar_event_path(event), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star", title: "Unstar this event"), unstar_event_path(event), :method => :post) %>
 		</div>
 	<% else %>
 		<div class="star-form">
 			<%= event.votes_for %>
-			<%= link_to(content_tag("i", "", class: "fa fa-star-o"), star_event_path(event), :method => :post) %>
+			<%= link_to(content_tag("i", "", class: "fa fa-star-o", title: "Star this event"), star_event_path(event), :method => :post) %>
 		</div>
 	<% end %>
   </span>
@@ -21,8 +21,8 @@
 	<% end %>
   </span>
   <p class="article-comments">
-	<span class="sm-padding-right"><%= "#{event.participants.count} <i class='fa fa-group'></i>".html_safe %></span>
-	<%= link_to "#{event.event_comments.count} <i class='fa fa-comments'></i>".html_safe, event_path(event, anchor: 'comments') %>
+	<span class="sm-padding-right" title="Participants"><%= "#{event.participants.count} <i class='fa fa-group'></i>".html_safe %></span>
+	<%= link_to "#{event.event_comments.count} <i class='fa fa-comments'></i>".html_safe, event_path(event, anchor: 'comments'), title: "View comments" %>
   </p>
   <span class="timestamp">
     created <%= time_ago_in_words(event.created_at) %> ago by <%= link_to User.find(event.user_id).name, user_path(User.find(event.user_id)) %>
