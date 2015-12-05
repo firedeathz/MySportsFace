@@ -150,3 +150,99 @@ params8 = { :organization =>
 	}
 }
 Organization.create!(params8[:organization])
+
+params9 = { :organization =>
+	{
+		:name => "International Hockey Federation",
+		:description => "Set up in 1924, the FIH is recognised by the International Olympic Committee, as well as by the FIH’s Members and the Continental Federations, as the sole ultimate governing body for the sport of Hockey throughout the world. They are based in Lausanne, Switzerland – the home of the IOC and most other major International Federations.",
+		:logo => "fih.png",
+		:url => "http://www.fih.ch/",
+		:feed_attributes =>
+		{
+			:title => "FIH",
+			:url => "http://workrooms.fih.ch/en/rss-1-international-hockey-federation-news",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params9[:organization])
+
+params10 = { :organization =>
+	{
+		:name => "International Association of Athletics Federations",
+		:description => "The International Amateur Athletic Federation was founded in 1912 by 17 national athletic federations who saw the need for a governing authority, for an athletic programme, for standardised technical equipment and world records.",
+		:logo => "iaaf.png",
+		:url => "http://www.iaaf.org/",
+		:feed_attributes =>
+		{
+			:title => "IAAF",
+			:url => "http://www.iaaf.org/news/rss/",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params10[:organization])
+
+params11 = { :organization =>
+	{
+		:name => "International Golf Federation",
+		:description => "The International Golf Federation (IGF) was founded in 1958 and is the international federation recognised by the International Olympic Committee (IOC) as the world governing body for golf. The headquarters of the IGF is located by the shores of Lake Geneva in Lausanne, Switzerland.",
+		:logo => "igf.png",
+		:url => "http://www.igfgolf.org/",
+		:feed_attributes =>
+		{
+			:title => "IGF",
+			:url => "http://www.igfgolf.org/feed/",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params11[:organization])
+
+params12 = { :organization =>
+	{
+		:name => "International Handball Federation",
+		:description => "The International Handball Federation (IHF) is the administrative and controlling body for international team handball and has 163 national member federations.",
+		:logo => "ihf.png",
+		:url => "http://www.ihf.info/",
+		:feed_attributes =>
+		{
+			:title => "IHF",
+			:url => "http://www.ihf.info/IHFNews.rss?detId=130&aParentId=127",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params12[:organization])
+
+params13 = { :organization =>
+	{
+		:name => "International Volleyball Federation",
+		:description => "The International Volleyball Federation, commonly known by the acronym FIVB, is the international governing body for the sports of indoor, beach and grass volleyball. Its headquarters are located in Lausanne, Switzerland.",
+		:logo => "fivb.png",
+		:url => "http://www.fivb.org/",
+		:feed_attributes =>
+		{
+			:title => "FIVB",
+			:url => "http://www.fivb.org/vis/rss/press.aspx",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params13[:organization])
+
+params14 = { :organization =>
+	{
+		:name => "International Basketball Federation",
+		:description => "The International Basketball Federation, more commonly known by the French acronym FIBA, is an association of national organisations which governs international competition in basketball.The association was founded in Geneva on 18 June 1932, two years after the sport was officially recognized by the International Olympic Committee (IOC).",
+		:logo => "fiba.png",
+		:url => "http://www.fiba.com/",
+		:feed_attributes =>
+		{
+			:title => "FIBA",
+			:url => "http://www.fiba.com/subsites/rss/teaser_content_rss.asp?cat_news=8",
+			:status => ""
+		}
+	}
+}
+Organization.create!(params13[:organization])
