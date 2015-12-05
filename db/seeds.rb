@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-User.create!(name:  "Marcos Germano", email: "mikazzz_pro@hotmail.com", password: "HEARTless0", password_confirmation: "HEARTless0", admin: true)
+# User.create!(name:  "Marcos Germano", email: "mikazzz_pro@hotmail.com", password: "HEARTless0", password_confirmation: "HEARTless0", admin: true)
 
 #50.times do |n|
 #  name  = Faker::Name.name
